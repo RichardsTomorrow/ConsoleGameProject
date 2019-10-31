@@ -7,7 +7,12 @@ namespace ConsoleGameProject
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            //Console.WriteLine("Hello World!");
+
+            string[] test = new string[] { "hello", "darkness", "my old", "friend", "Here", "we meet", "again", "eight", "nine", "ten" };
+
+            ColoringAndText.IntroGradient(test);
+            
         }
     }
 }
