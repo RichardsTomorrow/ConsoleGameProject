@@ -1,5 +1,8 @@
 ﻿using System;
 using NAudio.Wave;
+using System.Drawing;
+using Console = Colorful.Console;
+using System.Diagnostics;
 
 namespace ConsoleGameProject
 {
@@ -7,11 +10,10 @@ namespace ConsoleGameProject
     {
         static void Main(string[] args)
         {
-            //Console.WriteLine("Hello World!");
+            //string[] test = new string[] { "hello", "darkness", "my old", "friend", "Here", "we meet", "again", "eight", "nine", "ten" };
+            ColoringAndText.IntroScreen();
+            Console.WriteLine("hi!");
 
-            string[] test = new string[] { "hello", "darkness", "my old", "friend", "Here", "we meet", "again", "eight", "nine", "ten" };
-
-            ColoringAndText.IntroGradient(test);
             
         }
     }
