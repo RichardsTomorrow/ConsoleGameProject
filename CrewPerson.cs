@@ -5,14 +5,14 @@ using System.Diagnostics;
 
 namespace ConsoleGameProject
 {
-    class CrewPerson
+    public class CrewPerson
     {
         static HashSet<string> usedNames = new HashSet<string>();
         static HashSet<string> usedTraits = new HashSet<string>();
         static string[] possibleFirstNames = new string[] { "Richard", "Ben", "Breana", "Chris", "Christopher", "David", "Nic", "Evan", "Iqra", "Jing", "Matt", "Melissa", "Mike", "Michael", "Radiah", "Rob", "Ruying", "Sakariya", "Vivien", "Wei", "Yelena", "Ivy", "Peter", "Ed", "Auriana", "Grant" };
         static string[] possibleLastNames = new string[] { "Morrow", "Bartel", "Mozzone", "Gutierrez", "Masters", "Malloy", "Cook", "Slaton", "Osman", "Xie", "Juel", "Stock", "Barta", "Gorzelsky", "Jones", "Schroeder", "Chen", "Mohamed", "Renee", "Kuang", "Dovgal", "Muir", "Choe", "Thorsteinson", "Robin", "Dams" };
         static string[] possibleTraits = new string[] { "Captain", "Conspiracist", "Paleontologist", "Archaeologist", "Geologist", "Stout", "Brave", "Occultist", "Bungersome", "Roboticist" };
-        public string FirstName{get; private set;}
+        public string FirstName { get; private set; }
         public string LastName { get; private set; }
         public string Trait { get; private set; }
         public int Chances { get; private set; }
@@ -26,8 +26,8 @@ namespace ConsoleGameProject
 
         public CrewPerson(string firstName, string lastName)
         {
-            this.FirstName = firstName;
-            this.LastName = lastName;
+            this.FirstName = firstName; usedNames.Add(firstName);
+            this.LastName = lastName; usedNames.Add(lastName);
             this.Trait = possibleTraits[0];
             this.Chances = 2;
         }

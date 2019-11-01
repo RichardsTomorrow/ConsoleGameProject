@@ -1,26 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Diagnostics;
 
 namespace ConsoleGameProject
 {
-    class Drill
+    public class Drill
     {
-        List<CrewPerson> CrewPeople = new List<CrewPerson>();
-        CrewPerson Player;
+        public List<CrewPerson> CrewPeople { get; }
+        public CrewPerson Player { get; }
+        public int Health { get; private set; }
+        public int Depth { get; private set; }
+        public int CrewSize { get; private set; }
         public Drill(CrewPerson player, int crewSize)
         {
             this.Player = player;
             this.CrewPeople = CrewSelector(crewSize);
+            this.Health = 50;
+            this.Depth = 0;
+            this.CrewSize = crewSize;
 
         }
 
         private List<CrewPerson> CrewSelector(int crewSize)
         {
-            for(int i = crewSize; i < crewSize; i++)
+            List<CrewPerson> crew = new List<CrewPerson>();
+            for (int i = 1; i < crewSize; i++)
             {
-                // make this acutally make a crew
+                crew.Add(new CrewPerson());
             }
+            Debug.WriteLine($"The non-player crew person list has {crew.Count} people on it");
+            return crew;
         }
     }
 }

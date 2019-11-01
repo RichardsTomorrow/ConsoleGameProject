@@ -68,7 +68,7 @@ namespace ConsoleGameProject
                 @"%| text describing the game goes here at some point                                                                   |%",
                 @"[]+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%[]"
             };
-            Console.SetWindowSize(120, 30);
+            Console.SetWindowSize(121, 30);
             Console.CursorVisible = false;
             Console.SetCursorPosition(0, 0);
 
@@ -99,7 +99,7 @@ namespace ConsoleGameProject
             }
             else if (!Regex.Match(name, noNumbers).Success)
             {
-                Console.WriteLine("Sorry we can only recognize lower or upper case letters between A-Z.");
+                Console.WriteLine("Your name must begin with an uppercase later and only contain letters A-Z .");
                 Debug.WriteLine($"2The name not being matched is : {name}");
                 name = NameValidation();
             }
@@ -113,7 +113,7 @@ namespace ConsoleGameProject
         }
         static int CrewSizeValidation()
         {
-            Console.WriteLine($"One more question! Are you rated for a three-person, four-person, or five-person crew? ");
+            Console.WriteLine($"One more question! Are you rated for a three-person, four-person, or five-person crew?\n");
             if (!Int32.TryParse(Console.ReadLine(), out int crewSize))
             {
                 Console.WriteLine($"Sorry I must've misheard you, since that doesn't sound like a number. How many are in your crew?");
@@ -127,22 +127,57 @@ namespace ConsoleGameProject
             return crewSize;
         }
 
-        public static void PlayerSetup()
+        public static Drill PlayerSetup()
         {
             Console.BackgroundColor = Color.AntiqueWhite;
             Console.Clear();
             Console.ForegroundColor = Color.Black;
             Console.CursorVisible = true;
             var textColor = Color.Black;
-            Console.WriteLine("Hello Captain! It seems we mis-placed the paperwork. What is your first name?");
+            Console.WriteLine("Hello Captain! It seems we mis-placed the paperwork. What is your first name?\n");
             string firstName = NameValidation();
-            Console.WriteLine($"Ok so your first name is {firstName}! Sorry I am new here what was your last name again?");
+            Console.WriteLine($"Ok, so your first name is {firstName}! Sorry I am new here what was your last name again?\n");
             string lastName = NameValidation();
-            Console.WriteLine($"OHHHH!! so you are {firstName} {lastName}! It is a pleasure to meet you.");
+            Console.WriteLine($"OHHHH!! You are {firstName} {lastName}! It is a pleasure to meet you.\n");
             int crewSize = CrewSizeValidation();
-            Console.WriteLine($"Ahh yes! Now I found you! Captain {firstName} {lastName}, total crew of {crewSize}. Give me a second and I will grab your crew roster.");
+            Console.WriteLine($"Ahh yes! Now I found you! Captain {firstName} {lastName}, total crew of {crewSize}.\nGive me a second and I will grab your crew roster.\n");
             CrewPerson player = new CrewPerson(firstName, lastName);
             Drill drill = new Drill(player, crewSize);
+            Thread.Sleep(2_000); // 2 seconds
+            return drill;
+        }
+
+        public static void Roster(Drill drill)
+        {
+            Console.BackgroundColor = Color.AntiqueWhite;
+            Console.Clear();
+            Console.ForegroundColor = Color.Black;
+            Console.CursorVisible = false;
+            Console.WriteLine($"Found it! It looks like the administration has already selected your crew of {drill.CrewSize}.\n\nThey are an outstanding group of people even if they have a few quirks.\n");
+            for (int i = 0; i < drill.CrewSize - 1; i++)
+            {
+                if (i == 0)
+                {
+                    Console.WriteLine($"Your first officer is {drill.CrewPeople[i].FirstName} \"The {drill.CrewPeople[i].Trait}\" {drill.CrewPeople[i].LastName}\n");
+                }
+                else if (i == drill.CrewSize - 2)
+                {
+                    Console.WriteLine($"Last but not least is {drill.CrewPeople[i].FirstName} \"The {drill.CrewPeople[i].Trait}\" {drill.CrewPeople[i].LastName}\n");
+                }
+                else
+                {
+                    if(i %2 == 0)
+                    {
+                    Console.WriteLine($"Next we have {drill.CrewPeople[i].FirstName} \"The {drill.CrewPeople[i].Trait}\" {drill.CrewPeople[i].LastName}\n");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Then we have {drill.CrewPeople[i].FirstName} \"The {drill.CrewPeople[i].Trait}\" {drill.CrewPeople[i].LastName}\n");
+                    }
+                }
+            }
+            Console.WriteLine($"And finally we have you, {drill.Player.FirstName} \"The {drill.Player.Trait}\" {drill.Player.LastName}.\n");
+            Console.WriteLine("I wish you all luck on your journey and I hope you are prepared for whatever you find.");
         }
     }
 }
