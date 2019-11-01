@@ -3,6 +3,7 @@ using NAudio.Wave;
 using System.Drawing;
 using Console = Colorful.Console;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace ConsoleGameProject
 {
@@ -14,7 +15,18 @@ namespace ConsoleGameProject
             ColoringAndText.IntroScreen();
             Console.WriteLine("hi!");
 
-            
+            var tester = new List<string>();
+            for (int i = 0; i < 25; i++)
+            {
+                var test = new CrewPerson();
+                tester.Add(test.FirstName + " " + test.LastName);
+
+            }
+            foreach (string name in tester)
+            {
+                Console.WriteLine(name);
+            }
+
         }
     }
 }

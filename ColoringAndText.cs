@@ -23,7 +23,7 @@ namespace ConsoleGameProject
                 if (i <= 10) { r += 30; b -= 15; } // transition of green to yellow
                 else if (i > 10) { g -= 30; } // transition of yellow to orange
             }
-            Debug.Write($"The string length is{strings.Length}");
+            //Debug.Write($"The string length is {strings.Length}");
 
             //for (int j = 0; j <strings.Length; j++) //this was here until I figure out a way around the console's 16 color limit.
             //{
