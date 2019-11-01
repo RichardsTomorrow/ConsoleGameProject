@@ -13,19 +13,22 @@ namespace ConsoleGameProject
         {
             //string[] test = new string[] { "hello", "darkness", "my old", "friend", "Here", "we meet", "again", "eight", "nine", "ten" };
             ColoringAndText.IntroScreen();
-            Console.WriteLine("hi!");
+            Drill drill = ColoringAndText.PlayerSetup();
+            ColoringAndText.Roster(drill);
 
-            var tester = new List<string>();
-            for (int i = 0; i < 25; i++)
-            {
-                var test = new CrewPerson();
-                tester.Add(test.FirstName + " " + test.LastName);
+            Console.WriteLine("\nend of test");
+            Console.ReadKey();
+            //var tester = new List<string>();
+            //for (int i = 0; i < 9; i++)
+            //{
+            //    var test = new CrewPerson();
+            //    tester.Add(test.FirstName + " \"The "+ test.Trait + "\" "+ test.LastName);
 
-            }
-            foreach (string name in tester)
-            {
-                Console.WriteLine(name);
-            }
+            //}
+            //foreach (string name in tester)
+            //{
+            //    Console.WriteLine(name);
+            //}
 
         }
     }
