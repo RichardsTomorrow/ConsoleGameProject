@@ -81,7 +81,6 @@ namespace ConsoleGameProject
             Debug.WriteLine($"text color before reset:{Console.ForegroundColor}");
 
             Console.ReplaceAllColorsWithDefaults();
-            System.Console.ForegroundColor = ConsoleColor.White;
             Console.Clear();
 
             Debug.WriteLine($"text color after reset:{Console.ForegroundColor}");
@@ -166,9 +165,9 @@ namespace ConsoleGameProject
                 }
                 else
                 {
-                    if(i %2 == 0)
+                    if (i % 2 == 0)
                     {
-                    Console.WriteLine($"Next we have {drill.CrewPeople[i].FirstName} \"The {drill.CrewPeople[i].Trait}\" {drill.CrewPeople[i].LastName}\n");
+                        Console.WriteLine($"Next we have {drill.CrewPeople[i].FirstName} \"The {drill.CrewPeople[i].Trait}\" {drill.CrewPeople[i].LastName}\n");
                     }
                     else
                     {
@@ -178,6 +177,70 @@ namespace ConsoleGameProject
             }
             Console.WriteLine($"And finally we have you, {drill.Player.FirstName} \"The {drill.Player.Trait}\" {drill.Player.LastName}.\n");
             Console.WriteLine("I wish you all luck on your journey and I hope you are prepared for whatever you find.");
+            Thread.Sleep(3_000); // 3 seconds
+            Console.ReplaceAllColorsWithDefaults();
+
         }
+        public static void Surface() // depth 10
+        {
+            Console.ReplaceAllColorsWithDefaults();
+            Console.BackgroundColor = Color.LimeGreen;
+            Console.Clear();
+            Console.ForegroundColor = Color.Sienna;
+            Console.CursorVisible = false;
+        }
+        public static void Soil()// depth 11-50
+        {
+            Console.ReplaceAllColorsWithDefaults();
+            Console.BackgroundColor = Color.Chocolate;
+            Console.Clear();
+            Console.ForegroundColor = Color.DimGray;
+            Console.CursorVisible = false;
+        }
+        public static void Crust() // depth 51-100
+        {
+            Console.ReplaceAllColorsWithDefaults();
+            Console.BackgroundColor = Color.DimGray;
+            Console.Clear();
+            Console.ForegroundColor = Color.DarkOrange;
+            Console.CursorVisible = false;
+        }
+        public static void UpperMantle() //  depth 101-200
+        {
+            Console.ReplaceAllColorsWithDefaults();
+            Console.BackgroundColor = Color.Coral;
+            Console.Clear();
+            Console.ForegroundColor = Color.DarkRed;
+            Console.CursorVisible = false;
+        }
+        public static void LowerMantle() //  depth 201-300
+        {
+            Console.ReplaceAllColorsWithDefaults();
+            Console.BackgroundColor = Color.DarkRed;
+            Console.Clear();
+            Console.ForegroundColor = Color.DarkOrange;
+            Console.CursorVisible = false;
+        }
+        public static void OuterCore() //  depth 301-400
+        {
+            Console.ReplaceAllColorsWithDefaults();
+            Console.BackgroundColor = Color.DarkOrange;
+            Console.Clear();
+            Console.ForegroundColor = Color.Gold;
+            Console.CursorVisible = false;
+        }
+        public static void InnerCore() //  depth 401-500
+        {
+            Console.ReplaceAllColorsWithDefaults();
+            Console.BackgroundColor = Color.Goldenrod;
+            Console.Clear();
+            Console.ForegroundColor = Color.LightGoldenrodYellow ;
+            Console.CursorVisible = false;
+        }
+
+        //public static void Traveling(Drill drill)
+        //{
+
+        //}
     }
 }
