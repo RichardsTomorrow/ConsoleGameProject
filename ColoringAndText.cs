@@ -141,7 +141,8 @@ namespace ConsoleGameProject
             Console.WriteLine($"OHHHH!! so you are {firstName} {lastName}! It is a pleasure to meet you.");
             int crewSize = CrewSizeValidation();
             Console.WriteLine($"Ahh yes! Now I found you! Captain {firstName} {lastName}, total crew of {crewSize}. Give me a second and I will grab your crew roster.");
-
+            CrewPerson player = new CrewPerson(firstName, lastName);
+            Drill drill = new Drill(player, crewSize);
         }
     }
 }
