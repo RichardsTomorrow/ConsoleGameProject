@@ -181,7 +181,7 @@ namespace ConsoleGameProject
             Console.ReplaceAllColorsWithDefaults();
 
         }
-        public static void Surface() // depth 10
+        public static void Surface() // depth 0-10
         {
             Console.ReplaceAllColorsWithDefaults();
             Console.BackgroundColor = Color.LimeGreen;

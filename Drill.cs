@@ -10,7 +10,7 @@ namespace ConsoleGameProject
         public List<CrewPerson> CrewPeople { get; }
         public CrewPerson Player { get; }
         public int Health { get; private set; }
-        public int Depth { get; private set; }  //I will have to figure out how to change depth
+        public int Depth { get; private set; } 
         public int CrewSize { get; private set; }
         public Drill(CrewPerson player, int crewSize)
         {
@@ -32,7 +32,10 @@ namespace ConsoleGameProject
             Debug.WriteLine($"The non-player crew person list has {crew.Count} people on it");
             return crew;
         }
-
+        public void DrillDown(int dig = 10)
+        {
+            this.Depth += dig;
+        }
 
     }
 }
