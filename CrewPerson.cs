@@ -31,7 +31,10 @@ namespace ConsoleGameProject
             this.Trait = possibleTraits[0];
             this.Chances = 2;
         }
-
+        public void Injury()
+        {
+            Chances -= 1;
+        }
         private string NameGenerator(string[] possibleNames)
         {
             Random random = new Random();

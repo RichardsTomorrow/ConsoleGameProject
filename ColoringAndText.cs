@@ -238,9 +238,5 @@ namespace ConsoleGameProject
             Console.CursorVisible = false;
         }
 
-        //public static void Traveling(Drill drill)
-        //{
-
-        //}
     }
 }

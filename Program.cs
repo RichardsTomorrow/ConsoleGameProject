@@ -14,6 +14,7 @@ namespace ConsoleGameProject
             ColoringAndText.IntroScreen();
             Drill drill = ColoringAndText.PlayerSetup();
             ColoringAndText.Roster(drill);
+            drill.Gameplay();
             //ColoringAndText.Traveling(drill);
 
             //ColoringAndText.Surface();
