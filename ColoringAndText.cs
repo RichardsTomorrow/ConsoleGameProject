@@ -250,5 +250,12 @@ namespace ConsoleGameProject
             Thread.Sleep(5_000); // 5 seconds
             Environment.Exit(0);
         }
+
+        public static void AtTheCenterEnding()
+        {
+            Console.WriteLine("You made it to the center of the planet. WOOWOWOWOWOWOWO!!@!1!");
+            Thread.Sleep(5_000); // 5 seconds
+            Environment.Exit(0);
+        }
     }
 }

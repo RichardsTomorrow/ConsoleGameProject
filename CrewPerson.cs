@@ -49,7 +49,6 @@ namespace ConsoleGameProject
             usedNames.Add(newName);
             Debug.WriteLine($"Possible name length is: {possibleNames.Length}");
             return newName;
-            //add code to check if there is a crewmember with that name
         }
 
         private string Traitor(string[] possibleTs)
@@ -60,7 +59,7 @@ namespace ConsoleGameProject
             usedTraits.Add(traitSelection);
             Debug.WriteLine($"Possible traits length is: {possibleTs.Length}");
             return traitSelection;
-            //add code to check if there is a crewmember with that name
+
         }
     }
 }

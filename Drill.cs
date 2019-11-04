@@ -72,6 +72,10 @@ namespace ConsoleGameProject
             {
                 ColoringAndText.CrewAllDeadEnding();
             }
+            else if (Depth > 490)
+            {
+                ColoringAndText.AtTheCenterEnding();
+            }
 
             Console.WriteLine($"{Player.FirstName} \"The {Player.Trait}\" {Player.LastName}\n");
             for (int i = 0; i < CrewSize - 1; i++)
@@ -157,7 +161,7 @@ namespace ConsoleGameProject
             Console.WriteLine($"{CrewPeople[crewMember].FirstName} goes outside to try and repair the damage.\n\n");
             Random random = new Random();
             int prob = random.Next(1, 7);
-            prob = 3; // determinism
+            //prob = 5; // determinism
             if (prob <= 2)
             {
                 if (CrewPeople[crewMember].Chances == 1)
@@ -192,7 +196,7 @@ namespace ConsoleGameProject
         {
             Random random = new Random();
             int eventChance = random.Next(1, 21); //1-101
-            eventChance = 13; //use this to determine events
+            //eventChance = 9; //determinism
             if (eventChance <= 50) // triggers maintence issues, some dangerous
             {
                 Console.Clear();
