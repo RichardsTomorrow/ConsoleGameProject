@@ -11,7 +11,7 @@ namespace ConsoleGameProject
         static HashSet<string> usedTraits = new HashSet<string>();
         static string[] possibleFirstNames = new string[] { "Richard", "Ben", "Breana", "Chris", "Christopher", "David", "Nic", "Evan", "Iqra", "Jing", "Matt", "Melissa", "Mike", "Michael", "Radiah", "Rob", "Ruying", "Sakariya", "Vivien", "Wei", "Yelena", "Ivy", "Peter", "Ed", "Auriana", "Grant" };
         static string[] possibleLastNames = new string[] { "Morrow", "Bartel", "Mozzone", "Gutierrez", "Masters", "Malloy", "Cook", "Slaton", "Osman", "Xie", "Juel", "Stock", "Barta", "Gorzelsky", "Jones", "Schroeder", "Chen", "Mohamed", "Renee", "Kuang", "Dovgal", "Muir", "Choe", "Thorsteinson", "Robin", "Dams" };
-        static string[] possibleTraits = new string[] { "Captain", "Conspiracist", "Paleontologist", "Archaeologist", "Geologist", "Stout", "Brave", "Occultist", "Bungersome", "Roboticist", "Priest", "Doctor" };
+        static string[] possibleTraits = new string[] { "Captain", "Paleontologist", "Archaeologist", "Geologist", "Stout", "Occultist", "Roboticist", "Priest", "Doctor" }; //, "Conspiracist", "Bungersome", "Brave" }; these three aren't ready yet
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
         public string Trait { get; private set; }
@@ -37,9 +37,14 @@ namespace ConsoleGameProject
         {
             Chances -= 1;
         }
+        public void Injury(int hurt)
+        {
+            Chances -= hurt;
+        }
         public void Death()
         {
             Dead = true;
+            Chances = 0;
         }
         private string NameGenerator(string[] possibleNames)
         {

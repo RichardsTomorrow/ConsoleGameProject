@@ -14,14 +14,27 @@ namespace ConsoleGameProject
         public int Depth { get; private set; }
         public int CrewSize { get; private set; }
         public bool AllDead { get; private set; }
+        public bool VistedLostCity { get; private set; }
+        public bool VistedTardisCave { get; private set; }
+        public bool VistedCoreMantel { get; private set; }
+        public bool VistedSatan { get; private set; }
+        public bool VistedDinoDNA { get; private set; }
+        public bool VistedCthulu { get; private set; }
+        public bool VistedLizardPeeps { get; private set; }
+
         public Drill(CrewPerson player, int crewSize)
         {
             this.Player = player;
             this.CrewPeople = CrewSelector(crewSize);
-            this.Health = 100;
+            this.Health = Math.Clamp(100, 0, 120);
             this.Depth = 0;
             this.CrewSize = crewSize;
             this.AllDead = false;
+            this.VistedLostCity = false;
+            this.VistedTardisCave = false;
+            this.VistedCoreMantel = false;
+            this.VistedSatan = false;
+            this.VistedDinoDNA = false;
 
         }
 
@@ -43,6 +56,7 @@ namespace ConsoleGameProject
         public void DrillDamage(int damageTaken = 10)
         {
             this.Health -= damageTaken;
+            this.Health = Math.Clamp(this.Health, 0, 120);
             Debug.WriteLine($"DrillDamage was called, Health is {Health}");
         }
         private void AreAllDead()
@@ -64,7 +78,7 @@ namespace ConsoleGameProject
         public void CrewStatus()
         {
             AreAllDead();
-            if(Health <= 0)
+            if (Health <= 0)
             {
                 ColoringAndText.DrillHealthDepletedEnding();
             }
@@ -196,72 +210,223 @@ namespace ConsoleGameProject
         private void Event()
         {
             Random random = new Random();
-            int eventChance = random.Next(1, 51); //1-101
-            //eventChance = 9; //determinism
-            if (eventChance <= 50) // triggers maintence issues, some dangerous
+            int eventChance = random.Next(1, 101); //1-101
+            //eventChance = 80; //determinism
+            if (eventChance <= 65) // triggers maintence issues, some dangerous
             {
                 Console.Clear();
-                if (eventChance <= 10) //1-10
+                if (eventChance <= 15) //1-10
                 {
                     Console.WriteLine(" You found a very soft pocket of material and went double the speed you expected");
                     DrillDown(20);
                 }
-                else if (eventChance <= 20)//11-20
+                else if (eventChance <= 30)//11-20
                 {
                     Console.WriteLine("The engines have stopped.\n\nYou will have to send someone out to repair them.\n\nBe warned it is dangerous out there.\n\n");
                     RepairEngines();
                 }
-                else if (eventChance <= 30)//21-30
+                else if (eventChance <= 45)//21-30
                 {
                     Console.WriteLine("Odd. It felt like you went nowhere. Try digging again.");
                 }
-                else if (eventChance <= 40)//31-40
+                else if (eventChance <= 60)//31-40
                 {
-                    Console.WriteLine($"You found a way to repair a drill sytem.");
+                    Console.WriteLine($"You found a way to boost the drill sytem.");
                     DrillDamage(-10);
                 }
-                else//41-50
+                else//61-65
                 {
                     Console.WriteLine("All operations normal");
                     DrillDown();
                 }
 
             }
-            if (Depth <= 100 && eventChance > 50)// triggers crust level scenarios
+            if (Depth <= 100 && eventChance > 65)// triggers crust level scenarios
             {
-                if (eventChance > 50 && eventChance <=75)//Archaeologist
+                if (!VistedLostCity)
                 {
-
+                    if (eventChance > 50 && eventChance <= 85)//Archaeologist
+                    {
+                        ColoringAndText.LostCity(HaveTrait("Archaeologist"));
+                        if (HaveTrait("Archaeologist"))
+                        {
+                            DrillDamage(-20);
+                            VistedLostCity = true;
+                        }
+                        else if (!HaveTrait("Archaeologist"))
+                        {
+                            DrillDamage();
+                            VistedLostCity = true;
+                        }
+                    }
                 }
-                else // doctor
+                else if (VistedLostCity)
                 {
+                    Console.WriteLine("You dug through an archaeological site");
+                    DrillDown();
+                }
 
+                if (!VistedTardisCave)
+                {
+                    if (eventChance > 75)// doctor
+                    {
+                        ColoringAndText.TardisCave(HaveTrait("Doctor"));
+                        if (HaveTrait("Doctor"))
+                        {
+                            for (int i = 0; i < CrewPeople.Count; i++)
+                            {
+                                if (CrewPeople[i].Trait == "Doctor")
+                                {
+                                    CrewPeople[i].Death();
+                                }
+                            }
+                            VistedTardisCave = true;
+                        }
+                        else if (!HaveTrait("Doctor"))
+                        {
+                            DrillDown(40);
+                            VistedTardisCave = true;
+                        }
+                    }
+                }
+                else if(VistedTardisCave)
+                {
+                    Console.WriteLine("The drill churns through some volcanic material");
+                    DrillDown();
                 }
             }
             else if (Depth <= 300 && eventChance >= 50) // triggers mantle level scenarios
             {
-                if (eventChance > 50 && eventChance < 66)//geologist
+                if (!VistedCoreMantel)
                 {
-
+                    if (eventChance > 50 && eventChance < 66)//geologist
+                    {
+                        ColoringAndText.SkipMostMantel(HaveTrait("Geologist"));
+                        if (HaveTrait("Geologist"))
+                        {
+                            DrillDown(150);
+                            DrillDamage();
+                            VistedCoreMantel = true;
+                        }
+                        else if (!HaveTrait("Geologist"))
+                        {
+                            DrillDown(50);
+                            DrillDamage(30);
+                            VistedCoreMantel = true;
+                        }
+                    }
                 }
-                else if (eventChance >= 66 && eventChance <= 82)// priest
+                else if (VistedCoreMantel)
                 {
-
+                    Console.WriteLine("You avoided a dangerous lava flow");
+                    DrillDown();
                 }
-                else// dinosaurs
-                {
 
+                if (!VistedSatan)
+                {
+                    if (eventChance >= 66 && eventChance <= 82)// priest
+                    {
+                        ColoringAndText.HeySatan(HaveTrait("Priest"));
+                        if (HaveTrait("Priest"))
+                        {
+                            DrillDown(50);
+                            VistedSatan = true;
+                        }
+                        else if (!HaveTrait("Priest"))
+                        {
+                            DrillDamage(30);
+                            VistedSatan = true;
+                        }
+                    }
+                }
+                else if (VistedSatan)
+                {
+                    Console.WriteLine("The magma in the region reaks of brimstone even from within the cabin");
+                    DrillDown();
+                }
+
+                if (!VistedDinoDNA)
+                {
+                    if (eventChance > 82)// dinos
+                    {
+                        ColoringAndText.Dinosaurs(HaveTrait("Paleontologist"));
+                        if (HaveTrait("Paleontologist"))
+                        {
+                            for (int i = 0; i < CrewPeople.Count; i++)
+                            {
+                                if (CrewPeople[i].Trait == "Paleontologist")
+                                {
+                                    CrewPeople[i].Death();
+                                }
+                            }
+                            VistedDinoDNA = true;
+                        }
+                        else if (!HaveTrait("Paleontologist"))
+                        {
+                            for (int i = 0; i < CrewPeople.Count; i++)
+                            {
+                                if (CrewPeople[i].Chances == 1 && !CrewPeople[i].Dead)
+                                {
+                                    CrewPeople[i].Injury(-1);
+                                }
+                            }
+                            DrillDown(20);
+                            VistedDinoDNA = true;
+                        }
+                    }
+                }
+                else if (VistedDinoDNA)
+                {
+                    Console.WriteLine("You are making the same pace as normal but time seems to move differently here");
+                    DrillDown();
                 }
             }
             else if (Depth > 300 && eventChance >= 50) // triggers core level scenarios
             {
-                if (eventChance > 50 && eventChance <= 75)//Cthulu
+                if (!VistedCthulu)
                 {
-
+                    if (eventChance > 50 && eventChance <= 75)//Cthulu
+                    {
+                        ColoringAndText.HeyCthulhu(HaveTrait("Occultist"));
+                        if (HaveTrait("Occultist"))
+                        {
+                            ColoringAndText.YouFreakingSummonedCthulhuEnding();
+                            VistedCthulu = true;
+                        }
+                        else if (!HaveTrait("Occultist"))
+                        {
+                            DrillDown(30);
+                            VistedCthulu = true;
+                        }
+                    }
                 }
-                else // Lizard Peeps
+                else if (VistedCthulu)
                 {
+                    Console.WriteLine("You are surrounded by glowing rock but you can't help but get a dark feeling");
+                    DrillDown();
+                }
 
+                if (!VistedLizardPeeps)
+                {
+                    if (eventChance > 75) // Lizard Peeps
+                    {
+                        ColoringAndText.HeyLizardPeeps(HaveTrait("Roboticist"));
+                        if (HaveTrait("Roboticist"))
+                        {
+                            ColoringAndText.BowToTheRobotsIMeanLizards();
+                            VistedLizardPeeps = true;
+                        }
+                        else if (!HaveTrait("Roboticist"))
+                        {
+                            DrillDamage(50);
+                            VistedLizardPeeps = true;
+                        }
+                    }
+                }
+                else if (VistedLizardPeeps)
+                {
+                    Console.WriteLine("You hear the skreeching of lizards and the pooping of gears");
+                    DrillDown();
                 }
             }
         }
@@ -316,13 +481,14 @@ namespace ConsoleGameProject
         private bool HaveTrait(string desiredTrait)
         {
             bool HaveTrait = false;
-            foreach(CrewPerson crew in CrewPeople)
+            for (int i = 0; i < CrewPeople.Count; i++)
             {
-                if(crew.Trait == desiredTrait)
+                if (CrewPeople[i].Trait.Equals(desiredTrait))
                 {
                     HaveTrait = true;
-                }          
+                }
             }
+            Debug.WriteLine($"HaveTrait was used and came out {HaveTrait}");
             return HaveTrait;
         }
         public void Gameplay()
