@@ -13,13 +13,15 @@ namespace ConsoleGameProject
         public int Health { get; private set; }
         public int Depth { get; private set; }
         public int CrewSize { get; private set; }
+        public bool AllDead { get; private set; }
         public Drill(CrewPerson player, int crewSize)
         {
             this.Player = player;
             this.CrewPeople = CrewSelector(crewSize);
-            this.Health = 50;
+            this.Health = 100;
             this.Depth = 0;
             this.CrewSize = crewSize;
+            this.AllDead = false;
 
         }
 
@@ -41,10 +43,36 @@ namespace ConsoleGameProject
         public void DrillDamage(int damageTaken = 10)
         {
             this.Health -= damageTaken;
+            Debug.WriteLine($"DrillDamage was called, Health is {Health}");
         }
+        private void AreAllDead()
+        {
+            int count = 0;
+            foreach (CrewPerson crew in CrewPeople)
+            {
+                if (crew.Dead == true)
+                {
+                    count++;
+                }
+            }
+            if (count == CrewPeople.Count)
+            {
+                AllDead = true;
+            }
 
+        }
         public void CrewStatus()
         {
+            AreAllDead();
+            if(Health <= 0)
+            {
+                ColoringAndText.DrillHealthDepletedEnding();
+            }
+            else if (AllDead)
+            {
+                ColoringAndText.CrewAllDeadEnding();
+            }
+
             Console.WriteLine($"{Player.FirstName} \"The {Player.Trait}\" {Player.LastName}\n");
             for (int i = 0; i < CrewSize - 1; i++)
             {
@@ -62,7 +90,7 @@ namespace ConsoleGameProject
                     CrewPeople[i].Death();
                     healthSymbol = 'X';
                 }
-                Console.WriteLine($"{i + 1}. :{healthSymbol} {CrewPeople[i].FirstName} \"The {CrewPeople[i].Trait}\" {CrewPeople[i].LastName}\n");
+                Console.WriteLine($"{i + 1}. :{healthSymbol} - {CrewPeople[i].FirstName} \"The {CrewPeople[i].Trait}\" {CrewPeople[i].LastName}\n");
             }
             Console.WriteLine($"To drill down press the \"d\" key ");
         }
@@ -86,7 +114,7 @@ namespace ConsoleGameProject
                     {
                         healthSymbol = 'X';
                     }
-                    Console.WriteLine($"{i + 1}. :{healthSymbol} {CrewPeople[i].FirstName} \"The {CrewPeople[i].Trait}\" {CrewPeople[i].LastName}\n");
+                    Console.WriteLine($"{i + 1}. :{healthSymbol} - {CrewPeople[i].FirstName} \"The {CrewPeople[i].Trait}\" {CrewPeople[i].LastName}\n");
                 }
             }
         }
@@ -129,57 +157,64 @@ namespace ConsoleGameProject
             Console.WriteLine($"{CrewPeople[crewMember].FirstName} goes outside to try and repair the damage.\n\n");
             Random random = new Random();
             int prob = random.Next(1, 7);
-            prob = 1; // determinism
+            prob = 3; // determinism
             if (prob <= 2)
             {
-                if(CrewPeople[crewMember].Chances == 1)
+                if (CrewPeople[crewMember].Chances == 1)
                 {
                     Console.WriteLine($"{CrewPeople[crewMember].FirstName} died fixing the engine but it works better then ever. \n\n You drop 30.");
                     CrewPeople[crewMember].Injury();
                     CrewPeople[crewMember].Death();
                     DrillDown(30);
                 }
-                Console.WriteLine($"{CrewPeople[crewMember].FirstName} got an injury while outside but they feel ok trying to continue on.");
-                CrewPeople[crewMember].Injury();
+                else
+                {
+                    Console.WriteLine($"{CrewPeople[crewMember].FirstName} got an injury while outside but they feel ok trying to continue on.");
+                    CrewPeople[crewMember].Injury();
+                    DrillDown();
+
+                }
             }
             else if (prob == 3 || prob == 4)
             {
                 Console.WriteLine($"{CrewPeople[crewMember].FirstName} fixed the engine but found that the drill has been damaged.");
                 DrillDamage();
+                DrillDown();
             }
             else
             {
                 Console.WriteLine($"All went well and {CrewPeople[crewMember].FirstName} returned to us safely.");
+                DrillDown();
             }
 
         }
         private void Event()
         {
             Random random = new Random();
-            int eventChance = random.Next(1, 101);
+            int eventChance = random.Next(1, 21); //1-101
             eventChance = 13; //use this to determine events
             if (eventChance <= 50) // triggers maintence issues, some dangerous
             {
                 Console.Clear();
-                if (eventChance <= 10)
+                if (eventChance <= 10) //1-10
                 {
                     Console.WriteLine(" You found a very soft pocket of material and went double the speed you expected");
                     DrillDown(20);
                 }
-                else if (eventChance <= 20)
+                else if (eventChance <= 20)//11-20
                 {
                     Console.WriteLine("The engines have stopped.\n\nYou will have to send someone out to repair them.\n\nBe warned it is dangerous out there.\n\n");
                     RepairEngines();
                 }
-                else if (eventChance <= 30)
+                else if (eventChance <= 30)//21-30
                 {
                     Console.WriteLine("Odd. It felt like you went nowhere. Try digging again.");
                 }
-                else if (eventChance <= 40)
+                else if (eventChance <= 40)//31-40
                 {
 
                 }
-                else
+                else//41-50
                 {
                     Console.WriteLine("This event shouldn't happen and you should never see this message.");
                 }
@@ -203,20 +238,17 @@ namespace ConsoleGameProject
             int counter = 0;
             if (Console.ReadKey().Key != ConsoleKey.D && counter == 0)
             {
-                Console.WriteLine("Please push a valid key or you'll damage the drill");
+                Console.WriteLine("\nPlease push a valid key or you'll damage the drill");
                 counter++;
-                ValidDown();
-                return false;
+                return ValidDown();
             }
             else if (Console.ReadKey().Key != ConsoleKey.D && counter > 0)
             {
-                Console.WriteLine("The drill took damage due to your carelessness.");
-                ValidDown();
-                return false;
+                Console.WriteLine("\nThe drill took damage due to your carelessness.");
+                return ValidDown();
             }
             else
             {
-                DrillDown();
                 return true;
             }
 
@@ -228,19 +260,19 @@ namespace ConsoleGameProject
 
             if (!valid)
             {
-                Console.WriteLine("Please push a choose a valid crewperson or you'll confuse someone.");
+                Console.WriteLine("\nPlease push a choose a valid crewperson or you'll confuse someone.");
                 return ValidCrewPerson();
 
             }
             else if (crewpersonNumber > CrewPeople.Count || crewpersonNumber <= 0)
             {
-                Console.WriteLine("There isn't that many crewpeople on our rooster.");
+                Console.WriteLine("\nThere isn't that many crewpeople on our rooster.");
                 return ValidCrewPerson();
 
             }
             else if (CrewPeople[crewpersonNumber - 1].Dead)
             {
-                Console.WriteLine($"{CrewPeople[crewpersonNumber - 1].FirstName} is dead, they respond to the commands of no one now.");
+                Console.WriteLine($"\n{CrewPeople[crewpersonNumber - 1].FirstName} is dead, they respond to the commands of no one now.");
                 return ValidCrewPerson();
             }
             else

@@ -238,5 +238,17 @@ namespace ConsoleGameProject
             Console.CursorVisible = false;
         }
 
+        public static void DrillHealthDepletedEnding()
+        {
+            Console.WriteLine("You didn't take proper care of your drill and it exploded.More story will go here at some point");
+            Thread.Sleep(5_000); // 5 seconds
+            Environment.Exit(0);
+        }
+        public static void CrewAllDeadEnding()
+        {
+            Console.WriteLine("You didn't take proper care of your crew and now you can't hand a situation.\n\nYour heat shields are now failing and no one can go out and fix it.\n\n More story will go here at some point");
+            Thread.Sleep(5_000); // 5 seconds
+            Environment.Exit(0);
+        }
     }
 }
