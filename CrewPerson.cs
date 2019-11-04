@@ -16,12 +16,14 @@ namespace ConsoleGameProject
         public string LastName { get; private set; }
         public string Trait { get; private set; }
         public int Chances { get; private set; }
+        public bool Dead { get; private set; }
         public CrewPerson()
         {
             this.FirstName = NameGenerator(possibleFirstNames);
             this.LastName = NameGenerator(possibleLastNames);
             this.Trait = Traitor(possibleTraits);
             this.Chances = Trait == "Stout" ? 3 : 2; // this will give the stout person an extra life
+            this.Dead = false;
         }
 
         public CrewPerson(string firstName, string lastName)
@@ -34,6 +36,10 @@ namespace ConsoleGameProject
         public void Injury()
         {
             Chances -= 1;
+        }
+        public void Death()
+        {
+            Dead = true;
         }
         private string NameGenerator(string[] possibleNames)
         {
