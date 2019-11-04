@@ -45,8 +45,8 @@ namespace ConsoleGameProject
             //Console.WriteLine("Testing this to see how it looks!!!___=+++=22");
             //Console.ReadKey();
 
-            Console.WriteLine("\nend of test");
-            Console.ReadKey();
+            //Console.WriteLine("\nend of test");
+            //Console.ReadKey();
 
         }
     }

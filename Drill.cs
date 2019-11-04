@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
+using System.Threading;
 
 namespace ConsoleGameProject
 {
@@ -36,8 +37,12 @@ namespace ConsoleGameProject
         {
             this.Depth += dig;
         }
+        public void DrillDamage(int damageTaken = 10)
+        {
+            this.Health -= damageTaken;
+        }
 
-        public void CrewStatus(bool display)
+        public void CrewStatus()
         {
             Console.WriteLine($"{Player.FirstName} \"The {Player.Trait}\" {Player.LastName}\n");
             for (int i = 0; i < CrewSize - 1; i++)
@@ -57,6 +62,7 @@ namespace ConsoleGameProject
                 }
                 Console.WriteLine($"{i + 1}. :{healthSymbol} {CrewPeople[i].FirstName} \"The {CrewPeople[i].Trait}\" {CrewPeople[i].LastName}\n");
             }
+            Console.WriteLine($"To drill down press the \"D\" key ");
         }
         public void DepthIndicator()
         {
@@ -89,12 +95,116 @@ namespace ConsoleGameProject
                 ColoringAndText.InnerCore();
             }
         }
+        private void RepairEngines()
+        {
+            Console.WriteLine("Choose the number of the crewperson going outside:");
+        }
+        private void Event()
+        {
+            Random random = new Random();
+            int eventChance = random.Next(1, 101);
+            eventChance = 9;
+            if (eventChance <= 50) // triggers maintence issues, some dangerous
+            {
+                Console.Clear();
+                if (eventChance <= 10)
+                {
+                    Console.WriteLine(" You found a very soft pocket of material and went double the speed you expected");
+                    DrillDown(20);
+                }
+                else if (eventChance <= 20)
+                {
+                    Console.WriteLine("The engines have stopped.\nYou will have to send someone out to repair them.\nBe warned it is dangerous out there.");
+                    RepairEngines();
+                }
+                else if (eventChance <= 30)
+                {
 
+                }
+                else if (eventChance <= 40)
+                {
+
+                }
+                else
+                {
+
+                }
+
+            }
+            if (Depth <= 100 && eventChance > 50)// triggers crust level scenarios
+            {
+
+            }
+            else if (Depth <= 300 && eventChance >= 50) // triggers mantle level scenarios
+            {
+
+            }
+            else if (Depth > 300 && eventChance >= 50) // triggers core level scenarios
+            {
+
+            }
+        }
+        private bool ValidDown()
+        {
+            int counter = 0;
+            if (Console.ReadKey(true).Key != ConsoleKey.D && counter == 0)
+            {
+                Console.WriteLine("Please push a valid key or you'll damage the drill");
+                counter++;
+                ValidDown();
+                return false;
+            }
+            else if (Console.ReadKey(true).Key != ConsoleKey.D && counter > 0)
+            {
+                Console.WriteLine("The drill took damage due to your carelessness.");
+                ValidDown();
+                return false;
+            }
+            else
+            {
+                DrillDown();
+                return true;
+            }
+
+
+        }
+        private bool ValidCrewPerson()
+        {
+            int counter = 0;
+            
+            if (Console.ReadKey().Key != ConsoleKey.Z && counter == 0)
+            {
+                Console.WriteLine("Please push a choose a valid crewperson or you'll confuse someone.");
+                counter++;
+                ValidCrewPerson();
+                return false;
+            }
+            else if (Console.ReadKey().Key != ConsoleKey.D && counter > 0)
+            {
+                Console.WriteLine("In blanks confusion they hurt themselves");
+                ValidCrewPerson();
+                return false;
+            }
+            else
+            {
+                DrillDown();
+                return true;
+            }
+
+        }
         public void Gameplay()
         {
-            bool statusDisplay = true;
             DepthIndicator();
-            CrewStatus(statusDisplay);
+            CrewStatus();
+            if (ValidDown())
+            {
+                Debug.WriteLine("Event happened");
+                Event();
+                Thread.Sleep(2_000);
+                Gameplay();
+            }
+
+
         }
 
     }
