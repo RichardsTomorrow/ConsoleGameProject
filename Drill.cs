@@ -98,6 +98,7 @@ namespace ConsoleGameProject
         private void RepairEngines()
         {
             Console.WriteLine("Choose the number of the crewperson going outside:");
+            int crewMember = ValidCrewPerson();
         }
         private void Event()
         {
@@ -168,22 +169,23 @@ namespace ConsoleGameProject
 
 
         }
-        private bool ValidCrewPerson()
+        private int ValidCrewPerson()
         {
             int counter = 0;
+            Console.ReadKey(true); //do a try parse and check if it is a number between 1-length of crew list 
             
             if (Console.ReadKey().Key != ConsoleKey.Z && counter == 0)
             {
                 Console.WriteLine("Please push a choose a valid crewperson or you'll confuse someone.");
                 counter++;
                 ValidCrewPerson();
-                return false;
+                return 10;
             }
             else if (Console.ReadKey().Key != ConsoleKey.D && counter > 0)
             {
                 Console.WriteLine("In blanks confusion they hurt themselves");
                 ValidCrewPerson();
-                return false;
+                return 10;
             }
             else
             {
