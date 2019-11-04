@@ -245,7 +245,7 @@ namespace ConsoleGameProject
             {
                 if (!VistedLostCity)
                 {
-                    if (eventChance > 50 && eventChance <= 85)//Archaeologist
+                    if (eventChance > 65 && eventChance <= 85)//Archaeologist
                     {
                         ColoringAndText.LostCity(HaveTrait("Archaeologist"));
                         if (HaveTrait("Archaeologist"))
@@ -260,15 +260,9 @@ namespace ConsoleGameProject
                         }
                     }
                 }
-                else if (VistedLostCity)
-                {
-                    Console.WriteLine("You dug through an archaeological site");
-                    DrillDown();
-                }
-
                 if (!VistedTardisCave)
                 {
-                    if (eventChance > 75)// doctor
+                    if (eventChance > 85)// doctor
                     {
                         ColoringAndText.TardisCave(HaveTrait("Doctor"));
                         if (HaveTrait("Doctor"))
@@ -289,17 +283,12 @@ namespace ConsoleGameProject
                         }
                     }
                 }
-                else if(VistedTardisCave)
-                {
-                    Console.WriteLine("The drill churns through some volcanic material");
-                    DrillDown();
-                }
             }
-            else if (Depth <= 300 && eventChance >= 50) // triggers mantle level scenarios
+            else if (Depth <= 300 && eventChance >= 65) // triggers mantle level scenarios
             {
                 if (!VistedCoreMantel)
                 {
-                    if (eventChance > 50 && eventChance < 66)//geologist
+                    if (eventChance > 65 && eventChance < 77)//geologist
                     {
                         ColoringAndText.SkipMostMantel(HaveTrait("Geologist"));
                         if (HaveTrait("Geologist"))
@@ -316,15 +305,10 @@ namespace ConsoleGameProject
                         }
                     }
                 }
-                else if (VistedCoreMantel)
-                {
-                    Console.WriteLine("You avoided a dangerous lava flow");
-                    DrillDown();
-                }
 
                 if (!VistedSatan)
                 {
-                    if (eventChance >= 66 && eventChance <= 82)// priest
+                    if (eventChance >= 77 && eventChance <= 88)// priest
                     {
                         ColoringAndText.HeySatan(HaveTrait("Priest"));
                         if (HaveTrait("Priest"))
@@ -339,15 +323,10 @@ namespace ConsoleGameProject
                         }
                     }
                 }
-                else if (VistedSatan)
-                {
-                    Console.WriteLine("The magma in the region reaks of brimstone even from within the cabin");
-                    DrillDown();
-                }
 
                 if (!VistedDinoDNA)
                 {
-                    if (eventChance > 82)// dinos
+                    if (eventChance > 88)// dinos
                     {
                         ColoringAndText.Dinosaurs(HaveTrait("Paleontologist"));
                         if (HaveTrait("Paleontologist"))
@@ -375,17 +354,12 @@ namespace ConsoleGameProject
                         }
                     }
                 }
-                else if (VistedDinoDNA)
-                {
-                    Console.WriteLine("You are making the same pace as normal but time seems to move differently here");
-                    DrillDown();
-                }
             }
-            else if (Depth > 300 && eventChance >= 50) // triggers core level scenarios
+            else if (Depth > 300 && eventChance >= 65) // triggers core level scenarios
             {
                 if (!VistedCthulu)
                 {
-                    if (eventChance > 50 && eventChance <= 75)//Cthulu
+                    if (eventChance > 65 && eventChance <= 85)//Cthulu
                     {
                         ColoringAndText.HeyCthulhu(HaveTrait("Occultist"));
                         if (HaveTrait("Occultist"))
@@ -400,15 +374,10 @@ namespace ConsoleGameProject
                         }
                     }
                 }
-                else if (VistedCthulu)
-                {
-                    Console.WriteLine("You are surrounded by glowing rock but you can't help but get a dark feeling");
-                    DrillDown();
-                }
 
                 if (!VistedLizardPeeps)
                 {
-                    if (eventChance > 75) // Lizard Peeps
+                    if (eventChance > 85) // Lizard Peeps
                     {
                         ColoringAndText.HeyLizardPeeps(HaveTrait("Roboticist"));
                         if (HaveTrait("Roboticist"))
@@ -422,11 +391,6 @@ namespace ConsoleGameProject
                             VistedLizardPeeps = true;
                         }
                     }
-                }
-                else if (VistedLizardPeeps)
-                {
-                    Console.WriteLine("You hear the skreeching of lizards and the pooping of gears");
-                    DrillDown();
                 }
             }
         }

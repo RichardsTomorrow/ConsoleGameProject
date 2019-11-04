@@ -312,8 +312,9 @@ namespace ConsoleGameProject
             }
         }
 
-        public static void HeySatan(bool priestPresent)
+        public static void HeySatan(bool priestPresent) //some kind of red and black theme
         {
+            Console.WriteLine("description of Hell");
             if (priestPresent)
             {
                 Console.WriteLine("Priest says something funny that lightens the mood and lets you escape.\n\n" +
@@ -380,7 +381,8 @@ namespace ConsoleGameProject
         {
             Console.Clear();
             Console.WriteLine("Your crew takes the offer from the robot ... I mean lizard rulers of the world.\n\n" +
-                "Everywhere you are thanked for discovering the cure to cancer/ the common cold at the center of the earth");
+                "Everywhere you are thanked for discovering the cure to cancer/ the common cold at the center of the earth\n\n" +
+                "Mention feeling hollow");
             Thread.Sleep(5_000); // 5 seconds
             Environment.Exit(0);
         }
