@@ -192,9 +192,9 @@ namespace ConsoleGameProject
         public static void Soil()// depth 11-50 // actually getting rid of soil.
         {
             Console.ReplaceAllColorsWithDefaults();
-            Console.BackgroundColor = Color.Brown;
+            Console.BackgroundColor = Color.FromArgb(101,67,33);
             Console.Clear();
-            Console.ForegroundColor = Color.DimGray;
+            Console.ForegroundColor = Color.LightGray;
             Console.CursorVisible = false;
         }
         public static void Crust() // depth 11-100
@@ -237,15 +237,39 @@ namespace ConsoleGameProject
             Console.ForegroundColor = Color.LightGoldenrodYellow ;
             Console.CursorVisible = false;
         }
-
+        public static void DrillApperance(int health)
+        {
+            if (health >= 80)
+            {
+                Console.WriteLine("The drill looks mostly pristine\n");
+            }
+            else if(health >= 60)
+            {
+                Console.WriteLine("The drill has some wear on it\n");
+            }
+            else if (health >= 40)
+            {
+                Console.WriteLine("The drill will need repairs at the end of this.\n");
+            }
+            else if (health > 20)
+            {
+                Console.WriteLine("The drill is worse for wear\n\n");
+            }
+            else if (health > 0)
+            {
+                Console.WriteLine("If it wasn't so bad outside you wouldn't want to be in here\n");
+            }
+        }
         public static void DrillHealthDepletedEnding()
         {
+            Console.Clear();
             Console.WriteLine("You didn't take proper care of your drill and it exploded.More story will go here at some point");
             Thread.Sleep(5_000); // 5 seconds
             Environment.Exit(0);
         }
         public static void CrewAllDeadEnding()
         {
+            Console.Clear();
             Console.WriteLine("You didn't take proper care of your crew and now you can't hand a situation.\n\nYour heat shields are now failing and no one can go out and fix it.\n\n More story will go here at some point");
             Thread.Sleep(5_000); // 5 seconds
             Environment.Exit(0);
@@ -253,6 +277,7 @@ namespace ConsoleGameProject
 
         public static void AtTheCenterEnding()
         {
+            Console.Clear();
             Console.WriteLine("You made it to the center of the planet. WOOWOWOWOWOWOWO!!@!1!");
             Thread.Sleep(5_000); // 5 seconds
             Environment.Exit(0);

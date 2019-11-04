@@ -78,6 +78,7 @@ namespace ConsoleGameProject
             }
 
             Console.WriteLine($"{Player.FirstName} \"The {Player.Trait}\" {Player.LastName}\n");
+            ColoringAndText.DrillApperance(this.Health);
             for (int i = 0; i < CrewSize - 1; i++)
             {
                 char healthSymbol = '*';
@@ -128,11 +129,11 @@ namespace ConsoleGameProject
             {
                 ColoringAndText.Surface();
             }
-            //else if (Depth <= 50 && Depth > 10)
-            //{
-            //    ColoringAndText.Soil();
-            //}
-            else if (Depth <= 100 && Depth > 10)
+            else if (Depth <= 50 && Depth > 10)
+            {
+                ColoringAndText.Soil();
+            }
+            else if (Depth <= 100 && Depth > 50)
             {
                 ColoringAndText.Crust();
             }
@@ -162,7 +163,7 @@ namespace ConsoleGameProject
             Random random = new Random();
             int prob = random.Next(1, 7);
             //prob = 5; // determinism
-            if (prob <= 2)
+            if (prob <= 3)
             {
                 if (CrewPeople[crewMember].Chances == 1)
                 {
@@ -179,7 +180,7 @@ namespace ConsoleGameProject
 
                 }
             }
-            else if (prob == 3 || prob == 4)
+            else if (prob == 4 || prob == 5)
             {
                 Console.WriteLine($"{CrewPeople[crewMember].FirstName} fixed the engine but found that the drill has been damaged.");
                 DrillDamage();
@@ -195,7 +196,7 @@ namespace ConsoleGameProject
         private void Event()
         {
             Random random = new Random();
-            int eventChance = random.Next(1, 21); //1-101
+            int eventChance = random.Next(1, 51); //1-101
             //eventChance = 9; //determinism
             if (eventChance <= 50) // triggers maintence issues, some dangerous
             {
@@ -216,25 +217,52 @@ namespace ConsoleGameProject
                 }
                 else if (eventChance <= 40)//31-40
                 {
-
+                    Console.WriteLine($"You found a way to repair a drill sytem.");
+                    DrillDamage(-10);
                 }
                 else//41-50
                 {
-                    Console.WriteLine("This event shouldn't happen and you should never see this message.");
+                    Console.WriteLine("All operations normal");
+                    DrillDown();
                 }
 
             }
             if (Depth <= 100 && eventChance > 50)// triggers crust level scenarios
             {
+                if (eventChance > 50 && eventChance <=75)//Archaeologist
+                {
 
+                }
+                else // doctor
+                {
+
+                }
             }
             else if (Depth <= 300 && eventChance >= 50) // triggers mantle level scenarios
             {
+                if (eventChance > 50 && eventChance < 66)//geologist
+                {
 
+                }
+                else if (eventChance >= 66 && eventChance <= 82)// priest
+                {
+
+                }
+                else// dinosaurs
+                {
+
+                }
             }
             else if (Depth > 300 && eventChance >= 50) // triggers core level scenarios
             {
+                if (eventChance > 50 && eventChance <= 75)//Cthulu
+                {
 
+                }
+                else // Lizard Peeps
+                {
+
+                }
             }
         }
         private bool ValidDown()
@@ -284,6 +312,18 @@ namespace ConsoleGameProject
                 return crewpersonNumber - 1;
             }
 
+        }
+        private bool HaveTrait(string desiredTrait)
+        {
+            bool HaveTrait = false;
+            foreach(CrewPerson crew in CrewPeople)
+            {
+                if(crew.Trait == desiredTrait)
+                {
+                    HaveTrait = true;
+                }          
+            }
+            return HaveTrait;
         }
         public void Gameplay()
         {
