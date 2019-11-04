@@ -36,6 +36,7 @@ namespace ConsoleGameProject
         public void DrillDown(int dig = 10)
         {
             this.Depth += dig;
+            Debug.WriteLine($"DrillDown was called, Depth is {Depth}");
         }
         public void DrillDamage(int damageTaken = 10)
         {
@@ -63,7 +64,7 @@ namespace ConsoleGameProject
                 }
                 Console.WriteLine($"{i + 1}. :{healthSymbol} {CrewPeople[i].FirstName} \"The {CrewPeople[i].Trait}\" {CrewPeople[i].LastName}\n");
             }
-            Console.WriteLine($"To drill down press the \"D\" key ");
+            Console.WriteLine($"To drill down press the \"d\" key ");
         }
         public void CrewStatus(bool showOnlyCrew)
         {
@@ -81,9 +82,9 @@ namespace ConsoleGameProject
                     {
                         healthSymbol = '(';
                     }
-                    else if (CrewPeople[i].Chances < 1)
+                    else if (CrewPeople[i].Dead)
                     {
-                        CrewPeople.Remove(CrewPeople[i]);
+                        healthSymbol = 'X';
                     }
                     Console.WriteLine($"{i + 1}. :{healthSymbol} {CrewPeople[i].FirstName} \"The {CrewPeople[i].Trait}\" {CrewPeople[i].LastName}\n");
                 }
@@ -95,15 +96,15 @@ namespace ConsoleGameProject
             {
                 ColoringAndText.Surface();
             }
-            else if (Depth <= 50 && Depth > 10)
-            {
-                ColoringAndText.Soil();
-            }
-            else if (Depth <= 100&& Depth >50)
+            //else if (Depth <= 50 && Depth > 10)
+            //{
+            //    ColoringAndText.Soil();
+            //}
+            else if (Depth <= 100 && Depth > 10)
             {
                 ColoringAndText.Crust();
             }
-            else if (Depth <= 200 && Depth >100)
+            else if (Depth <= 200 && Depth > 100)
             {
                 ColoringAndText.UpperMantle();
             }
@@ -131,7 +132,14 @@ namespace ConsoleGameProject
             prob = 1; // determinism
             if (prob <= 2)
             {
-                Console.WriteLine($"{CrewPeople[crewMember].FirstName} got an injury while outside but they feel ok trying to contiue on.");
+                if(CrewPeople[crewMember].Chances == 1)
+                {
+                    Console.WriteLine($"{CrewPeople[crewMember].FirstName} died fixing the engine but it works better then ever. \n\n You drop 30.");
+                    CrewPeople[crewMember].Injury();
+                    CrewPeople[crewMember].Death();
+                    DrillDown(30);
+                }
+                Console.WriteLine($"{CrewPeople[crewMember].FirstName} got an injury while outside but they feel ok trying to continue on.");
                 CrewPeople[crewMember].Injury();
             }
             else if (prob == 3 || prob == 4)
@@ -162,11 +170,10 @@ namespace ConsoleGameProject
                 {
                     Console.WriteLine("The engines have stopped.\n\nYou will have to send someone out to repair them.\n\nBe warned it is dangerous out there.\n\n");
                     RepairEngines();
-                    DrillDown();
                 }
                 else if (eventChance <= 30)
                 {
-
+                    Console.WriteLine("Odd. It felt like you went nowhere. Try digging again.");
                 }
                 else if (eventChance <= 40)
                 {
@@ -174,7 +181,7 @@ namespace ConsoleGameProject
                 }
                 else
                 {
-
+                    Console.WriteLine("This event shouldn't happen and you should never see this message.");
                 }
 
             }
@@ -222,14 +229,19 @@ namespace ConsoleGameProject
             if (!valid)
             {
                 Console.WriteLine("Please push a choose a valid crewperson or you'll confuse someone.");
-                ValidCrewPerson();
-                
+                return ValidCrewPerson();
+
             }
             else if (crewpersonNumber > CrewPeople.Count || crewpersonNumber <= 0)
             {
                 Console.WriteLine("There isn't that many crewpeople on our rooster.");
-                ValidCrewPerson();
-               
+                return ValidCrewPerson();
+
+            }
+            else if (CrewPeople[crewpersonNumber - 1].Dead)
+            {
+                Console.WriteLine($"{CrewPeople[crewpersonNumber - 1].FirstName} is dead, they respond to the commands of no one now.");
+                return ValidCrewPerson();
             }
             else
             {
@@ -243,6 +255,7 @@ namespace ConsoleGameProject
             CrewStatus();
             if (ValidDown())
             {
+                DepthIndicator();
                 Debug.WriteLine($"Event happened, Depth is {Depth}");
                 Event();
                 Thread.Sleep(2_000);

@@ -189,15 +189,15 @@ namespace ConsoleGameProject
             Console.ForegroundColor = Color.Sienna;
             Console.CursorVisible = false;
         }
-        public static void Soil()// depth 11-50
+        public static void Soil()// depth 11-50 // actually getting rid of soil.
         {
             Console.ReplaceAllColorsWithDefaults();
-            Console.BackgroundColor = Color.Chocolate;
+            Console.BackgroundColor = Color.Brown;
             Console.Clear();
             Console.ForegroundColor = Color.DimGray;
             Console.CursorVisible = false;
         }
-        public static void Crust() // depth 51-100
+        public static void Crust() // depth 11-100
         {
             Console.ReplaceAllColorsWithDefaults();
             Console.BackgroundColor = Color.DimGray;
