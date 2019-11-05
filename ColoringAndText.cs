@@ -138,7 +138,7 @@ namespace ConsoleGameProject
             return drill;
         }
 
-        public static void Roster(Drill drill)
+        public static void RosterColorAndText(Drill drill)
         {
             Console.BackgroundColor = Color.AntiqueWhite;
             Console.Clear();
@@ -173,7 +173,7 @@ namespace ConsoleGameProject
             Console.ReplaceAllColorsWithDefaults();
 
         }
-        public static void Surface() // depth 0-10
+        public static void SurfaceColor() // depth 0-10
         {
             Console.ReplaceAllColorsWithDefaults();
             Console.BackgroundColor = Color.LimeGreen;
@@ -181,7 +181,7 @@ namespace ConsoleGameProject
             Console.ForegroundColor = Color.Sienna;
             Console.CursorVisible = false;
         }
-        public static void Soil()// depth 11-50 // actually getting rid of soil.
+        public static void SoilColor()// depth 11-50 // actually getting rid of soil.
         {
             Console.ReplaceAllColorsWithDefaults();
             Console.BackgroundColor = Color.FromArgb(101, 67, 33);
@@ -189,7 +189,7 @@ namespace ConsoleGameProject
             Console.ForegroundColor = Color.LightGray;
             Console.CursorVisible = false;
         }
-        public static void Crust() // depth 11-100
+        public static void CrustColor() // depth 11-100
         {
             Console.ReplaceAllColorsWithDefaults();
             Console.BackgroundColor = Color.DimGray;
@@ -197,7 +197,7 @@ namespace ConsoleGameProject
             Console.ForegroundColor = Color.DarkOrange;
             Console.CursorVisible = false;
         }
-        public static void UpperMantle() //  depth 101-200
+        public static void UpperMantleColor() //  depth 101-200
         {
             Console.ReplaceAllColorsWithDefaults();
             Console.BackgroundColor = Color.Coral;
@@ -205,7 +205,7 @@ namespace ConsoleGameProject
             Console.ForegroundColor = Color.DarkRed;
             Console.CursorVisible = false;
         }
-        public static void LowerMantle() //  depth 201-300
+        public static void LowerMantleColor() //  depth 201-300
         {
             Console.ReplaceAllColorsWithDefaults();
             Console.BackgroundColor = Color.DarkRed;
@@ -213,7 +213,7 @@ namespace ConsoleGameProject
             Console.ForegroundColor = Color.DarkOrange;
             Console.CursorVisible = false;
         }
-        public static void OuterCore() //  depth 301-400
+        public static void OuterCoreColor() //  depth 301-400
         {
             Console.ReplaceAllColorsWithDefaults();
             Console.BackgroundColor = Color.DarkOrange;
@@ -221,7 +221,7 @@ namespace ConsoleGameProject
             Console.ForegroundColor = Color.Gold;
             Console.CursorVisible = false;
         }
-        public static void InnerCore() //  depth 401-500
+        public static void InnerCoreColor() //  depth 401-500
         {
             Console.ReplaceAllColorsWithDefaults();
             Console.BackgroundColor = Color.Goldenrod;
@@ -229,7 +229,7 @@ namespace ConsoleGameProject
             Console.ForegroundColor = Color.LightGoldenrodYellow;
             Console.CursorVisible = false;
         }
-        public static void DrillApperance(int health)
+        public static void DrillApperanceText(int health)
         {
             if (health >= 100)
             {
@@ -256,7 +256,7 @@ namespace ConsoleGameProject
                 Console.WriteLine("If it wasn't so bad outside you wouldn't want to be in here\n");
             }
         }
-        public static void LostCity(bool archaeologistPresent)// coffee browns
+        public static void LostCityText(bool archaeologistPresent)// coffee browns mayber text a light sharp blue
         {
             Console.WriteLine("Your drill pops out of a cavern roof and falls to the floor.\n\n All around you lay the ruins of an strange ancient city.\n");
             if (archaeologistPresent)
@@ -274,7 +274,7 @@ namespace ConsoleGameProject
                 Thread.Sleep(5_000);
             }
         }
-        public static void TardisCave(bool doctorPresent)// color this like tardis
+        public static void TardisCaveText(bool doctorPresent)// color this like tardis
         {
             Console.WriteLine("Your drill emerges into a vast cave system, right next to a blue phone box with a light glow eminating from its windows\n");
             if (doctorPresent)
@@ -294,7 +294,7 @@ namespace ConsoleGameProject
                 Thread.Sleep(5_000);
             }
         }
-        public static void SkipMostMantel(bool geologistPresent)// color this like tardis
+        public static void MagmaFlowText(bool geologistPresent)// leave default coloration
         {
             Console.WriteLine("Your drill emerges into a vast cave system, right next to a blue phone box with a light glow eminating from its windows\n");
             if (geologistPresent)
@@ -315,8 +315,7 @@ namespace ConsoleGameProject
                 Thread.Sleep(5_000);
             }
         }
-
-        public static void HeySatan(bool priestPresent) //some kind of red and black theme
+        public static void HeySatanText(bool priestPresent) //some kind of red and black theme
         {
             Console.WriteLine("description of Hell");
             if (priestPresent)
@@ -331,7 +330,7 @@ namespace ConsoleGameProject
                 Thread.Sleep(5_000);
             }
         }
-        public static void Dinosaurs(bool paleoPresent)
+        public static void DinosaursText(bool paleoPresent)
         {
             Console.WriteLine("You emerge from the Earth into a strangely lit cavern.");
             if (paleoPresent)
@@ -350,7 +349,7 @@ namespace ConsoleGameProject
                 Thread.Sleep(5_000);
             }
         }
-        public static void HeyCthulhu(bool occultPresent) // dark green background with rich purple text or a bright red
+        public static void HeyCthulhuText(bool occultPresent) // dark green background with rich purple text or a bright red
         {
             Console.WriteLine("neutral scene description\n");
             if (occultPresent)
@@ -366,7 +365,7 @@ namespace ConsoleGameProject
                 Thread.Sleep(5_000);
             }
         }
-        public static void HeyLizardPeeps(bool robotPresent) //maybe gold, look up illuminati or freemason colors
+        public static void HeyLizardPeepsText(bool robotPresent) //maybe gold, look up illuminati or freemason colors
         {
             Console.WriteLine("neutral scene description there are lizard illuminati masons having a meeting in this decorated chamber\n\n" +
                 "Crew interupts");
@@ -381,7 +380,7 @@ namespace ConsoleGameProject
                 Thread.Sleep(5_000);
             }
         }
-        public static void BowToTheRobotsIMeanLizards()
+        public static void BowToTheRobotsIMeanLizardsEnding()
         {
             Console.Clear();
             Console.WriteLine("Your crew takes the offer from the robot ... I mean lizard rulers of the world.\n\n" +
@@ -390,7 +389,6 @@ namespace ConsoleGameProject
             Thread.Sleep(5_000); // 5 seconds
             Environment.Exit(0);
         }
-
         public static void YouFreakingSummonedCthulhuEnding()// make this same colors as Cathy event
         {
             Console.Clear();
@@ -412,7 +410,6 @@ namespace ConsoleGameProject
             Thread.Sleep(5_000); // 5 seconds
             Environment.Exit(0);
         }
-
         public static void AtTheCenterEnding()
         {
             Console.Clear();

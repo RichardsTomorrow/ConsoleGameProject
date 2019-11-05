@@ -13,7 +13,7 @@ namespace ConsoleGameProject
         {
             ColoringAndText.IntroScreen();
             Drill drill = ColoringAndText.PlayerSetup();
-            ColoringAndText.Roster(drill);
+            ColoringAndText.RosterColorAndText(drill);
             drill.Gameplay();
             //ColoringAndText.Traveling(drill);
 
