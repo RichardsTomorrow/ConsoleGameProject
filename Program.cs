@@ -11,10 +11,9 @@ namespace ConsoleGameProject
     {
         static void Main(string[] args)
         {
-            ColoringAndText.IntroScreenText();
-            //Sounds.TardisWoosh(); // sound playing and testing
-            Drill drill = ColoringAndText.PlayerSetup();
-            ColoringAndText.RosterColorAndText(drill);
+            Texts.IntroScreenText();
+            Drill drill = Texts.PlayerSetup();
+            Texts.RosterText(drill);
             drill.DriveDrill();
 
             //Console.WriteLine("\nend of test");

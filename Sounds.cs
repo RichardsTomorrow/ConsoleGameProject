@@ -38,17 +38,17 @@ namespace ConsoleGameProject
         }
         public static void HatchOpen()
         {
-            string hatch = @"C:\Users\richa\source\repos\ConsoleGameProject\soundFiles\Metal Latch-SoundBible.com-736691159.wav";
+            string hatch = @"C:\Users\richa\source\repos\ConsoleGameProject\soundFiles\MetalLatch-SoundBible.com-736691159.wav";
             SoundPlayer(hatch);
         }
         public static void DinoRoar()
         {
-            string roar = @"C:\Users\richa\source\repos\ConsoleGameProject\soundFiles\Dinosaur Roar-SoundBible.com-605392672.wav";
+            string roar = @"C:\Users\richa\source\repos\ConsoleGameProject\soundFiles\DinosaurRoar-SoundBible.com-605392672.wav";
             SoundPlayer(roar);
         }
         public static void HellNoise()
         {
-            string spooky = @"C:\Users\richa\source\repos\ConsoleGameProject\soundFiles\Scary - Titus_Calen - 1449371204.wav";
+            string spooky = @"C:\Users\richa\source\repos\ConsoleGameProject\soundFiles\Scary-Titus_Calen-1449371204.wav";
             SoundPlayer(spooky);
         }
         public static void CthulhuRises()
@@ -58,7 +58,7 @@ namespace ConsoleGameProject
         }
         public static void ActuallyRobots()
         {
-            string boop = @"C:\Users\richa\source\repos\ConsoleGameProject\soundFiles\Sci Fi Robot-SoundBible.com-481033379.wav";
+            string boop = @"C:\Users\richa\source\repos\ConsoleGameProject\soundFiles\SciFiRobot-SoundBible.com-481033379.wav";
             SoundPlayer(boop);
         }
         public static void SantaLaugh()
