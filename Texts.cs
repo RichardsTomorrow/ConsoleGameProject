@@ -187,12 +187,12 @@ namespace ConsoleGameProject
                     "They furiously take notes while pointing out the advance quartz crystal based technology the inhitants once used.\n\n" +
                     "They are able to fashion some repairs and upgrades for the drill machine with what they have found.\n\n" +
                     "The  Archaeologist begs for more time but you must press on\n\n" +
-                    "Oh they also found a secret Atlantean tunnel system beneath the city"); // throw in a stargate reference to a circle in Atlantis
+                    "Oh they also found a secret Atlantean tunnel system beneath the city");
                 Thread.Sleep(5_000);
             }
             else
             {
-                Console.WriteLine("Your crew feels as though this place should be more explored but they all must work to stabalize the drill after its fall.\n\n" +
+                Console.WriteLine("Your crew feels as though this place should be more explored but they all must work to stabalize the drill.\n\n" +
                     "They prevent too much damage from happening but there is some that can't be fixed until you get to the surface ");
                 Thread.Sleep(5_000);
             }
