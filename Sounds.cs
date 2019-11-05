@@ -4,8 +4,6 @@
 /// http://soundbible.com/1970-Pen-Clicks.html, 
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 using NAudio.Wave;
 using System.Threading;
 
