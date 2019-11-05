@@ -12,6 +12,7 @@ namespace ConsoleGameProject
         static void Main(string[] args)
         {
             ColoringAndText.IntroScreenText();
+            //Sounds.TardisWoosh(); // sound playing and testing
             Drill drill = ColoringAndText.PlayerSetup();
             ColoringAndText.RosterColorAndText(drill);
             drill.DriveDrill();

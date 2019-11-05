@@ -53,6 +53,65 @@ namespace ConsoleGameProject
             this.Depth += dig;
             Debug.WriteLine($"DrillDown was called, Depth is {Depth}");
         }
+        private bool ValidDown()
+        {
+            if (Console.ReadKey().Key != ConsoleKey.D)
+            {
+                Console.WriteLine("\nPlease push a valid key or you'll damage the drill!");
+                return ValidDown();
+            }
+            //else if (Console.ReadKey().Key != ConsoleKey.D && counter > 0)
+            //{
+            //    Console.WriteLine("\nThe drill took damage due to your carelessness.");
+            //    return ValidDown();
+            //}
+            else
+            {
+                return true;
+            }
+
+
+        }
+        private int ValidCrewPerson()
+        {
+            bool valid = Int32.TryParse(Console.ReadLine(), out int crewpersonNumber); //do a try parse and check if it is a number between 1-length of crew list 
+
+            if (!valid)
+            {
+                Console.WriteLine("\nPlease push a choose a valid crewperson or you'll confuse someone.");
+                return ValidCrewPerson();
+
+            }
+            else if (crewpersonNumber > CrewPeople.Count || crewpersonNumber <= 0)
+            {
+                Console.WriteLine("\nThere isn't that many crewpeople on our rooster.");
+                return ValidCrewPerson();
+
+            }
+            else if (CrewPeople[crewpersonNumber - 1].Dead)
+            {
+                Console.WriteLine($"\n{CrewPeople[crewpersonNumber - 1].FirstName} is dead, they respond to the commands of no one now.");
+                return ValidCrewPerson();
+            }
+            else
+            {
+                return crewpersonNumber - 1;
+            }
+
+        }
+        private bool HaveTrait(string desiredTrait)
+        {
+            bool HaveTrait = false;
+            for (int i = 0; i < CrewPeople.Count; i++)
+            {
+                if (CrewPeople[i].Trait.Equals(desiredTrait) && !CrewPeople[i].Dead)
+                {
+                    HaveTrait = true;
+                }
+            }
+            Debug.WriteLine($"HaveTrait was used and came out {HaveTrait}");
+            return HaveTrait;
+        }
         public void DrillDamage(int damageTaken = 10)
         {
             this.Health -= damageTaken;
@@ -81,11 +140,13 @@ namespace ConsoleGameProject
             if (Health <= 0)
             {
                 ColoringAndText.DrillHealthDepletedEnding();
+                Sounds.DeathScream();
             }
             else if (AllDead)
             {
                 ColoringAndText.CrewAllDeadColor();
                 ColoringAndText.CrewAllDeadEnding();
+                Sounds.DeathScream();
             }
             else if (Depth > 490)
             {
@@ -185,6 +246,7 @@ namespace ConsoleGameProject
                 {
                     Console.WriteLine($"{CrewPeople[crewMember].FirstName} died fixing the engine but it works better then ever. \n\n You drop 30.");
                     CrewPeople[crewMember].Death();
+                    Sounds.DeathScream();
                     DrillDown(30);
                 }
                 else
@@ -350,6 +412,7 @@ namespace ConsoleGameProject
                             {
                                 if (CrewPeople[i].Trait == "Paleontologist")
                                 {
+                                    Sounds.DeathScream();
                                     CrewPeople[i].Death();
                                 }
                             }
@@ -414,65 +477,6 @@ namespace ConsoleGameProject
                 }
                 else { DrillDown(); }
             }
-        }
-        private bool ValidDown()
-        {
-            if (Console.ReadKey().Key != ConsoleKey.D)
-            {
-                Console.WriteLine("\nPlease push a valid key or you'll damage the drill!");
-                return ValidDown();
-            }
-            //else if (Console.ReadKey().Key != ConsoleKey.D && counter > 0)
-            //{
-            //    Console.WriteLine("\nThe drill took damage due to your carelessness.");
-            //    return ValidDown();
-            //}
-            else
-            {
-                return true;
-            }
-
-
-        }
-        private int ValidCrewPerson()
-        {
-            bool valid = Int32.TryParse(Console.ReadLine(), out int crewpersonNumber); //do a try parse and check if it is a number between 1-length of crew list 
-
-            if (!valid)
-            {
-                Console.WriteLine("\nPlease push a choose a valid crewperson or you'll confuse someone.");
-                return ValidCrewPerson();
-
-            }
-            else if (crewpersonNumber > CrewPeople.Count || crewpersonNumber <= 0)
-            {
-                Console.WriteLine("\nThere isn't that many crewpeople on our rooster.");
-                return ValidCrewPerson();
-
-            }
-            else if (CrewPeople[crewpersonNumber - 1].Dead)
-            {
-                Console.WriteLine($"\n{CrewPeople[crewpersonNumber - 1].FirstName} is dead, they respond to the commands of no one now.");
-                return ValidCrewPerson();
-            }
-            else
-            {
-                return crewpersonNumber - 1;
-            }
-
-        }
-        private bool HaveTrait(string desiredTrait)
-        {
-            bool HaveTrait = false;
-            for (int i = 0; i < CrewPeople.Count; i++)
-            {
-                if (CrewPeople[i].Trait.Equals(desiredTrait) && !CrewPeople[i].Dead)
-                {
-                    HaveTrait = true;
-                }
-            }
-            Debug.WriteLine($"HaveTrait was used and came out {HaveTrait}");
-            return HaveTrait;
         }
         public void DriveDrill()
         {

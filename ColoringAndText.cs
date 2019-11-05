@@ -356,6 +356,7 @@ namespace ConsoleGameProject
                     "The blue phone box turns transparent and disappears\n\n" +
                     "Eveyone pauses for a moment to realize they now have one less in the party\n\n" +
                     "On the plus side you found a lava tube");
+                Sounds.TardisWoosh();
                 Thread.Sleep(5_000);
             }
             else

@@ -10,4 +10,10 @@
     <PackageReference Include="NAudio" Version="1.9.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="soundFiles\WilhelmScream.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
