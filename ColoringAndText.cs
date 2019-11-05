@@ -391,11 +391,13 @@ namespace ConsoleGameProject
         }
         public static void HeySatanText(bool priestPresent) //some kind of red and black theme
         {
-            Console.WriteLine("description of Hell");
+            Console.WriteLine("neutral description of Hell");
+            Sounds.HellNoise();
             if (priestPresent)
             {
                 Console.WriteLine("Priest says something funny that lightens the mood and lets you escape.\n\n" +
                     "Satan says something along the lines of \"I have always wanted to cast someone into the depths of Hell\"");
+                Sounds.SantaLaugh();
                 Thread.Sleep(5_000);
             }
             else
@@ -414,6 +416,7 @@ namespace ConsoleGameProject
                     "Unfortunately dino droppings are stickier than movies would have you believe, and the Paleontologist is stuck as a Deinonychus approaches\n\n" +
                     "\"GO ON WITHOUT ME\", they yell, \"YOU MUST TELL THE WORLD OF THIS BRAND NEW UNTHOUGHT OF HUNTING TECHNIQUE\"" +
                     "Your crew bolts the door and continues on before they attract anymore attention");
+                Sounds.DinoRoar();
                 Thread.Sleep(5_000);
             }
             else
@@ -446,6 +449,7 @@ namespace ConsoleGameProject
             if (robotPresent)
             {
                 Console.WriteLine("Robot dude realizes that the lizard illuminati masons are actually robots. They bribe us with world hero ending");
+                Sounds.ActuallyRobots();
                 Thread.Sleep(5_000);
             }
             else
@@ -467,6 +471,7 @@ namespace ConsoleGameProject
         {
             Console.Clear();
             Console.WriteLine("basically summons cthulhu and causes cthulu and destroyed the earth end game good job");
+            Sounds.CthulhuRises();
             Thread.Sleep(5_000); // 5 seconds
             Environment.Exit(0);
         }

@@ -237,6 +237,7 @@ namespace ConsoleGameProject
             CrewStatus(true);
             int crewMember = ValidCrewPerson();
             Console.WriteLine($"{CrewPeople[crewMember].FirstName} goes outside to try and repair the damage.\n\n");
+            Sounds.HatchOpen();
             Random random = new Random();
             int prob = random.Next(1, 7);
             //prob = 5; // determinism
