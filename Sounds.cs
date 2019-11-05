@@ -1,10 +1,9 @@
 ﻿/// sounds curtesy of https://archive.org/details/WilhelmScreamSample, http://www.moviesoundclips.net/sound.php?id=85, http://soundbible.com/1357-Metal-Latch.html, 
 /// http://soundbible.com/1165-Dinosaur-Roar.html, http://soundbible.com/1814-Scary.html, http://soundbible.com/1719-Godzilla.html,
-/// http://soundbible.com/1317-Sci-Fi-Robot.html,http://soundbible.com/1981-Evil-Laugh-2.html
+/// http://soundbible.com/1317-Sci-Fi-Robot.html, http://soundbible.com/1981-Evil-Laugh-2.html, http://soundbible.com/497-Dot-Matrix-Printer.html,
+/// http://soundbible.com/1970-Pen-Clicks.html, 
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 using NAudio.Wave;
 using System.Threading;
 
@@ -65,6 +64,16 @@ namespace ConsoleGameProject
         {
             string laugh = @"C:\Users\richa\source\repos\ConsoleGameProject\soundFiles\Evil_Laugh_2-Sound_Explorer-1081271267.wav";
             SoundPlayer(laugh);
+        }
+        public static void Printer()
+        {
+            string print = @"C:\Users\richa\source\repos\ConsoleGameProject\soundFiles\DotMatrix Printer-SoundBible.com-790333844.wav";
+            SoundPlayer(print);
+        }
+        public static void PenClick()
+        {
+            string click = @"C:\Users\richa\source\repos\ConsoleGameProject\soundFiles\Pen_Clicks-Simon_Craggs-514025171.wav";
+            SoundPlayer(click);
         }
     }
 }

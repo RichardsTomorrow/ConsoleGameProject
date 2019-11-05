@@ -1,15 +1,10 @@
 ﻿using System;
-using NAudio.Wave;
-using System.Drawing;
-using Console = Colorful.Console;
-using System.Diagnostics;
-using System.Collections.Generic;
 
 namespace ConsoleGameProject
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             Texts.IntroScreenText();
             Drill drill = Texts.PlayerSetup();

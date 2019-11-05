@@ -14,14 +14,18 @@ namespace ConsoleGameProject
             Console.CursorVisible = true;
             Console.WriteLine("Hello Captain! It seems we mis-placed the paperwork. What is your first name?\n");
             string firstName = NameValidation();
+            Sounds.PenClick();
             Console.WriteLine($"Ok, so your first name is {firstName}! Sorry I am new here what was your last name again?\n");
             string lastName = NameValidation();
+            Sounds.PenClick();
             Console.WriteLine($"OHHHH!! You are {firstName} {lastName}! It is a pleasure to meet you.\n");
             int crewSize = CrewSizeValidation();
+            Sounds.PenClick();
             Console.WriteLine($"Ahh yes! Now I found you! Captain {firstName} {lastName}, total crew of {crewSize}.\n\nGive me a second and I will grab your crew roster.\n");
             CrewPerson player = new CrewPerson(firstName, lastName);
             Drill drill = new Drill(player, crewSize);
-            Thread.Sleep(2_000); // 2 seconds
+            Sounds.Printer();
+            //Thread.Sleep(2_000); // 2 seconds
             return drill;
         }
         static string NameValidation()
@@ -92,9 +96,7 @@ namespace ConsoleGameProject
             }
             Console.WriteLine($"And finally we have you, {drill.Player.FirstName} \"The {drill.Player.Trait}\" {drill.Player.LastName}.\n");
             Console.WriteLine("I wish you all luck on your journey and I hope you are prepared for whatever you find.");
-            Thread.Sleep(3_000); // 3 seconds
-            Console.ReplaceAllColorsWithDefaults();
-
+            Thread.Sleep(4_000); // 4 seconds
         }
 
         public static void IntroScreenText()
@@ -185,12 +187,12 @@ namespace ConsoleGameProject
                     "They furiously take notes while pointing out the advance quartz crystal based technology the inhitants once used.\n\n" +
                     "They are able to fashion some repairs and upgrades for the drill machine with what they have found.\n\n" +
                     "The  Archaeologist begs for more time but you must press on\n\n" +
-                    "Oh they also found a secret Atlantean tunnel system beneath the city"); // throw in a stargate reference to a circle in Atlantis
+                    "Oh they also found a secret Atlantean tunnel system beneath the city");
                 Thread.Sleep(5_000);
             }
             else
             {
-                Console.WriteLine("Your crew feels as though this place should be more explored but they all must work to stabalize the drill after its fall.\n\n" +
+                Console.WriteLine("Your crew feels as though this place should be more explored but they all must work to stabalize the drill.\n\n" +
                     "They prevent too much damage from happening but there is some that can't be fixed until you get to the surface ");
                 Thread.Sleep(5_000);
             }
@@ -219,7 +221,7 @@ namespace ConsoleGameProject
         }
         public static void MagmaFlowText(bool geologistPresent)// leave default coloration
         {
-            Console.WriteLine("Your drill emerges into a vast cave system, right next to a blue phone box with a light glow eminating from its windows\n");
+            Console.WriteLine("The magma is viscuos\n");
             if (geologistPresent)
             {
                 Console.WriteLine("The Geologist pipes up \"Hey guys I think I figured out a way to use some of the unique conditions in the mantel to propel us mostly through it\"\n\n" +

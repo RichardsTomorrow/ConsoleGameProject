@@ -1,4 +1,5 @@
-﻿using System;
+﻿/// https://developer.mozilla.org/en-US/docs/Web/CSS/color_value
+using System;
 using System.Drawing;
 using Console = Colorful.Console;
 
