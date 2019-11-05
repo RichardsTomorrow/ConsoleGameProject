@@ -7,7 +7,8 @@ using NAudio.Wave;
 
 namespace ConsoleGameProject
 {
-    class Sounds
+    public static class Sounds
     {
+
     }
 }

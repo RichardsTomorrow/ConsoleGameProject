@@ -11,10 +11,10 @@ namespace ConsoleGameProject
     {
         static void Main(string[] args)
         {
-            ColoringAndText.IntroScreen();
+            ColoringAndText.IntroScreenText();
             Drill drill = ColoringAndText.PlayerSetup();
             ColoringAndText.RosterColorAndText(drill);
-            drill.Gameplay();
+            drill.DriveDrill();
 
             //Console.WriteLine("\nend of test");
             //Console.ReadKey();

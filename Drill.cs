@@ -474,7 +474,7 @@ namespace ConsoleGameProject
             Debug.WriteLine($"HaveTrait was used and came out {HaveTrait}");
             return HaveTrait;
         }
-        public void Gameplay()
+        public void DriveDrill()
         {
             DepthIndicator();
             CrewStatus();
@@ -485,7 +485,7 @@ namespace ConsoleGameProject
                 Event();
                 Thread.Sleep(2_000);
             }
-            Gameplay();
+            DriveDrill();
 
 
         }

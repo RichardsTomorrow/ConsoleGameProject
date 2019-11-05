@@ -11,73 +11,23 @@ namespace ConsoleGameProject
 {
     public static class ColoringAndText
     {
-        static void IntroGradient(string[] strings)
+        public static Drill PlayerSetup()
         {
-            int r = 50; int g = 255; int b = 50;
-            for (int i = 0; i < strings.Length; i += 2)
-            {
-                Console.WriteLine(strings[i], Color.FromArgb(Math.Clamp(r, 0, 255), Math.Clamp(g, 0, 255), Math.Clamp(b, 0, 255)));
-                if (i + 1 < strings.Length)
-                {
-                    Console.WriteLine(strings[i + 1], Color.FromArgb(Math.Clamp(r, 0, 255), Math.Clamp(g, 0, 255), Math.Clamp(b, 0, 255)));
-                }
-                if (i <= 10) { r += 30; b -= 15; } // transition of green to yellow
-                else if (i > 10) { g -= 30; } // transition of yellow to orange
-            }
+            PaperworkColor();
+            Console.CursorVisible = true;
+            var textColor = Color.Black;
+            Console.WriteLine("Hello Captain! It seems we mis-placed the paperwork. What is your first name?\n");
+            string firstName = NameValidation();
+            Console.WriteLine($"Ok, so your first name is {firstName}! Sorry I am new here what was your last name again?\n");
+            string lastName = NameValidation();
+            Console.WriteLine($"OHHHH!! You are {firstName} {lastName}! It is a pleasure to meet you.\n");
+            int crewSize = CrewSizeValidation();
+            Console.WriteLine($"Ahh yes! Now I found you! Captain {firstName} {lastName}, total crew of {crewSize}.\n\nGive me a second and I will grab your crew roster.\n");
+            CrewPerson player = new CrewPerson(firstName, lastName);
+            Drill drill = new Drill(player, crewSize);
+            Thread.Sleep(2_000); // 2 seconds
+            return drill;
         }
-
-        public static void IntroScreen()
-        {
-            string[] introbox = new string[]
-            {
-                @"[]+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+[]",
-                @"+|             _____                                                                        __                       |+",
-                @"%|            |     \                                                                      |  \                      |%",
-                @"+|             \$$$$$  ______   __    __   ______   _______    ______   __    __          _| $$_     ______          |+",
-                @"%|               | $$ /      \ |  \  |  \ /      \ |       \  /      \ |  \  |  \        |   $$ \   /      \         |%",
-                @"+|          __   | $$|  $$$$$$\| $$  | $$|  $$$$$$\| $$$$$$$\|  $$$$$$\| $$  | $$         \$$$$$$  |  $$$$$$\        |+",
-                @"%|         |  \  | $$| $$  | $$| $$  | $$| $$   \$$| $$  | $$| $$    $$| $$  | $$          | $$ __ | $$  | $$        |%",
-                @"+|         | $$__| $$| $$__/ $$| $$__/ $$| $$      | $$  | $$| $$$$$$$$| $$__/ $$          | $$|  \| $$__/ $$        |+",
-                @"%|          \$$    $$ \$$    $$ \$$    $$| $$      | $$  | $$ \$$     \ \$$    $$           \$$  $$ \$$    $$        |%",
-                @"+|           \$$$$$$   \$$$$$$   \$$$$$$  \$$       \$$   \$$  \$$$$$$$ _\$$$$$$$            \$$$$   \$$$$$$         |+",
-                @"%|                                                                     |  \__| $$                                    |%",
-                @"+|                                                                      \$$    $$                                    |+",
-                @"%|                                                                       \$$$$$$                                     |%",
-                @"%|                                 _______             __                          __                                |%",
-                @"+|                                |       \           |  \                        |  \                               |+",
-                @"%|                                | $$$$$$$\  ______  | $$  ______   __   __   __ | $$                               |%",
-                @"+|                                | $$__/ $$ /      \ | $$ /      \ |  \ |  \ |  \| $$                               |+",
-                @"%|                                | $$    $$|  $$$$$$\| $$|  $$$$$$\| $$ | $$ | $$| $$                               |%",
-                @"+|                                | $$$$$$$\| $$    $$| $$| $$  | $$| $$ | $$ | $$ \$$                               |+",
-                @"%|                                | $$$$$$$\| $$    $$| $$| $$  | $$| $$ | $$ | $$ \$$                               |%",
-                @"+|                                | $$__/ $$| $$$$$$$$| $$| $$__/ $$| $$_/ $$_/ $$ __                                |+",
-                @"%|                                | $$    $$ \$$     \| $$ \$$    $$ \$$   $$   $$|  \                               |%",
-                @"+|                                 \$$$$$$$   \$$$$$$$ \$$  \$$$$$$   \$$$$$\$$$$  \$$                               |+",
-                @"%|                                                                                                                   |%",
-                @"+|Good morning Captain! You have been selected to lead an expedition to the center of the earth                      |+",
-                @"%|text describing the game goes here at some point                                                                   |%",
-                @"+|text describing the game goes here at some point                                                                   |+",
-                @"%| text describing the game goes here at some point                                                                  |%",
-                @"[]+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+[]"
-            };
-            Console.SetWindowSize(120, 30);
-            Console.CursorVisible = false;
-            Console.SetCursorPosition(0, 0);
-
-            Debug.WriteLine($"Intro screen width:{Console.WindowWidth}");
-            Debug.WriteLine($"Intro screen height:{Console.WindowHeight}");
-
-            IntroGradient(introbox);
-            Thread.Sleep(5_000); //5 seconds
-
-            Debug.WriteLine($"text color before reset:{Console.ForegroundColor}");
-
-            Console.ReplaceAllColorsWithDefaults();
-            Console.Clear();
-
-            Debug.WriteLine($"text color after reset:{Console.ForegroundColor}");
-        }
-
         static string NameValidation()
         {
             var name = Console.ReadLine();
@@ -117,32 +67,9 @@ namespace ConsoleGameProject
             }
             return crewSize;
         }
-
-        public static Drill PlayerSetup()
-        {
-            Console.BackgroundColor = Color.AntiqueWhite;
-            Console.Clear();
-            Console.ForegroundColor = Color.Black;
-            Console.CursorVisible = true;
-            var textColor = Color.Black;
-            Console.WriteLine("Hello Captain! It seems we mis-placed the paperwork. What is your first name?\n");
-            string firstName = NameValidation();
-            Console.WriteLine($"Ok, so your first name is {firstName}! Sorry I am new here what was your last name again?\n");
-            string lastName = NameValidation();
-            Console.WriteLine($"OHHHH!! You are {firstName} {lastName}! It is a pleasure to meet you.\n");
-            int crewSize = CrewSizeValidation();
-            Console.WriteLine($"Ahh yes! Now I found you! Captain {firstName} {lastName}, total crew of {crewSize}.\n\nGive me a second and I will grab your crew roster.\n");
-            CrewPerson player = new CrewPerson(firstName, lastName);
-            Drill drill = new Drill(player, crewSize);
-            Thread.Sleep(2_000); // 2 seconds
-            return drill;
-        }
-
         public static void RosterColorAndText(Drill drill)
         {
-            Console.BackgroundColor = Color.AntiqueWhite;
-            Console.Clear();
-            Console.ForegroundColor = Color.Black;
+            PaperworkColor();
             Console.CursorVisible = false;
             Console.WriteLine($"Found it! It looks like the administration has already selected your crew of {drill.CrewSize}.\n\nThey are an outstanding group of people even if they have a few quirks.\n");
             for (int i = 0; i < drill.CrewSize - 1; i++)
@@ -172,6 +99,27 @@ namespace ConsoleGameProject
             Thread.Sleep(3_000); // 3 seconds
             Console.ReplaceAllColorsWithDefaults();
 
+        }
+        static void IntroGradientColor(string[] strings)
+        {
+            int r = 50; int g = 255; int b = 50;
+            for (int i = 0; i < strings.Length; i += 2)
+            {
+                Console.WriteLine(strings[i], Color.FromArgb(Math.Clamp(r, 0, 255), Math.Clamp(g, 0, 255), Math.Clamp(b, 0, 255)));
+                if (i + 1 < strings.Length)
+                {
+                    Console.WriteLine(strings[i + 1], Color.FromArgb(Math.Clamp(r, 0, 255), Math.Clamp(g, 0, 255), Math.Clamp(b, 0, 255)));
+                }
+                if (i <= 10) { r += 30; b -= 15; } // transition of green to yellow
+                else if (i > 10) { g -= 30; } // transition of yellow to orange
+            }
+        }
+        public static void PaperworkColor() // papery white and black text
+        {
+            Console.ReplaceAllColorsWithDefaults();
+            Console.BackgroundColor = Color.AntiqueWhite;
+            Console.Clear();
+            Console.ForegroundColor = Color.Black;
         }
         public static void SurfaceColor() // depth 0-10
         {
@@ -229,6 +177,129 @@ namespace ConsoleGameProject
             Console.ForegroundColor = Color.LightGoldenrodYellow;
             Console.CursorVisible = false;
         }
+        public static void LostCityColor()// coffee brownish, text a light sharp blue 
+        {
+            Console.ReplaceAllColorsWithDefaults();
+            Console.BackgroundColor = Color.BurlyWood;
+            Console.Clear();
+            Console.ForegroundColor = Color.Cyan;
+            Console.CursorVisible = false;
+        }
+        public static void TardisCaveColor()// color this like tardis
+        {
+            Console.ReplaceAllColorsWithDefaults();
+            Console.BackgroundColor = Color.DarkBlue;
+            Console.Clear();
+            Console.ForegroundColor = Color.LightBlue;
+            Console.CursorVisible = false;
+        }
+        public static void HeySatanColor()// some kind of red and black theme
+        {
+            Console.ReplaceAllColorsWithDefaults();
+            Console.BackgroundColor = Color.Black;
+            Console.Clear();
+            Console.ForegroundColor = Color.Red;
+            Console.CursorVisible = false;
+        }
+        public static void DinosaursColor()// darker but still jungly green background with orangered text
+        {
+            Console.ReplaceAllColorsWithDefaults();
+            Console.BackgroundColor = Color.Green;
+            Console.Clear();
+            Console.ForegroundColor = Color.OrangeRed;
+            Console.CursorVisible = false;
+        }
+        public static void HeyCthulhuColor()// dark olive green and  dark magenta since cthulu sleeps
+        {
+            Console.ReplaceAllColorsWithDefaults();
+            Console.BackgroundColor = Color.DarkOliveGreen;
+            Console.Clear();
+            Console.ForegroundColor = Color.DarkMagenta;
+            Console.CursorVisible = false;
+        }
+        public static void YouFreakingSummonedCthulhuColor()// dark olive green and regular magenta since cthulu wakes
+        {
+            Console.ReplaceAllColorsWithDefaults();
+            Console.BackgroundColor = Color.DarkOliveGreen;
+            Console.Clear();
+            Console.ForegroundColor = Color.Magenta;
+            Console.CursorVisible = false;
+        }
+        public static void HeyLizardPeepsColor()// deep blue background with gold text
+        {
+            Console.ReplaceAllColorsWithDefaults();
+            Console.BackgroundColor = Color.DarkBlue;
+            Console.Clear();
+            Console.ForegroundColor = Color.Gold;
+            Console.CursorVisible = false;
+        }
+        public static void CrewAllDeadColor()// black with text the color of bones
+        {
+            Console.ReplaceAllColorsWithDefaults();
+            Console.BackgroundColor = Color.Black;
+            Console.Clear();
+            Console.ForegroundColor = Color.WhiteSmoke;
+            Console.CursorVisible = false;
+        }
+        public static void AtTheCenterColor()// pinks
+        {
+            Console.ReplaceAllColorsWithDefaults();
+            Console.BackgroundColor = Color.MediumOrchid;
+            Console.Clear();
+            Console.ForegroundColor = Color.LightPink;
+            Console.CursorVisible = false;
+        }
+        public static void IntroScreenText()
+        {
+            string[] introbox = new string[]
+            {
+                @"[]+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+[]",
+                @"+|             _____                                                                        __                       |+",
+                @"%|            |     \                                                                      |  \                      |%",
+                @"+|             \$$$$$  ______   __    __   ______   _______    ______   __    __          _| $$_     ______          |+",
+                @"%|               | $$ /      \ |  \  |  \ /      \ |       \  /      \ |  \  |  \        |   $$ \   /      \         |%",
+                @"+|          __   | $$|  $$$$$$\| $$  | $$|  $$$$$$\| $$$$$$$\|  $$$$$$\| $$  | $$         \$$$$$$  |  $$$$$$\        |+",
+                @"%|         |  \  | $$| $$  | $$| $$  | $$| $$   \$$| $$  | $$| $$    $$| $$  | $$          | $$ __ | $$  | $$        |%",
+                @"+|         | $$__| $$| $$__/ $$| $$__/ $$| $$      | $$  | $$| $$$$$$$$| $$__/ $$          | $$|  \| $$__/ $$        |+",
+                @"%|          \$$    $$ \$$    $$ \$$    $$| $$      | $$  | $$ \$$     \ \$$    $$           \$$  $$ \$$    $$        |%",
+                @"+|           \$$$$$$   \$$$$$$   \$$$$$$  \$$       \$$   \$$  \$$$$$$$ _\$$$$$$$            \$$$$   \$$$$$$         |+",
+                @"%|                                                                     |  \__| $$                                    |%",
+                @"+|                                                                      \$$    $$                                    |+",
+                @"%|                                                                       \$$$$$$                                     |%",
+                @"%|                                 _______             __                          __                                |%",
+                @"+|                                |       \           |  \                        |  \                               |+",
+                @"%|                                | $$$$$$$\  ______  | $$  ______   __   __   __ | $$                               |%",
+                @"+|                                | $$__/ $$ /      \ | $$ /      \ |  \ |  \ |  \| $$                               |+",
+                @"%|                                | $$    $$|  $$$$$$\| $$|  $$$$$$\| $$ | $$ | $$| $$                               |%",
+                @"+|                                | $$$$$$$\| $$    $$| $$| $$  | $$| $$ | $$ | $$ \$$                               |+",
+                @"%|                                | $$$$$$$\| $$    $$| $$| $$  | $$| $$ | $$ | $$ \$$                               |%",
+                @"+|                                | $$__/ $$| $$$$$$$$| $$| $$__/ $$| $$_/ $$_/ $$ __                                |+",
+                @"%|                                | $$    $$ \$$     \| $$ \$$    $$ \$$   $$   $$|  \                               |%",
+                @"+|                                 \$$$$$$$   \$$$$$$$ \$$  \$$$$$$   \$$$$$\$$$$  \$$                               |+",
+                @"%|                                                                                                                   |%",
+                @"+|Good morning Captain! You have been selected to lead an expedition to the center of the earth                      |+",
+                @"%|text describing the game goes here at some point                                                                   |%",
+                @"+|text describing the game goes here at some point                                                                   |+",
+                @"%| text describing the game goes here at some point                                                                  |%",
+                @"[]+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+[]"
+            };
+            Console.SetWindowSize(120, 30);
+            Console.CursorVisible = false;
+            Console.SetCursorPosition(0, 0);
+
+            Debug.WriteLine($"Intro screen width:{Console.WindowWidth}");
+            Debug.WriteLine($"Intro screen height:{Console.WindowHeight}");
+
+            IntroGradientColor(introbox);
+            Thread.Sleep(5_000); //5 seconds
+
+            Debug.WriteLine($"text color before reset:{Console.ForegroundColor}");
+
+            Console.ReplaceAllColorsWithDefaults();
+            Console.Clear();
+
+            Debug.WriteLine($"text color after reset:{Console.ForegroundColor}");
+        }
         public static void DrillApperanceText(int health)
         {
             if (health > 100)
@@ -256,14 +327,6 @@ namespace ConsoleGameProject
                 Console.WriteLine("If it wasn't so bad outside you wouldn't want to be in here\n");
             }
         }
-        public static void LostCityColor()// coffee brownish, text a light sharp blue 
-        {
-            Console.ReplaceAllColorsWithDefaults();
-            Console.BackgroundColor = Color.BurlyWood;
-            Console.Clear();
-            Console.ForegroundColor = Color.Cyan;
-            Console.CursorVisible = false;
-        }
         public static void LostCityText(bool archaeologistPresent)//
         {
 
@@ -283,14 +346,6 @@ namespace ConsoleGameProject
                     "They prevent too much damage from happening but there is some that can't be fixed until you get to the surface ");
                 Thread.Sleep(5_000);
             }
-        }
-        public static void TardisCaveColor()// color this like tardis
-        {
-            Console.ReplaceAllColorsWithDefaults();
-            Console.BackgroundColor = Color.DarkBlue;
-            Console.Clear();
-            Console.ForegroundColor = Color.LightBlue;
-            Console.CursorVisible = false;
         }
         public static void TardisCaveText(bool doctorPresent)
         {
@@ -334,14 +389,6 @@ namespace ConsoleGameProject
                 Thread.Sleep(5_000);
             }
         }
-        public static void HeySatanColor()// some kind of red and black theme
-        {
-            Console.ReplaceAllColorsWithDefaults();
-            Console.BackgroundColor = Color.Black;
-            Console.Clear();
-            Console.ForegroundColor = Color.Red;
-            Console.CursorVisible = false;
-        }
         public static void HeySatanText(bool priestPresent) //some kind of red and black theme
         {
             Console.WriteLine("description of Hell");
@@ -356,14 +403,6 @@ namespace ConsoleGameProject
                 Console.WriteLine("You run from the fires of hell while they attack");
                 Thread.Sleep(5_000);
             }
-        }
-        public static void DinosaursColor()// darker but still jungly green background with orangered text
-        {
-            Console.ReplaceAllColorsWithDefaults();
-            Console.BackgroundColor = Color.Green;
-            Console.Clear();
-            Console.ForegroundColor = Color.OrangeRed;
-            Console.CursorVisible = false;
         }
         public static void DinosaursText(bool paleoPresent)
         {
@@ -399,30 +438,6 @@ namespace ConsoleGameProject
                     "My boyfriend James could help fill this out. Basically the crew flees exhistantal dread or something");
                 Thread.Sleep(5_000);
             }
-        }
-        public static void HeyCthulhuColor()// dark olive green and  dark magenta since cthulu sleeps
-        {
-            Console.ReplaceAllColorsWithDefaults();
-            Console.BackgroundColor = Color.DarkOliveGreen;
-            Console.Clear();
-            Console.ForegroundColor = Color.DarkMagenta;
-            Console.CursorVisible = false;
-        }
-        public static void YouFreakingSummonedCthulhuColor()// dark olive green and regular magenta since cthulu wakes
-        {
-            Console.ReplaceAllColorsWithDefaults();
-            Console.BackgroundColor = Color.DarkOliveGreen;
-            Console.Clear();
-            Console.ForegroundColor = Color.Magenta;
-            Console.CursorVisible = false;
-        }
-        public static void HeyLizardPeepsColor()// deep blue background with gold text
-        {
-            Console.ReplaceAllColorsWithDefaults();
-            Console.BackgroundColor = Color.DarkBlue;
-            Console.Clear();
-            Console.ForegroundColor = Color.Gold;
-            Console.CursorVisible = false;
         }
         public static void HeyLizardPeepsText(bool robotPresent)
         {
@@ -462,28 +477,12 @@ namespace ConsoleGameProject
             Thread.Sleep(5_000); // 5 seconds
             Environment.Exit(0);
         }
-        public static void CrewAllDeadColor()// black with text the color of bones
-        {
-            Console.ReplaceAllColorsWithDefaults();
-            Console.BackgroundColor = Color.Black;
-            Console.Clear();
-            Console.ForegroundColor = Color.WhiteSmoke;
-            Console.CursorVisible = false;
-        }
         public static void CrewAllDeadEnding()
         {
             Console.Clear();
             Console.WriteLine("You didn't take proper care of your crew and now you can't hand a situation.\n\nYour heat shields are now failing and no one can go out and fix it.\n\n More story will go here at some point");
             Thread.Sleep(5_000); // 5 seconds
             Environment.Exit(0);
-        }
-        public static void AtTheCenterColor()// pinks
-        {
-            Console.ReplaceAllColorsWithDefaults();
-            Console.BackgroundColor = Color.MediumOrchid;
-            Console.Clear();
-            Console.ForegroundColor = Color.LightPink;
-            Console.CursorVisible = false;
         }
         public static void AtTheCenterEnding()
         {
