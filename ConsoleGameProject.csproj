@@ -8,10 +8,12 @@
   <ItemGroup>
     <None Remove="soundFiles\Dinosaur Roar-SoundBible.com-605392672.wav" />
     <None Remove="soundFiles\DinosaurRoar-SoundBible.com-605392672.wav" />
+    <None Remove="soundFiles\DotMatrix Printer-SoundBible.com-790333844.wav" />
     <None Remove="soundFiles\Evil_Laugh_2-Sound_Explorer-1081271267.wav" />
     <None Remove="soundFiles\Godzilla-Marc-785758480.wav" />
     <None Remove="soundFiles\Metal Latch-SoundBible.com-736691159.wav" />
     <None Remove="soundFiles\MetalLatch-SoundBible.com-736691159.wav" />
+    <None Remove="soundFiles\Pen_Clicks-Simon_Craggs-514025171.wav" />
     <None Remove="soundFiles\Scary-Titus_Calen-1449371204.wav" />
     <None Remove="soundFiles\Sci Fi Robot-SoundBible.com-481033379.wav" />
     <None Remove="soundFiles\SciFiRobot-SoundBible.com-481033379.wav" />
@@ -25,10 +27,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="soundFiles\Dinosaur Roar-SoundBible.com-605392672.wav">
+    <Resource Include="soundFiles\DinosaurRoar-SoundBible.com-605392672.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="soundFiles\DinosaurRoar-SoundBible.com-605392672.wav">
+    <Resource Include="soundFiles\DotMatrix Printer-SoundBible.com-790333844.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="soundFiles\Evil_Laugh_2-Sound_Explorer-1081271267.wav">
@@ -37,16 +39,13 @@
     <Resource Include="soundFiles\Godzilla-Marc-785758480.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="soundFiles\Metal Latch-SoundBible.com-736691159.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
     <Resource Include="soundFiles\MetalLatch-SoundBible.com-736691159.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="soundFiles\Scary-Titus_Calen-1449371204.wav">
+    <Resource Include="soundFiles\Pen_Clicks-Simon_Craggs-514025171.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="soundFiles\Sci Fi Robot-SoundBible.com-481033379.wav">
+    <Resource Include="soundFiles\Scary-Titus_Calen-1449371204.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="soundFiles\SciFiRobot-SoundBible.com-481033379.wav">

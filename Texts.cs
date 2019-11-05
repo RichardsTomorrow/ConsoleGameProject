@@ -14,14 +14,18 @@ namespace ConsoleGameProject
             Console.CursorVisible = true;
             Console.WriteLine("Hello Captain! It seems we mis-placed the paperwork. What is your first name?\n");
             string firstName = NameValidation();
+            Sounds.PenClick();
             Console.WriteLine($"Ok, so your first name is {firstName}! Sorry I am new here what was your last name again?\n");
             string lastName = NameValidation();
+            Sounds.PenClick();
             Console.WriteLine($"OHHHH!! You are {firstName} {lastName}! It is a pleasure to meet you.\n");
             int crewSize = CrewSizeValidation();
+            Sounds.PenClick();
             Console.WriteLine($"Ahh yes! Now I found you! Captain {firstName} {lastName}, total crew of {crewSize}.\n\nGive me a second and I will grab your crew roster.\n");
             CrewPerson player = new CrewPerson(firstName, lastName);
             Drill drill = new Drill(player, crewSize);
-            Thread.Sleep(2_000); // 2 seconds
+            Sounds.Printer();
+            //Thread.Sleep(2_000); // 2 seconds
             return drill;
         }
         static string NameValidation()
@@ -92,9 +96,7 @@ namespace ConsoleGameProject
             }
             Console.WriteLine($"And finally we have you, {drill.Player.FirstName} \"The {drill.Player.Trait}\" {drill.Player.LastName}.\n");
             Console.WriteLine("I wish you all luck on your journey and I hope you are prepared for whatever you find.");
-            Thread.Sleep(3_000); // 3 seconds
-            Console.ReplaceAllColorsWithDefaults();
-
+            Thread.Sleep(4_000); // 4 seconds
         }
 
         public static void IntroScreenText()
