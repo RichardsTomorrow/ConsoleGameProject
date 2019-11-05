@@ -139,23 +139,23 @@ namespace ConsoleGameProject
             AreAllDead();
             if (Health <= 0)
             {
-                ColoringAndText.DrillHealthDepletedEnding();
+                Texts.DrillHealthDepletedEnding();
                 Sounds.DeathScream();
             }
             else if (AllDead)
             {
-                ColoringAndText.CrewAllDeadColor();
-                ColoringAndText.CrewAllDeadEnding();
+                Coloring.CrewAllDeadColor();
+                Texts.CrewAllDeadEnding();
                 Sounds.DeathScream();
             }
             else if (Depth > 490)
             {
-                ColoringAndText.AtTheCenterColor();
-                ColoringAndText.AtTheCenterEnding();
+                Coloring.AtTheCenterColor();
+                Texts.AtTheCenterEnding();
             }
 
             Console.WriteLine($"{Player.FirstName} \"The {Player.Trait}\" {Player.LastName}\n");
-            ColoringAndText.DrillApperanceText(this.Health);
+            Texts.DrillApperanceText(this.Health);
             for (int i = 0; i < CrewSize - 1; i++)
             {
                 char healthSymbol = '*';
@@ -204,31 +204,31 @@ namespace ConsoleGameProject
         {
             if (Depth <= 10)
             {
-                ColoringAndText.SurfaceColor();
+                Coloring.SurfaceColor();
             }
             else if (Depth <= 50 && Depth > 10)
             {
-                ColoringAndText.SoilColor();
+                Coloring.SoilColor();
             }
             else if (Depth <= 100 && Depth > 50)
             {
-                ColoringAndText.CrustColor();
+                Coloring.CrustColor();
             }
             else if (Depth <= 200 && Depth > 100)
             {
-                ColoringAndText.UpperMantleColor();
+                Coloring.UpperMantleColor();
             }
             else if (Depth <= 300 && Depth > 200)
             {
-                ColoringAndText.LowerMantleColor();
+                Coloring.LowerMantleColor();
             }
             else if (Depth <= 400 && Depth > 300)
             {
-                ColoringAndText.OuterCoreColor();
+                Coloring.OuterCoreColor();
             }
             else if (Depth <= 500 && Depth > 400)
             {
-                ColoringAndText.InnerCoreColor();
+                Coloring.InnerCoreColor();
             }
         }
         private void RepairEngines()
@@ -311,8 +311,8 @@ namespace ConsoleGameProject
                 {
                     if (eventChance > 65 && eventChance <= 85)//Archaeologist
                     {
-                        ColoringAndText.LostCityColor();
-                        ColoringAndText.LostCityText(HaveTrait("Archaeologist"));
+                        Coloring.LostCityColor();
+                        Texts.LostCityText(HaveTrait("Archaeologist"));
                         if (HaveTrait("Archaeologist"))
                         {
                             DrillDamage(-20);
@@ -333,8 +333,8 @@ namespace ConsoleGameProject
                 {
                     if (eventChance > 85)// doctor
                     {
-                        ColoringAndText.TardisCaveColor();
-                        ColoringAndText.TardisCaveText(HaveTrait("Doctor"));
+                        Coloring.TardisCaveColor();
+                        Texts.TardisCaveText(HaveTrait("Doctor"));
                         if (HaveTrait("Doctor"))
                         {
                             for (int i = 0; i < CrewPeople.Count; i++)
@@ -364,7 +364,7 @@ namespace ConsoleGameProject
                     if (eventChance > 65 && eventChance < 77)//geologist
                     {
                         //no custom color for this event
-                        ColoringAndText.MagmaFlowText(HaveTrait("Geologist"));
+                        Texts.MagmaFlowText(HaveTrait("Geologist"));
                         if (HaveTrait("Geologist"))
                         {
                             DrillDown(150);
@@ -385,8 +385,8 @@ namespace ConsoleGameProject
                 {
                     if (eventChance >= 77 && eventChance <= 88)// priest
                     {
-                        ColoringAndText.HeySatanColor();
-                        ColoringAndText.HeySatanText(HaveTrait("Priest"));
+                        Coloring.HeySatanColor();
+                        Texts.HeySatanText(HaveTrait("Priest"));
                         if (HaveTrait("Priest"))
                         {
                             DrillDown(50);
@@ -405,8 +405,8 @@ namespace ConsoleGameProject
                 {
                     if (eventChance > 88)// dinos
                     {
-                        ColoringAndText.DinosaursColor();
-                        ColoringAndText.DinosaursText(HaveTrait("Paleontologist"));
+                        Coloring.DinosaursColor();
+                        Texts.DinosaursText(HaveTrait("Paleontologist"));
                         if (HaveTrait("Paleontologist"))
                         {
                             for (int i = 0; i < CrewPeople.Count; i++)
@@ -441,12 +441,12 @@ namespace ConsoleGameProject
                 {
                     if (eventChance > 65 && eventChance <= 85)//Cthulu
                     {
-                        ColoringAndText.HeyCthulhuColor();
-                        ColoringAndText.HeyCthulhuText(HaveTrait("Occultist"));
+                        Coloring.HeyCthulhuColor();
+                        Texts.HeyCthulhuText(HaveTrait("Occultist"));
                         if (HaveTrait("Occultist"))
                         {
-                            ColoringAndText.YouFreakingSummonedCthulhuColor();
-                            ColoringAndText.YouFreakingSummonedCthulhuEnding();
+                            Coloring.YouFreakingSummonedCthulhuColor();
+                            Texts.YouFreakingSummonedCthulhuEnding();
                             VistedCthulu = true;
                         }
                         else if (!HaveTrait("Occultist"))
@@ -462,11 +462,11 @@ namespace ConsoleGameProject
                 {
                     if (eventChance > 85) // Lizard Peeps
                     {
-                        ColoringAndText.HeyLizardPeepsColor();
-                        ColoringAndText.HeyLizardPeepsText(HaveTrait("Roboticist"));
+                        Coloring.HeyLizardPeepsColor();
+                        Texts.HeyLizardPeepsText(HaveTrait("Roboticist"));
                         if (HaveTrait("Roboticist"))
                         {
-                            ColoringAndText.BowToTheRobotsIMeanLizardsEnding();
+                            Texts.BowToTheRobotsIMeanLizardsEnding();
                             VistedLizardPeeps = true;
                         }
                         else if (!HaveTrait("Roboticist"))
