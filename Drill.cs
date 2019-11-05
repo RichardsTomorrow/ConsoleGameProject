@@ -182,7 +182,6 @@ namespace ConsoleGameProject
                 if (CrewPeople[crewMember].Chances == 1)
                 {
                     Console.WriteLine($"{CrewPeople[crewMember].FirstName} died fixing the engine but it works better then ever. \n\n You drop 30.");
-                    CrewPeople[crewMember].Injury();
                     CrewPeople[crewMember].Death();
                     DrillDown(30);
                 }
@@ -215,21 +214,21 @@ namespace ConsoleGameProject
             if (eventChance <= 65) // triggers maintence issues, some dangerous
             {
                 Console.Clear();
-                if (eventChance <= 15) //1-10
+                if (eventChance <= 20)
                 {
                     Console.WriteLine(" You found a very soft pocket of material and went double the speed you expected");
                     DrillDown(20);
                 }
-                else if (eventChance <= 30)//11-20
+                else if (eventChance <= 45)
                 {
                     Console.WriteLine("The engines have stopped.\n\nYou will have to send someone out to repair them.\n\nBe warned it is dangerous out there.\n\n");
                     RepairEngines();
                 }
-                else if (eventChance <= 45)//21-30
+                else if (eventChance <= 55)
                 {
                     Console.WriteLine("Odd. It felt like you went nowhere. Try digging again.");
                 }
-                else if (eventChance <= 60)//31-40
+                else if (eventChance <= 64 )
                 {
                     Console.WriteLine($"You found a way to boost the drill sytem.");
                     DrillDamage(-10);
@@ -255,7 +254,7 @@ namespace ConsoleGameProject
                         }
                         else if (!HaveTrait("Archaeologist"))
                         {
-                            DrillDamage();
+                            DrillDamage(20);
                             VistedLostCity = true;
                         }
                     }
@@ -396,18 +395,16 @@ namespace ConsoleGameProject
         }
         private bool ValidDown()
         {
-            int counter = 0;
-            if (Console.ReadKey().Key != ConsoleKey.D && counter == 0)
+            if (Console.ReadKey().Key != ConsoleKey.D)
             {
-                Console.WriteLine("\nPlease push a valid key or you'll damage the drill");
-                counter++;
+                Console.WriteLine("\nPlease push a valid key or you'll damage the drill!");
                 return ValidDown();
             }
-            else if (Console.ReadKey().Key != ConsoleKey.D && counter > 0)
-            {
-                Console.WriteLine("\nThe drill took damage due to your carelessness.");
-                return ValidDown();
-            }
+            //else if (Console.ReadKey().Key != ConsoleKey.D && counter > 0)
+            //{
+            //    Console.WriteLine("\nThe drill took damage due to your carelessness.");
+            //    return ValidDown();
+            //}
             else
             {
                 return true;
@@ -447,7 +444,7 @@ namespace ConsoleGameProject
             bool HaveTrait = false;
             for (int i = 0; i < CrewPeople.Count; i++)
             {
-                if (CrewPeople[i].Trait.Equals(desiredTrait))
+                if (CrewPeople[i].Trait.Equals(desiredTrait) && !CrewPeople[i].Dead)
                 {
                     HaveTrait = true;
                 }

@@ -231,7 +231,11 @@ namespace ConsoleGameProject
         }
         public static void DrillApperance(int health)
         {
-            if (health >= 80)
+            if (health >= 100)
+            {
+                Console.WriteLine("Somehow your drill looks better than it did in the drill bay\n");
+            }
+            else if (health >= 80)
             {
                 Console.WriteLine("The drill looks mostly pristine\n");
             }
