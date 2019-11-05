@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
-using System.Text;
 using Console = Colorful.Console;
-using System.Threading;
-using System.Text.RegularExpressions;
 
 namespace ConsoleGameProject
 {
@@ -18,9 +13,7 @@ namespace ConsoleGameProject
             {
                 Console.WriteLine(strings[i], Color.FromArgb(Math.Clamp(r, 0, 255), Math.Clamp(g, 0, 255), Math.Clamp(b, 0, 255)));
                 if (i + 1 < strings.Length)
-                {
-                    Console.WriteLine(strings[i + 1], Color.FromArgb(Math.Clamp(r, 0, 255), Math.Clamp(g, 0, 255), Math.Clamp(b, 0, 255)));
-                }
+                { Console.WriteLine(strings[i + 1], Color.FromArgb(Math.Clamp(r, 0, 255), Math.Clamp(g, 0, 255), Math.Clamp(b, 0, 255))); }
                 if (i <= 10) { r += 30; b -= 15; } // transition of green to yellow
                 else if (i > 10) { g -= 30; } // transition of yellow to orange
             }

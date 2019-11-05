@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
-using System.Text;
 using Console = Colorful.Console;
 using System.Threading;
 using System.Text.RegularExpressions;

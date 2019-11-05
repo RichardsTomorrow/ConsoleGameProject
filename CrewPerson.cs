@@ -26,7 +26,7 @@ namespace ConsoleGameProject
             this.Dead = false;
         }
 
-        public CrewPerson(string firstName, string lastName)
+        public CrewPerson(string firstName, string lastName) //makes player character
         {
             this.FirstName = firstName; usedNames.Add(firstName);
             this.LastName = lastName; usedNames.Add(lastName);
@@ -64,7 +64,6 @@ namespace ConsoleGameProject
             usedTraits.Add(traitSelection);
             Debug.WriteLine($"Possible traits length is: {possibleTs.Length}");
             return traitSelection;
-
         }
     }
 }

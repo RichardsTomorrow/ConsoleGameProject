@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Diagnostics;
 using System.Threading;
 
@@ -35,7 +34,6 @@ namespace ConsoleGameProject
             this.VistedCoreMantel = false;
             this.VistedSatan = false;
             this.VistedDinoDNA = false;
-
         }
 
         private List<CrewPerson> CrewSelector(int crewSize)
@@ -60,33 +58,21 @@ namespace ConsoleGameProject
                 Console.WriteLine("\nPlease push a valid key or you'll damage the drill!");
                 return ValidDown();
             }
-            //else if (Console.ReadKey().Key != ConsoleKey.D && counter > 0)
-            //{
-            //    Console.WriteLine("\nThe drill took damage due to your carelessness.");
-            //    return ValidDown();
-            //}
             else
-            {
-                return true;
-            }
-
-
+            { return true; }
         }
         private int ValidCrewPerson()
         {
             bool valid = Int32.TryParse(Console.ReadLine(), out int crewpersonNumber); //do a try parse and check if it is a number between 1-length of crew list 
-
             if (!valid)
             {
                 Console.WriteLine("\nPlease push a choose a valid crewperson or you'll confuse someone.");
                 return ValidCrewPerson();
-
             }
             else if (crewpersonNumber > CrewPeople.Count || crewpersonNumber <= 0)
             {
                 Console.WriteLine("\nThere isn't that many crewpeople on our rooster.");
                 return ValidCrewPerson();
-
             }
             else if (CrewPeople[crewpersonNumber - 1].Dead)
             {
@@ -132,7 +118,6 @@ namespace ConsoleGameProject
             {
                 AllDead = true;
             }
-
         }
         public void CrewStatus()
         {
@@ -180,7 +165,6 @@ namespace ConsoleGameProject
         {
             if (showOnlyCrew)
             {
-
                 for (int i = 0; i < CrewSize - 1; i++)
                 {
                     char healthSymbol = '*';
@@ -255,7 +239,6 @@ namespace ConsoleGameProject
                     Console.WriteLine($"{CrewPeople[crewMember].FirstName} got an injury while outside but they feel ok trying to continue on.");
                     CrewPeople[crewMember].Injury();
                     DrillDown();
-
                 }
             }
             else if (prob == 4 || prob == 5)
@@ -269,7 +252,6 @@ namespace ConsoleGameProject
                 Console.WriteLine($"All went well and {CrewPeople[crewMember].FirstName} returned to us safely.");
                 DrillDown();
             }
-
         }
         private void Event()
         {
@@ -491,9 +473,6 @@ namespace ConsoleGameProject
                 Thread.Sleep(2_000);
             }
             DriveDrill();
-
-
         }
-
     }
 }
