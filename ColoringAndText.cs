@@ -15,7 +15,6 @@ namespace ConsoleGameProject
         {
             PaperworkColor();
             Console.CursorVisible = true;
-            var textColor = Color.Black;
             Console.WriteLine("Hello Captain! It seems we mis-placed the paperwork. What is your first name?\n");
             string firstName = NameValidation();
             Console.WriteLine($"Ok, so your first name is {firstName}! Sorry I am new here what was your last name again?\n");
@@ -180,7 +179,7 @@ namespace ConsoleGameProject
         public static void LostCityColor()// coffee brownish, text a light sharp blue 
         {
             Console.ReplaceAllColorsWithDefaults();
-            Console.BackgroundColor = Color.BurlyWood;
+            Console.BackgroundColor = Color.Tan;
             Console.Clear();
             Console.ForegroundColor = Color.Cyan;
             Console.CursorVisible = false;

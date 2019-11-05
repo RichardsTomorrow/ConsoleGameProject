@@ -230,7 +230,7 @@ namespace ConsoleGameProject
                 {
                     Console.WriteLine("Odd. It felt like you went nowhere. Try digging again.");
                 }
-                else if (eventChance <= 64 )
+                else if (eventChance <= 64)
                 {
                     Console.WriteLine($"You found a way to boost the drill sytem.");
                     DrillDamage(-10);
@@ -280,8 +280,8 @@ namespace ConsoleGameProject
                                 {
                                     CrewPeople[i].Death();
                                 }
-                                DrillDown(40);
                             }
+                            DrillDown(40);
                             VistedTardisCave = true;
                         }
                         else if (!HaveTrait("Doctor"))
