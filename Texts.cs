@@ -219,7 +219,7 @@ namespace ConsoleGameProject
         }
         public static void MagmaFlowText(bool geologistPresent)// leave default coloration
         {
-            Console.WriteLine("Your drill emerges into a vast cave system, right next to a blue phone box with a light glow eminating from its windows\n");
+            Console.WriteLine("The magma is viscuos\n");
             if (geologistPresent)
             {
                 Console.WriteLine("The Geologist pipes up \"Hey guys I think I figured out a way to use some of the unique conditions in the mantel to propel us mostly through it\"\n\n" +

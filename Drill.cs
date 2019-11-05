@@ -124,8 +124,28 @@ namespace ConsoleGameProject
             AreAllDead();
             if (Health <= 0)
             {
-                Texts.DrillHealthDepletedEnding();
-                Sounds.DeathScream();
+                if (HaveTrait("Brave"))
+                {
+                    for (int i = 0; i < CrewPeople.Count; i++)
+                    {
+                        if (CrewPeople[i].Trait == "Brave")
+                        {
+                            Console.WriteLine($"{CrewPeople[i].FirstName} sacrifices themselves to perform a last minute fix.\n\n" +
+                                $"The drill manages to not explode.\n\n" +
+                                $"Their bravery will hopefully live on through us.");
+                            DrillDamage(-30);
+                            Sounds.DeathScream();
+                            CrewPeople[i].Death();
+                            Thread.Sleep(3_000);
+                            Console.Clear();
+                        }
+                    }
+                }
+                else
+                {
+                    Texts.DrillHealthDepletedEnding();
+                    Sounds.DeathScream();
+                }
             }
             else if (AllDead)
             {
@@ -271,11 +291,11 @@ namespace ConsoleGameProject
                     Console.WriteLine("The engines have stopped.\n\nYou will have to send someone out to repair them.\n\nBe warned it is dangerous out there.\n\n");
                     RepairEngines();
                 }
-                else if (eventChance <= 55)
+                else if (eventChance <= 55) //<=55
                 {
                     Console.WriteLine("Odd. It felt like you went nowhere. Try digging again.");
                 }
-                else if (eventChance <= 64)
+                else if (eventChance <= 64)//<=64
                 {
                     Console.WriteLine($"You found a way to boost the drill sytem.");
                     DrillDamage(-10);
