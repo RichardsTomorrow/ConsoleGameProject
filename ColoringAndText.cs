@@ -181,7 +181,7 @@ namespace ConsoleGameProject
             Console.ForegroundColor = Color.Sienna;
             Console.CursorVisible = false;
         }
-        public static void SoilColor()// depth 11-50 // actually getting rid of soil.
+        public static void SoilColor()// depth 11-50 
         {
             Console.ReplaceAllColorsWithDefaults();
             Console.BackgroundColor = Color.FromArgb(101, 67, 33);
@@ -231,7 +231,7 @@ namespace ConsoleGameProject
         }
         public static void DrillApperanceText(int health)
         {
-            if (health >= 100)
+            if (health > 100)
             {
                 Console.WriteLine("Somehow your drill looks better than it did in the drill bay\n");
             }
@@ -256,15 +256,25 @@ namespace ConsoleGameProject
                 Console.WriteLine("If it wasn't so bad outside you wouldn't want to be in here\n");
             }
         }
-        public static void LostCityText(bool archaeologistPresent)// coffee browns mayber text a light sharp blue
+        public static void LostCityColor()// coffee brownish, text a light sharp blue 
         {
+            Console.ReplaceAllColorsWithDefaults();
+            Console.BackgroundColor = Color.BurlyWood;
+            Console.Clear();
+            Console.ForegroundColor = Color.Cyan;
+            Console.CursorVisible = false;
+        }
+        public static void LostCityText(bool archaeologistPresent)//
+        {
+
             Console.WriteLine("Your drill pops out of a cavern roof and falls to the floor.\n\n All around you lay the ruins of an strange ancient city.\n");
             if (archaeologistPresent)
             {
                 Console.WriteLine("The Archaeologist realizes this is actually the lost city of Lemuria!\n\n" +
                     "They furiously take notes while pointing out the advance quartz crystal based technology the inhitants once used.\n\n" +
                     "They are able to fashion some repairs and upgrades for the drill machine with what they have found.\n\n" +
-                    "The  Archaeologist begs for more time but you must press on\n\n"); // throw in a stargate reference to a circle in Atlantis
+                    "The  Archaeologist begs for more time but you must press on\n\n" +
+                    "Oh they also found a secret Atlantean tunnel system beneath the city"); // throw in a stargate reference to a circle in Atlantis
                 Thread.Sleep(5_000);
             }
             else
@@ -274,7 +284,15 @@ namespace ConsoleGameProject
                 Thread.Sleep(5_000);
             }
         }
-        public static void TardisCaveText(bool doctorPresent)// color this like tardis
+        public static void TardisCaveColor()// color this like tardis
+        {
+            Console.ReplaceAllColorsWithDefaults();
+            Console.BackgroundColor = Color.DarkBlue;
+            Console.Clear();
+            Console.ForegroundColor = Color.LightBlue;
+            Console.CursorVisible = false;
+        }
+        public static void TardisCaveText(bool doctorPresent)
         {
             Console.WriteLine("Your drill emerges into a vast cave system, right next to a blue phone box with a light glow eminating from its windows\n");
             if (doctorPresent)
@@ -282,7 +300,8 @@ namespace ConsoleGameProject
                 Console.WriteLine("The Doctor is ecstatic! They talk about how this situation turned out to be better than fishfingers and custard.\n\n" +
                     "They bid everyone adieu and enter the box.\n\n" +
                     "The blue phone box turns transparent and disappears\n\n" +
-                    "Eveyone pauses for a moment to realize they now have one less in the party");
+                    "Eveyone pauses for a moment to realize they now have one less in the party\n\n" +
+                    "On the plus side you found a lava tube");
                 Thread.Sleep(5_000);
             }
             else
@@ -290,7 +309,7 @@ namespace ConsoleGameProject
                 Console.WriteLine("Your crew is amazed by the box.\n\n" +
                     "They try to open it no avail and find nothing external powering it\n\n" +
                     "You make sure to log it so you can report it to the SPC foundation when you gret surface side\n\n" +
-                    "As you prepare to resume your journey you find some lava tubes leading deeper into the Earth");
+                    "As you prepare to resume your journey you find some lava tubes leading deeper into the Earth\n\n");
                 Thread.Sleep(5_000);
             }
         }
@@ -315,6 +334,14 @@ namespace ConsoleGameProject
                 Thread.Sleep(5_000);
             }
         }
+        public static void HeySatanColor()// some kind of red and black theme
+        {
+            Console.ReplaceAllColorsWithDefaults();
+            Console.BackgroundColor = Color.Black;
+            Console.Clear();
+            Console.ForegroundColor = Color.Red;
+            Console.CursorVisible = false;
+        }
         public static void HeySatanText(bool priestPresent) //some kind of red and black theme
         {
             Console.WriteLine("description of Hell");
@@ -329,6 +356,14 @@ namespace ConsoleGameProject
                 Console.WriteLine("You run from the fires of hell while they attack");
                 Thread.Sleep(5_000);
             }
+        }
+        public static void DinosaursColor()// darker but still jungly green background with orangered text
+        {
+            Console.ReplaceAllColorsWithDefaults();
+            Console.BackgroundColor = Color.Green;
+            Console.Clear();
+            Console.ForegroundColor = Color.OrangeRed;
+            Console.CursorVisible = false;
         }
         public static void DinosaursText(bool paleoPresent)
         {
@@ -349,7 +384,7 @@ namespace ConsoleGameProject
                 Thread.Sleep(5_000);
             }
         }
-        public static void HeyCthulhuText(bool occultPresent) // dark green background with rich purple text or a bright red
+        public static void HeyCthulhuText(bool occultPresent) // 
         {
             Console.WriteLine("neutral scene description\n");
             if (occultPresent)
@@ -365,7 +400,31 @@ namespace ConsoleGameProject
                 Thread.Sleep(5_000);
             }
         }
-        public static void HeyLizardPeepsText(bool robotPresent) //maybe gold, look up illuminati or freemason colors
+        public static void HeyCthulhuColor()// dark olive green and  dark magenta since cthulu sleeps
+        {
+            Console.ReplaceAllColorsWithDefaults();
+            Console.BackgroundColor = Color.DarkOliveGreen;
+            Console.Clear();
+            Console.ForegroundColor = Color.DarkMagenta;
+            Console.CursorVisible = false;
+        }
+        public static void YouFreakingSummonedCthulhuColor()// dark olive green and regular magenta since cthulu wakes
+        {
+            Console.ReplaceAllColorsWithDefaults();
+            Console.BackgroundColor = Color.DarkOliveGreen;
+            Console.Clear();
+            Console.ForegroundColor = Color.Magenta;
+            Console.CursorVisible = false;
+        }
+        public static void HeyLizardPeepsColor()// deep blue background with gold text
+        {
+            Console.ReplaceAllColorsWithDefaults();
+            Console.BackgroundColor = Color.DarkBlue;
+            Console.Clear();
+            Console.ForegroundColor = Color.Gold;
+            Console.CursorVisible = false;
+        }
+        public static void HeyLizardPeepsText(bool robotPresent)
         {
             Console.WriteLine("neutral scene description there are lizard illuminati masons having a meeting in this decorated chamber\n\n" +
                 "Crew interupts");
@@ -389,19 +448,27 @@ namespace ConsoleGameProject
             Thread.Sleep(5_000); // 5 seconds
             Environment.Exit(0);
         }
-        public static void YouFreakingSummonedCthulhuEnding()// make this same colors as Cathy event
+        public static void YouFreakingSummonedCthulhuEnding()
         {
             Console.Clear();
             Console.WriteLine("basically summons cthulhu and causes cthulu and destroyed the earth end game good job");
             Thread.Sleep(5_000); // 5 seconds
             Environment.Exit(0);
         }
-        public static void DrillHealthDepletedEnding()
+        public static void DrillHealthDepletedEnding()// no custom color
         {
             Console.Clear();
             Console.WriteLine("You didn't take proper care of your drill and it exploded.More story will go here at some point");
             Thread.Sleep(5_000); // 5 seconds
             Environment.Exit(0);
+        }
+        public static void CrewAllDeadColor()// black with text the color of bones
+        {
+            Console.ReplaceAllColorsWithDefaults();
+            Console.BackgroundColor = Color.Black;
+            Console.Clear();
+            Console.ForegroundColor = Color.WhiteSmoke;
+            Console.CursorVisible = false;
         }
         public static void CrewAllDeadEnding()
         {
@@ -410,10 +477,19 @@ namespace ConsoleGameProject
             Thread.Sleep(5_000); // 5 seconds
             Environment.Exit(0);
         }
+        public static void AtTheCenterColor()// pinks
+        {
+            Console.ReplaceAllColorsWithDefaults();
+            Console.BackgroundColor = Color.MediumOrchid;
+            Console.Clear();
+            Console.ForegroundColor = Color.LightPink;
+            Console.CursorVisible = false;
+        }
         public static void AtTheCenterEnding()
         {
             Console.Clear();
-            Console.WriteLine("You made it to the center of the planet. WOOWOWOWOWOWOWO!!@!1!");
+            Console.WriteLine("You made it to the center of the planet. WOOWOWOWOWOWOWO!!@!1!\n\n" +
+                "Who would've thought it was pink?");
             Thread.Sleep(5_000); // 5 seconds
             Environment.Exit(0);
         }

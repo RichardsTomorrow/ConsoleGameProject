@@ -84,10 +84,12 @@ namespace ConsoleGameProject
             }
             else if (AllDead)
             {
+                ColoringAndText.CrewAllDeadColor();
                 ColoringAndText.CrewAllDeadEnding();
             }
             else if (Depth > 490)
             {
+                ColoringAndText.AtTheCenterColor();
                 ColoringAndText.AtTheCenterEnding();
             }
 
@@ -210,7 +212,7 @@ namespace ConsoleGameProject
         {
             Random random = new Random();
             int eventChance = random.Next(1, 101); //1-101
-            //eventChance = 80; //determinism
+            //eventChance = 90; //determinism
             if (eventChance <= 65) // triggers maintence issues, some dangerous
             {
                 Console.Clear();
@@ -240,29 +242,35 @@ namespace ConsoleGameProject
                 }
 
             }
-            if (Depth <= 100 && eventChance > 65)// triggers crust level scenarios
+            if (Depth <= 100 && eventChance > 65) // triggers crust level scenarios
             {
                 if (!VistedLostCity)
                 {
                     if (eventChance > 65 && eventChance <= 85)//Archaeologist
                     {
+                        ColoringAndText.LostCityColor();
                         ColoringAndText.LostCityText(HaveTrait("Archaeologist"));
                         if (HaveTrait("Archaeologist"))
                         {
                             DrillDamage(-20);
+                            DrillDown(40);
                             VistedLostCity = true;
                         }
                         else if (!HaveTrait("Archaeologist"))
                         {
                             DrillDamage(20);
+                            DrillDown(20);
                             VistedLostCity = true;
                         }
                     }
                 }
+                else { DrillDown(); }
+
                 if (!VistedTardisCave)
                 {
                     if (eventChance > 85)// doctor
                     {
+                        ColoringAndText.TardisCaveColor();
                         ColoringAndText.TardisCaveText(HaveTrait("Doctor"));
                         if (HaveTrait("Doctor"))
                         {
@@ -272,6 +280,7 @@ namespace ConsoleGameProject
                                 {
                                     CrewPeople[i].Death();
                                 }
+                                DrillDown(40);
                             }
                             VistedTardisCave = true;
                         }
@@ -282,6 +291,8 @@ namespace ConsoleGameProject
                         }
                     }
                 }
+                else { DrillDown(); }
+
             }
             else if (Depth <= 300 && eventChance >= 65) // triggers mantle level scenarios
             {
@@ -289,6 +300,7 @@ namespace ConsoleGameProject
                 {
                     if (eventChance > 65 && eventChance < 77)//geologist
                     {
+                        //no custom color for this event
                         ColoringAndText.MagmaFlowText(HaveTrait("Geologist"));
                         if (HaveTrait("Geologist"))
                         {
@@ -304,11 +316,13 @@ namespace ConsoleGameProject
                         }
                     }
                 }
+                else { DrillDown(); }
 
                 if (!VistedSatan)
                 {
                     if (eventChance >= 77 && eventChance <= 88)// priest
                     {
+                        ColoringAndText.HeySatanColor();
                         ColoringAndText.HeySatanText(HaveTrait("Priest"));
                         if (HaveTrait("Priest"))
                         {
@@ -322,11 +336,13 @@ namespace ConsoleGameProject
                         }
                     }
                 }
+                else { DrillDown(); }
 
                 if (!VistedDinoDNA)
                 {
                     if (eventChance > 88)// dinos
                     {
+                        ColoringAndText.DinosaursColor();
                         ColoringAndText.DinosaursText(HaveTrait("Paleontologist"));
                         if (HaveTrait("Paleontologist"))
                         {
@@ -353,6 +369,7 @@ namespace ConsoleGameProject
                         }
                     }
                 }
+                else { DrillDown(); }
             }
             else if (Depth > 300 && eventChance >= 65) // triggers core level scenarios
             {
@@ -360,9 +377,11 @@ namespace ConsoleGameProject
                 {
                     if (eventChance > 65 && eventChance <= 85)//Cthulu
                     {
+                        ColoringAndText.HeyCthulhuColor();
                         ColoringAndText.HeyCthulhuText(HaveTrait("Occultist"));
                         if (HaveTrait("Occultist"))
                         {
+                            ColoringAndText.YouFreakingSummonedCthulhuColor();
                             ColoringAndText.YouFreakingSummonedCthulhuEnding();
                             VistedCthulu = true;
                         }
@@ -373,11 +392,13 @@ namespace ConsoleGameProject
                         }
                     }
                 }
+                else { DrillDown(); }
 
                 if (!VistedLizardPeeps)
                 {
                     if (eventChance > 85) // Lizard Peeps
                     {
+                        ColoringAndText.HeyLizardPeepsColor();
                         ColoringAndText.HeyLizardPeepsText(HaveTrait("Roboticist"));
                         if (HaveTrait("Roboticist"))
                         {
@@ -391,6 +412,7 @@ namespace ConsoleGameProject
                         }
                     }
                 }
+                else { DrillDown(); }
             }
         }
         private bool ValidDown()
