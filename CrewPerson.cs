@@ -10,7 +10,7 @@ namespace ConsoleGameProject
         static readonly HashSet<string> usedTraits = new HashSet<string>();
         static readonly string[] possibleFirstNames = new string[] { "Richard", "Ben", "Breana", "Chris", "Christopher", "David", "Nic", "Evan", "Iqra", "Jing", "Matt", "Melissa", "Mike", "Michael", "Radiah", "Rob", "Ruying", "Sakariya", "Vivien", "Wei", "Yelena", "Ivy", "Peter", "Ed", "Auriana", "Grant" };
         static readonly string[] possibleLastNames = new string[] { "Morrow", "Bartel", "Mozzone", "Gutierrez", "Masters", "Malloy", "Cook", "Slaton", "Osman", "Xie", "Juel", "Stock", "Barta", "Gorzelsky", "Jones", "Schroeder", "Chen", "Mohamed", "Renee", "Kuang", "Dovgal", "Muir", "Choe", "Thorsteinson", "Robin", "Dams" };
-        static readonly string[] possibleTraits = new string[] { "Captain", "Paleontologist", "Archaeologist", "Geologist", "Stout", "Roboticist", "Priest", "Doctor", "Brave" }; //, "Conspiracist", "Bungersome" }; these two aren't ready yet // this trait has been laid off : , "Occultist"
+        static readonly string[] possibleTraits = new string[] { "Captain", "Paleontologist", "Archaeologist", "Geologist", "Stout", "Mechanist", "Priest", "Doctor", "Brave" }; //, "Conspiracist", "Bungersome" }; these two aren't ready yet // this trait has been laid off : , "Occultist"
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
         public string Trait { get; private set; }
@@ -39,6 +39,10 @@ namespace ConsoleGameProject
         public void Injury(int hurt)
         {
             Chances -= hurt;
+        }
+        public void HealthKit()
+        {
+            Chances = Trait == "Stout" ? 3 : 2;
         }
         public void Death()
         {

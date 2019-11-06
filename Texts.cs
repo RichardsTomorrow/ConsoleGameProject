@@ -208,7 +208,7 @@ namespace ConsoleGameProject
                     "Eveyone pauses for a moment to realize they now have one less in the party\n\n" +
                     "On the plus side you found a lava tube");
                 Sounds.TardisWoosh();
-                Thread.Sleep(5_000);
+                //Thread.Sleep(5_000); // Tardis sound takes a while
             }
             else
             {
@@ -216,7 +216,7 @@ namespace ConsoleGameProject
                     "They try to open it no avail and find nothing external powering it\n\n" +
                     "You make sure to log it so you can report it to the SPC foundation when you get surface side\n\n" +
                     "As you prepare to resume your journey you find some lava tubes leading deeper into the Earth\n\n");
-                //Thread.Sleep(5_000); // Tardis sound takes a while
+                Thread.Sleep(5_000); // Tardis sound takes a while
             }
         }
         public static void MagmaFlowText(bool geologistPresent)// leave default coloration
@@ -293,11 +293,11 @@ namespace ConsoleGameProject
                 Thread.Sleep(5_000);
             }
         }
-        public static void HeyLizardPeepsText(bool robotPresent)
+        public static void HeyLizardPeepsText(bool mechanistPresent)
         {
             Console.WriteLine("neutral scene description there are lizard illuminati masons having a meeting in this decorated chamber\n\n" +
                 "Crew interupts");
-            if (robotPresent)
+            if (mechanistPresent)
             {
                 Console.WriteLine("Robot dude realizes that the lizard illuminati masons are actually robots. They bribe us with world hero ending");
                 Sounds.ActuallyRobots();
