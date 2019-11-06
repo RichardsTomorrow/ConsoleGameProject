@@ -86,22 +86,17 @@ namespace ConsoleGameProject
         }
         private bool ValidHeal()
         {
-            if (HealKits > 0) {return true;}
+            if (HealKits > 0) { return true; }
             else { return false; }
         }
-        //private bool ValidFix()
-        //{
-        //    if (Console.ReadKey().Key != ConsoleKey.F)
-        //    {
-        //        Console.WriteLine("\nPlease push a valid key or you'll damage the drill!");
-        //        return ValidDown();
-        //    }
-        //    else
-        //    { return true; }
-        //}
+        private bool ValidFix()
+        {
+            if (RepairKits > 0) { return true; }
+            else { return false; }
+        }
         private int ValidCrewPerson()
         {
-            bool valid = Int32.TryParse(Console.ReadKey(true).KeyChar.ToString(), out int crewpersonNumber) ; //do a try parse and check if it is a number between 1-length of crew list 
+            bool valid = Int32.TryParse(Console.ReadKey(true).KeyChar.ToString(), out int crewpersonNumber); //do a try parse and check if it is a number between 1-length of crew list 
             if (!valid)
             {
                 Console.WriteLine("\nPlease push a choose a valid crewperson or you'll confuse someone.");
@@ -196,7 +191,7 @@ namespace ConsoleGameProject
                 Coloring.AtTheCenterColor();
                 Texts.AtTheCenterEnding();
             }
-
+            Console.Clear();
             Console.WriteLine($"{Player.FirstName} \"The {Player.Trait}\" {Player.LastName}\n");
             Texts.DrillApperanceText(this.Health);
             for (int i = 0; i < CrewSize - 1; i++)
@@ -319,9 +314,32 @@ namespace ConsoleGameProject
             Console.WriteLine("Choose the number of the crewperson you will heal:\n");
             CrewStatus(true);
             int crewMember = ValidCrewPerson();
-            CrewPeople[crewMember].HealthKit();
-            HealKits--;
-            Console.WriteLine($"{CrewPeople[crewMember].FirstName} uses up a health kit and feels much better.\n\n");
+            if (CrewPeople[crewMember].Chances < 2)
+            {
+                CrewPeople[crewMember].HealthKit();
+                HealKits--;
+                Console.WriteLine($"{CrewPeople[crewMember].FirstName} uses up a health kit and feels much better.\n\n");
+            }
+            else
+            {
+                Console.WriteLine($"Captain {Player.LastName}, I can't in good conscience use a health kit when I don't need one.");
+            }
+
+            Thread.Sleep(3_000);
+        }
+        private void UseRepairKit()
+        {
+            Console.Clear();
+            Console.WriteLine("Choose the number of the crewperson that will patch up the drill:\n");
+            CrewStatus(true);
+            int crewMember = ValidCrewPerson();
+            Random random = new Random();
+            if (CrewPeople[crewMember].Trait.Equals("Mechanist"))
+            { DrillDamage(-random.Next(3, 7) * 10); }
+            else { DrillDamage(-random.Next(1, 5) * 10); }
+
+            RepairKits--;
+            Console.WriteLine($"{CrewPeople[crewMember].FirstName} uses up a repair kit and the drill mechine looks better.\n\n");
             Thread.Sleep(3_000);
         }
         private void Event()
@@ -548,21 +566,20 @@ namespace ConsoleGameProject
                 DepthIndicator();
                 Debug.WriteLine($"Dig down happened, Depth is {Depth}");
                 Event();
-                DriveDrill();
-                //Thread.Sleep(2_000);
             }
             else if (comparison == ConsoleKey.S)
             {
                 if (ValidHeal())
-                { UseHealthKit();}
+                { UseHealthKit(); }
                 else { Console.WriteLine("You don't have any health kits remaining."); Thread.Sleep(2_000); }
                 Debug.WriteLine($"Heal happened, heal kits is {HealKits}");
-                DriveDrill();
             }
-            else if (ValidKeyPress() == ConsoleKey.F)
+            else if (comparison == ConsoleKey.F)
             {
+                if (ValidFix())
+                { UseRepairKit(); }
+                else { Console.WriteLine("You don't have any repair kits remaining."); Thread.Sleep(2_000); }
                 Debug.WriteLine($"Fix happened, repair kits is {RepairKits}");
-
             }
             //Thread.Sleep(1_000);
             DriveDrill();

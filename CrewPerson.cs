@@ -43,6 +43,7 @@ namespace ConsoleGameProject
         public void HealthKit()
         {
             Chances = Trait == "Stout" ? 3 : 2;
+
         }
         public void Death()
         {
