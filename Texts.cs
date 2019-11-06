@@ -176,7 +176,7 @@ namespace ConsoleGameProject
                 Console.Write($"You are out of health kits and ");
 
             if (repair >= 2)
-                Console.Write($"{repair} kits.\n\n");
+                Console.Write($"{repair} repair kits.\n\n");
             else if (repair == 1)
                 Console.Write($"just {repair} repair kit remains.\n\n");
             else // (repair > 0)
@@ -235,7 +235,8 @@ namespace ConsoleGameProject
                     "\"Will it harm the ship?\"\n\n" +
                     "\"It will put a little stress on us but we should be able to take it.\"\n\n" +
                     "\"Make it so, number one!\"\n\n" +
-                    "The whole ship lurches forward and makes a creaking sound. After 20 minutes of tense worrying, you slow to a pace similar to before.\n\n" +
+                    "The whole ship lurches forward and makes a creaking sound.\n\n" +
+                    "After 20 minutes of tense worrying, you slow to a pace similar to before.\n\n" +
                     "Your shields were a little damaged but you are much closer to your goal.");
                 Thread.Sleep(5_000);
             }
@@ -256,14 +257,14 @@ namespace ConsoleGameProject
             if (priestPresent)
             {
                 Console.WriteLine("The Priest shakily creeps up to the microphone, a rosary clutched in one fist.\n\n" +
-                    "We are the servants of the most high God! I rebuke thee, Satan! I cast the into Hell in the name of the Father, and the Son, and the Holy Ghost!\n\n" +
+                    "We are the servants of the most high God! I rebuke thee, Satan! I cast the into Hell in the name of the Father,\nand the Son, and the Holy Ghost!\n\n" +
                     "The great beast laughs as nothing happens.\n\n" +
                     "\"You cannot command me from within my own domain!\"\n\n" +
                     "The beast laughed again, then grew thoughtful.\n\n" +
                     "\" But you know, I have always wanted to cast someone into the depths of Hell.\"\n\n" +
                     "The beast flicks his finger and tosses your drill deep into the depths of hell… and that much closer to your goal.");
                 Sounds.SantaLaugh();
-                Thread.Sleep(5_000);
+                Thread.Sleep(7_000);
             }
             else
             {
@@ -277,7 +278,8 @@ namespace ConsoleGameProject
                 "Did we mention the dinosaurs? There are dinosaurs here.\n\n");
             if (paleoPresent)
             {
-                Console.WriteLine("The Paleontologist is amazed! Dinosaurs of all types and from many different eras of prehistory are coexisting in a space a thousand miles from the surface!\n\n" +
+                Console.WriteLine("The Paleontologist is amazed!\n\n" +
+                    "Dinosaurs of all types and from many different eras of prehistory are coexisting in a space a thousand miles from the surface!\n\n" +
                     "The Paleontologist demands they be allowed out of the machine and immediately runs over and starts digging in a pile of dino droppings.\n\n" +
                     "Unfortunately, dino droppings are stickier than movies would have you believe.\n\n" +
                     "The Paleontologist is stuck fast to the dino poop as a Deinonychus notices them and begins stalking closer.\n\n" +
@@ -300,21 +302,23 @@ namespace ConsoleGameProject
         {
             Console.WriteLine("Your drill breaks through into a massive underground cavern.\n\n" +
                 "Dank water drips from archways and staircases that cant at unnatural angles.\n\n" +
-                "Everywhere vast spheres and stone surfaces push from the floor, too great to belong to anything right and proper for this earth,\n\n" +
+                "Everywhere vast spheres and stone surfaces push from the floor,\ntoo great to belong to anything right and proper for this earth,\n" +
                 "and impious with horrible images and disturbing hieroglyphs.\n\n" +
-                "Above the city, a hideous, monolith-crowned citadel glares down at you. \n\n");
+                "Above the city, a hideous, monolith-crowned citadel glares down at you. \n");
             if (priestPresent)
             {
                 Console.WriteLine("The Priest recognizes this place from their study of ancient heathen practices.\n\n" +
-                    "\"This looks like the city of R’lyeh!\" they say in amazement.\n\n" +
-                    "Their words stir something in your memory.\n\n" +
-                    "\"R’lyeh? But I thought that R’lyeh was under the ocean?\"\n\n" +
-                    "The Priest nods. \"Technically we are!\"\n\n" +
-                    "The Priest immediately starts cataloguing the hieroglyphs, following them deeper and deeper into the city… deeper and deeper into madness.\n\n" +
-                    "The Priest comes upon a green vault redolent with slime and repugnant vapors. Carved in the wall above it are these words:\n");
+                    "\"This looks like the city of R’lyeh!\" they say in amazement.\n" +
+                    "Their words stir something in your memory.\n" +
+                    "\"R’lyeh? But I thought that R’lyeh was under the ocean?\"\n" +
+                    "The Priest nods \"Technically we are!\"\n\n" +
+                    "The Priest immediately starts cataloguing the hieroglyphs, following them deeper and\n" +
+                    "deeper into the city… deeper and deeper into madness.\n\n" +
+                    "The Priest comes upon a green vault redolent with slime and repugnant vapors.\n" +
+                    "Carved in the wall above it are these words:\n");
                 Console.WriteLine("\"Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn\"\n", Color.Magenta);
-                Console.WriteLine("The Priest’s mind breaks as he reads the words, and he is already gibbering in madness when the first tentacle slips above the edge of the vault.");
-                Thread.Sleep(5_000);
+                Console.WriteLine("The Priest’s mind breaks as he reads the words, and he is already gibbering in madness when the\nfirst tentacle slips above the edge of the vault.");
+                Thread.Sleep(10_000);
             }
             else
             {

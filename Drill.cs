@@ -285,7 +285,7 @@ namespace ConsoleGameProject
             {
                 if (CrewPeople[crewMember].Chances == 1)
                 {
-                    Console.WriteLine($"{CrewPeople[crewMember].FirstName} died fixing the engine but it works better then ever. \n\n You drop 30.");
+                    Console.WriteLine($"{CrewPeople[crewMember].FirstName} died fixing the engine but it works better then ever. \n\nYou drop 30 units.");
                     CrewPeople[crewMember].Death();
                     Sounds.DeathScream();
                     DrillDown(30);
@@ -343,6 +343,7 @@ namespace ConsoleGameProject
             Console.WriteLine($"{CrewPeople[crewMember].FirstName} uses up a repair kit and the drill mechine looks better.\n\n");
             Thread.Sleep(3_000);
         }
+
         private void Event()
         {
             Random random = new Random();
@@ -353,22 +354,22 @@ namespace ConsoleGameProject
                 Console.Clear();
                 if (eventChance <= 20)
                 {
-                    Console.WriteLine(" You found a very soft pocket of material and went double the speed you expected");
+                    Console.WriteLine("You found a very soft pocket of material and went double the speed you expected");
                     DrillDown(20);
                     Thread.Sleep(2_000);
                 }
-                else if (eventChance <= 45)
+                else if (eventChance <= 50)
                 {
                     Console.WriteLine("The engines have stopped.\n\nYou will have to send someone out to repair them.\n\nBe warned it is dangerous out there.\n\n");
                     RepairEngines();
                     Thread.Sleep(2_000);
                 }
-                else if (eventChance <= 55) //<=55
+                else if (eventChance <= 60) //
                 {
                     Console.WriteLine("Odd. It felt like you went nowhere. Try digging again.");
                     Thread.Sleep(2_000);
                 }
-                else if (eventChance <= 64)//<=64
+                else if (eventChance <= 65)//
                 {
                     Console.WriteLine($"You found a way to boost the drill sytem.");
                     DrillDamage(-10);
@@ -582,6 +583,8 @@ namespace ConsoleGameProject
                 else { Console.WriteLine("You don't have any repair kits remaining."); Thread.Sleep(2_000); }
                 Debug.WriteLine($"Fix happened, repair kits is {RepairKits}");
             }
+            else
+                Console.WriteLine("whoops this line shouldn't be displayed");
             //Thread.Sleep(1_000);
             DriveDrill();
         }
