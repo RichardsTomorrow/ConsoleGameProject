@@ -8,8 +8,8 @@ namespace ConsoleGameProject
     {
         private static readonly HashSet<string> usedNames = new HashSet<string>();
         static readonly HashSet<string> usedTraits = new HashSet<string>();
-        static readonly string[] possibleFirstNames = new string[] { "Richard", "Ben", "Breana", "Chris", "Christopher", "David", "Nic", "Evan", "Iqra", "Jing", "Matt", "Melissa", "Mike", "Michael", "Radiah", "Rob", "Ruying", "Sakariya", "Vivien", "Wei", "Yelena", "Ivy", "Peter", "Ed", "Auriana", "Grant" };
-        static readonly string[] possibleLastNames = new string[] { "Morrow", "Bartel", "Mozzone", "Gutierrez", "Masters", "Malloy", "Cook", "Slaton", "Osman", "Xie", "Juel", "Stock", "Barta", "Gorzelsky", "Jones", "Schroeder", "Chen", "Mohamed", "Renee", "Kuang", "Dovgal", "Muir", "Choe", "Thorsteinson", "Robin", "Dams" };
+        static readonly string[] possibleFirstNames = new string[] { "Richard", "Ben", "Breana", "Chris", "Christopher", "David", "Nic", "Evan", "Iqra", "Jing", "Matt", "Melissa", "Mike", "Michael", "Radiah", "Rob", "Ruying", "Sakariya", "Vivien", "Wei", "Yelena", "Ivy", "Peter", "Ed", "Auriana", "Grant", "James" };
+        static readonly string[] possibleLastNames = new string[] { "Morrow", "Bartel", "Mozzone", "Gutierrez", "Masters", "Malloy", "Cook", "Slaton", "Osman", "Xie", "Juel", "Stock", "Barta", "Gorzelsky", "Jones", "Schroeder", "Chen", "Mohamed", "Renee", "Kuang", "Dovgal", "Muir", "Choe", "Thorsteinson", "Robin", "Dams", "Carriere" };
         static readonly string[] possibleTraits = new string[] { "Captain", "Paleontologist", "Archaeologist", "Geologist", "Stout", "Mechanist", "Priest", "Doctor", "Brave" }; //, "Conspiracist", "Bungersome" }; these two aren't ready yet // this trait has been laid off : , "Occultist"
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
@@ -43,7 +43,6 @@ namespace ConsoleGameProject
         public void HealthKit()
         {
             Chances = Trait == "Stout" ? 3 : 2;
-
         }
         public void Death()
         {
