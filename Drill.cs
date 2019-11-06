@@ -494,7 +494,7 @@ namespace ConsoleGameProject
                         }
                         else if (!HaveTrait("Priest"))
                         {
-                            DrillDown(30);
+                            DrillDown(40);
                             VistedCthulu = true;
                         }
                     }

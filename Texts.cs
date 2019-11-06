@@ -235,7 +235,7 @@ namespace ConsoleGameProject
                     "\"Will it harm the ship?\"\n\n" +
                     "\"It will put a little stress on us but we should be able to take it.\"\n\n" +
                     "\"Make it so, number one!\"\n\n" +
-                    "The whole ship lurches forward and makes a creaking sound.\n\n" +
+                    "The whole ship lurches forward and makes a continuous creaking sound.\n\n" +
                     "After 20 minutes of tense worrying, you slow to a pace similar to before.\n\n" +
                     "Your shields were a little damaged but you are much closer to your goal.");
                 Thread.Sleep(5_000);
