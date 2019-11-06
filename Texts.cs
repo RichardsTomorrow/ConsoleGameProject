@@ -184,7 +184,7 @@ namespace ConsoleGameProject
             if (archaeologistPresent)
             {
                 Console.WriteLine("The Archaeologist realizes this is actually the lost city of Lemuria!\n\n" +
-                    "They furiously take notes while pointing out the advance quartz crystal based technology the inhitants once used.\n\n" +
+                    "They furiously take notes while pointing out the advanced quartz crystal based technology the inhitants once used.\n\n" +
                     "They are able to fashion some repairs and upgrades for the drill machine with what they have found.\n\n" +
                     "The  Archaeologist begs for more time but you must press on\n\n" +
                     "Oh they also found a secret Atlantean tunnel system beneath the city");
@@ -214,7 +214,7 @@ namespace ConsoleGameProject
             {
                 Console.WriteLine("Your crew is amazed by the box.\n\n" +
                     "They try to open it no avail and find nothing external powering it\n\n" +
-                    "You make sure to log it so you can report it to the SPC foundation when you gret surface side\n\n" +
+                    "You make sure to log it so you can report it to the SPC foundation when you get surface side\n\n" +
                     "As you prepare to resume your journey you find some lava tubes leading deeper into the Earth\n\n");
                 //Thread.Sleep(5_000); // Tardis sound takes a while
             }
@@ -266,7 +266,7 @@ namespace ConsoleGameProject
                     "The Paleontologist demands they be allowed out of the machine and then they immediately run over and start digging in a pile on dino droppings.\n\n" +
                     "Unfortunately dino droppings are stickier than movies would have you believe, and the Paleontologist is stuck as a Deinonychus approaches\n\n" +
                     "\"GO ON WITHOUT ME\", they yell, \"YOU MUST TELL THE WORLD OF THIS BRAND NEW UNTHOUGHT OF HUNTING TECHNIQUE\"" +
-                    "Your crew bolts the door and continues on before they attract anymore attention");
+                    "Your crew bolts the door and continues on before they attract any more attention");
                 Sounds.DinoRoar();
                 Thread.Sleep(5_000);
             }
