@@ -293,7 +293,8 @@ namespace ConsoleGameProject
             {
                 Console.WriteLine("You drive your drill around marveling at the dinosaur life you see around you.\n\n" +
                     "No one wants to exit the drill.\n\n" +
-                    "You have all seen the Jurassic Park movies, and you know how these things usually turn out, but you all enjoy the distraction before you get on your way.");
+                    "You have all seen the Jurassic Park movies, and you know how these things usually turn out,\n" +
+                    "but you all enjoy the distraction before you get on your way.");
 
                 Thread.Sleep(5_000);
             }

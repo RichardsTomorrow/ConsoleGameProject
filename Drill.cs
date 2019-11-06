@@ -50,7 +50,7 @@ namespace ConsoleGameProject
             Debug.WriteLine($"The non-player crew person list has {crew.Count} people on it");
             return crew;
         }
-        public void DrillDown(int dig = 10)
+        private void DrillDown(int dig = 10)
         {
             this.Depth += dig;
             Debug.WriteLine($"DrillDown was called, Depth is {Depth}");
@@ -131,7 +131,7 @@ namespace ConsoleGameProject
             Debug.WriteLine($"HaveTrait was used and came out {HaveTrait}");
             return HaveTrait;
         }
-        public void DrillDamage(int damageTaken = 10)
+        private void DrillDamage(int damageTaken = 10)
         {
             this.Health -= damageTaken;
             this.Health = Math.Clamp(this.Health, 0, 120);
@@ -152,7 +152,7 @@ namespace ConsoleGameProject
                 AllDead = true;
             }
         }
-        public void CrewStatus()
+        private void CrewStatus()
         {
             AreAllDead();
             if (Health <= 0)
@@ -217,7 +217,7 @@ namespace ConsoleGameProject
                 $"To heal push \"s\"\n" +
                 $"To fix the drill push \"f\"\n");
         }
-        public void CrewStatus(bool showOnlyCrew)
+        private void CrewStatus(bool showOnlyCrew)
         {
             if (showOnlyCrew)
             {
@@ -240,7 +240,7 @@ namespace ConsoleGameProject
                 }
             }
         }
-        public void DepthIndicator()
+        private void DepthIndicator()
         {
             if (Depth <= 10)
             {
@@ -309,41 +309,6 @@ namespace ConsoleGameProject
                 DrillDown();
             }
         }
-        private void UseHealthKit()
-        {
-            Console.Clear();
-            Console.WriteLine("Choose the number of the crewperson you will heal:\n");
-            CrewStatus(true);
-            int crewMember = ValidCrewPerson();
-            if (CrewPeople[crewMember].Chances < 2)
-            {
-                CrewPeople[crewMember].HealthKit();
-                HealKits--;
-                Console.WriteLine($"{CrewPeople[crewMember].FirstName} uses up a health kit and feels much better.\n\n");
-            }
-            else
-            {
-                Console.WriteLine($"Captain {Player.LastName}, I can't in good conscience use a health kit when I don't need one.");
-            }
-
-            Thread.Sleep(3_000);
-        }
-        private void UseRepairKit()
-        {
-            Console.Clear();
-            Console.WriteLine("Choose the number of the crewperson that will patch up the drill:\n");
-            CrewStatus(true);
-            int crewMember = ValidCrewPerson();
-            Random random = new Random();
-            if (CrewPeople[crewMember].Trait.Equals("Mechanist"))
-            { DrillDamage(-random.Next(3, 7) * 10); }
-            else { DrillDamage(-random.Next(1, 5) * 10); }
-
-            RepairKits--;
-            Console.WriteLine($"{CrewPeople[crewMember].FirstName} uses up a repair kit and the drill mechine looks better.\n\n");
-            Thread.Sleep(3_000);
-        }
-
         private void Event()
         {
             Random random = new Random();
@@ -352,30 +317,30 @@ namespace ConsoleGameProject
             if (eventChance <= 65) // triggers maintence issues, some dangerous
             {
                 Console.Clear();
-                if (eventChance <= 20)
+                if (eventChance <= 20)//20%
                 {
                     Console.WriteLine("You found a very soft pocket of material and went double the speed you expected");
                     DrillDown(20);
                     Thread.Sleep(2_000);
                 }
-                else if (eventChance <= 50)
+                else if (eventChance <= 50)//30%
                 {
                     Console.WriteLine("The engines have stopped.\n\nYou will have to send someone out to repair them.\n\nBe warned it is dangerous out there.\n\n");
                     RepairEngines();
                     Thread.Sleep(2_000);
                 }
-                else if (eventChance <= 60) //
+                else if (eventChance <= 60) //10%
                 {
                     Console.WriteLine("Odd. It felt like you went nowhere. Try digging again.");
                     Thread.Sleep(2_000);
                 }
-                else if (eventChance <= 65)//
+                else if (eventChance <= 65)//5%
                 {
                     Console.WriteLine($"You found a way to boost the drill sytem.");
                     DrillDamage(-10);
                     Thread.Sleep(2_000);
                 }
-                else//61-65
+                else//0%
                 {
                     Console.WriteLine("All operations normal");
                     DrillDown();
@@ -587,6 +552,40 @@ namespace ConsoleGameProject
                 Console.WriteLine("whoops this line shouldn't be displayed");
             //Thread.Sleep(1_000);
             DriveDrill();
+        }
+        private void UseRepairKit()
+        {
+            Console.Clear();
+            Console.WriteLine("Choose the number of the crewperson that will patch up the drill:\n");
+            CrewStatus(true);
+            int crewMember = ValidCrewPerson();
+            Random random = new Random();
+            if (CrewPeople[crewMember].Trait.Equals("Mechanist"))
+                DrillDamage(-random.Next(3, 7) * 10);
+            else
+                DrillDamage(-random.Next(1, 5) * 10);
+            RepairKits--;
+            Console.WriteLine($"{CrewPeople[crewMember].FirstName} uses up a repair kit and the drill mechine looks better.\n\n");
+            Thread.Sleep(3_000);
+        }
+        private void UseHealthKit()
+        {
+            Console.Clear();
+            Console.WriteLine("Choose the number of the crewperson you will heal:\n");
+            CrewStatus(true);
+            int crewMember = ValidCrewPerson();
+            if (CrewPeople[crewMember].Chances < 2)
+            {
+                CrewPeople[crewMember].HealthKit();
+                HealKits--;
+                Console.WriteLine($"{CrewPeople[crewMember].FirstName} uses up a health kit and feels much better.\n\n");
+            }
+            else
+            {
+                Console.WriteLine($"Captain {Player.LastName}, I can't in good conscience use a health kit when I don't need one.");
+            }
+
+            Thread.Sleep(3_000);
         }
     }
 }
