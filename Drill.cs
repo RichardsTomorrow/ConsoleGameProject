@@ -329,7 +329,12 @@ namespace ConsoleGameProject
                     RepairEngines();
                     Thread.Sleep(2_000);
                 }
-                else if (eventChance <= 60) //10%
+                else if (eventChance <= 55) //5%  //Hey Richard code over here!!
+                {
+                    Console.WriteLine("You hear the whistle of escaping steam but it is too late a pipe bursts.");
+                    Thread.Sleep(2_000);
+                }
+                else if (eventChance <= 60) //5%
                 {
                     Console.WriteLine("Odd. It felt like you went nowhere. Try digging again.");
                     Thread.Sleep(2_000);
