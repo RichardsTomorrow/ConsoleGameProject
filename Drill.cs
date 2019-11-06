@@ -11,6 +11,8 @@ namespace ConsoleGameProject
         public CrewPerson Player { get; }
         public int Health { get; private set; }
         public int Depth { get; private set; }
+        public int RepairKits { get; private set; }
+        public int HealKits { get; private set; }
         public int CrewSize { get; private set; }
         public bool AllDead { get; private set; }
         public bool VistedLostCity { get; private set; }
@@ -26,6 +28,8 @@ namespace ConsoleGameProject
             this.Player = player;
             this.CrewPeople = CrewSelector(crewSize);
             this.Health = Math.Clamp(100, 0, 120);
+            this.HealKits = crewSize;
+            this.RepairKits = crewSize / 2;
             this.Depth = 0;
             this.CrewSize = crewSize;
             this.AllDead = false;
@@ -51,16 +55,55 @@ namespace ConsoleGameProject
             this.Depth += dig;
             Debug.WriteLine($"DrillDown was called, Depth is {Depth}");
         }
-        private bool ValidDown()
+        private ConsoleKey ValidKeyPress()
         {
-            if (Console.ReadKey().Key != ConsoleKey.D)
+            Debug.WriteLine($"prekeypress");
+            var comparison = Console.ReadKey().Key;
+            Debug.WriteLine($"post key press");
+            if (comparison != ConsoleKey.D && comparison != ConsoleKey.S && comparison != ConsoleKey.F)
             {
+                Debug.WriteLine($"error key press");
                 Console.WriteLine("\nPlease push a valid key or you'll damage the drill!");
-                return ValidDown();
+                return ValidKeyPress();
             }
-            else
-            { return true; }
+            else if (comparison == ConsoleKey.D)
+            {
+                Debug.WriteLine($"d key press");
+                return comparison;
+            }
+            else if (comparison == ConsoleKey.S)
+            {
+                Debug.WriteLine($"s key press");
+                return comparison;
+            }
+            else if (comparison == ConsoleKey.F)
+            {
+                Debug.WriteLine($"f key press");
+                return comparison;
+            }
+            else { return ValidKeyPress(); }
+
         }
+        //private bool ValidHeal()
+        //{
+        //    if (HealKits > 0)
+        //    {
+        //        Console.WriteLine("\nPlease push a valid key or you'll damage the drill!");
+        //        return Valid();
+        //    }
+        //    else
+        //    { Console.WriteLine("\nYou are out of health kits"); }
+        //}
+        //private bool ValidFix()
+        //{
+        //    if (Console.ReadKey().Key != ConsoleKey.F)
+        //    {
+        //        Console.WriteLine("\nPlease push a valid key or you'll damage the drill!");
+        //        return ValidDown();
+        //    }
+        //    else
+        //    { return true; }
+        //}
         private int ValidCrewPerson()
         {
             bool valid = Int32.TryParse(Console.ReadLine(), out int crewpersonNumber); //do a try parse and check if it is a number between 1-length of crew list 
@@ -179,7 +222,9 @@ namespace ConsoleGameProject
                 }
                 Console.WriteLine($"{i + 1}. :{healthSymbol} - {CrewPeople[i].FirstName} \"The {CrewPeople[i].Trait}\" {CrewPeople[i].LastName}\n");
             }
-            Console.WriteLine($"To drill down press the \"d\" key ");
+            Console.WriteLine($"To drill down press the \"d\" key\n" +
+                $"To heal push \"s\"\n" +
+                $"To fix the drill push \"f\"\n");
         }
         public void CrewStatus(bool showOnlyCrew)
         {
@@ -277,14 +322,14 @@ namespace ConsoleGameProject
         {
             Random random = new Random();
             int eventChance = random.Next(1, 101); //1-101
-            eventChance = 70; //determinism
+            //eventChance = 70; //determinism
             if (eventChance <= 65) // triggers maintence issues, some dangerous
             {
                 Console.Clear();
                 if (eventChance <= 20)
                 {
                     Console.WriteLine(" You found a very soft pocket of material and went double the speed you expected");
-                    DrillDown(400);
+                    DrillDown(20);
                 }
                 else if (eventChance <= 45)
                 {
@@ -486,13 +531,25 @@ namespace ConsoleGameProject
         {
             DepthIndicator();
             CrewStatus();
-            if (ValidDown())
+            //ValidKeyPress();
+            if (ValidKeyPress() == ConsoleKey.D)
             {
                 DepthIndicator();
-                Debug.WriteLine($"Event happened, Depth is {Depth}");
+                Debug.WriteLine($"Dig down happened, Depth is {Depth}");
                 Event();
-                Thread.Sleep(2_000);
+                //Thread.Sleep(2_000);
             }
+            else if (ValidKeyPress() == ConsoleKey.F)
+            {
+                Debug.WriteLine($"Fix happened, repair kits is {RepairKits}");
+
+            }
+            else if (ValidKeyPress() == ConsoleKey.S)
+            {
+                Debug.WriteLine($"Heal happened, heal kits is {HealKits}");
+
+            }
+            //Thread.Sleep(1_000);
             DriveDrill();
         }
     }

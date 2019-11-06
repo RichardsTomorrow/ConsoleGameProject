@@ -14,13 +14,13 @@ namespace ConsoleGameProject
             Console.CursorVisible = true;
             Console.WriteLine("Hello Captain! It seems we mis-placed the paperwork. What is your first name?\n");
             string firstName = NameValidation();
-            Sounds.PenClick();
+            //Sounds.PenClick();
             Console.WriteLine($"Ok, so your first name is {firstName}! Sorry I am new here what was your last name again?\n");
             string lastName = NameValidation();
-            Sounds.PenClick();
+            //Sounds.PenClick();
             Console.WriteLine($"OHHHH!! You are {firstName} {lastName}! It is a pleasure to meet you.\n");
             int crewSize = CrewSizeValidation();
-            Sounds.PenClick();
+            //Sounds.PenClick();
             Console.WriteLine($"Ahh yes! Now I found you! Captain {firstName} {lastName}, total crew of {crewSize}.\n\nGive me a second and I will grab your crew roster.\n");
             CrewPerson player = new CrewPerson(firstName, lastName);
             Drill drill = new Drill(player, crewSize);
