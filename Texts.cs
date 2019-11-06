@@ -100,7 +100,6 @@ namespace ConsoleGameProject
             Console.WriteLine("I wish you all luck on your journey and I hope you are prepared for whatever you find.");
             Thread.Sleep(4_000); // 4 seconds
         }
-
         public static void IntroScreenText()
         {
             string[] introbox = new string[]
@@ -172,11 +171,39 @@ namespace ConsoleGameProject
             }
             else if (health > 20)
             {
-                Console.WriteLine("The drill is worse for wear\n\n");
+                Console.WriteLine("The drill is worse for wear\n");
             }
             else if (health > 0)
             {
                 Console.WriteLine("If it wasn't so bad outside you wouldn't want to be in here\n");
+            }
+        }
+        public static void KitInventoryText(int heal, int repair)
+        {
+            if (heal >= 2)
+            {
+                Console.Write($"You have {heal} health kits and ");
+            }
+            else if (heal == 1)
+            {
+                Console.Write($"You have only {heal} health kit and ");
+            }
+            else  //(heal == 0)
+            {
+                Console.Write($"You are out of health kits and ");
+            }
+
+            if (repair >= 2)
+            {
+                Console.Write($"{repair} kits.\n\n");
+            }
+            else if (repair == 1)
+            {
+                Console.Write($"just {repair} repair kit remains.\n\n");
+            }
+            else // (repair > 0)
+            {
+                Console.Write($"are out of repair kits.\n\n");
             }
         }
         public static void LostCityText(bool archaeologistPresent)//
