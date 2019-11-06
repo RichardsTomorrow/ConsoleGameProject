@@ -194,6 +194,7 @@ namespace ConsoleGameProject
             Console.Clear();
             Console.WriteLine($"{Player.FirstName} \"The {Player.Trait}\" {Player.LastName}\n");
             Texts.DrillApperanceText(this.Health);
+            Texts.KitInventoryText(this.HealKits, this.RepairKits);
             for (int i = 0; i < CrewSize - 1; i++)
             {
                 char healthSymbol = '*';
@@ -420,7 +421,7 @@ namespace ConsoleGameProject
                                     CrewPeople[i].Death();
                                 }
                             }
-                            DrillDown(40);
+                            DrillDown(60);
                             VistedTardisCave = true;
                         }
                         else if (!HaveTrait("Doctor"))
