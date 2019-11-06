@@ -58,7 +58,7 @@ namespace ConsoleGameProject
         private ConsoleKey ValidKeyPress()
         {
             Debug.WriteLine($"prekeypress");
-            var comparison = Console.ReadKey().Key;
+            var comparison = Console.ReadKey(true).Key;
             Debug.WriteLine($"post key press");
             if (comparison != ConsoleKey.D && comparison != ConsoleKey.S && comparison != ConsoleKey.F)
             {
@@ -101,7 +101,7 @@ namespace ConsoleGameProject
         //}
         private int ValidCrewPerson()
         {
-            bool valid = Int32.TryParse(Console.ReadLine(), out int crewpersonNumber); //do a try parse and check if it is a number between 1-length of crew list 
+            bool valid = Int32.TryParse(Console.ReadKey(true).KeyChar.ToString(), out int crewpersonNumber) ; //do a try parse and check if it is a number between 1-length of crew list 
             if (!valid)
             {
                 Console.WriteLine("\nPlease push a choose a valid crewperson or you'll confuse someone.");
@@ -322,6 +322,7 @@ namespace ConsoleGameProject
             CrewPeople[crewMember].HealthKit();
             HealKits--;
             Console.WriteLine($"{CrewPeople[crewMember].FirstName} uses up a health kit and feels much better.\n\n");
+            Thread.Sleep(3_000);
         }
         private void Event()
         {
@@ -541,22 +542,22 @@ namespace ConsoleGameProject
         {
             DepthIndicator();
             CrewStatus();
-            //ValidKeyPress();
-            if (ValidKeyPress() == ConsoleKey.S)
-            {
-                if (ValidHeal())
-                { UseHealthKit();}
-                else { Console.WriteLine("You don't have any health kits remaining."); }
-                Debug.WriteLine($"Heal happened, heal kits is {HealKits}");
-                DriveDrill();
-            }
-            if (ValidKeyPress() == ConsoleKey.D)
+            var comparison = ValidKeyPress();
+            if (comparison == ConsoleKey.D)
             {
                 DepthIndicator();
                 Debug.WriteLine($"Dig down happened, Depth is {Depth}");
                 Event();
                 DriveDrill();
                 //Thread.Sleep(2_000);
+            }
+            else if (comparison == ConsoleKey.S)
+            {
+                if (ValidHeal())
+                { UseHealthKit();}
+                else { Console.WriteLine("You don't have any health kits remaining."); Thread.Sleep(2_000); }
+                Debug.WriteLine($"Heal happened, heal kits is {HealKits}");
+                DriveDrill();
             }
             else if (ValidKeyPress() == ConsoleKey.F)
             {
