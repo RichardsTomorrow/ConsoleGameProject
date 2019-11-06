@@ -420,7 +420,7 @@ namespace ConsoleGameProject
                                     CrewPeople[i].Death();
                                 }
                             }
-                            DrillDown(40);
+                            DrillDown(60);
                             VistedTardisCave = true;
                         }
                         else if (!HaveTrait("Doctor"))
