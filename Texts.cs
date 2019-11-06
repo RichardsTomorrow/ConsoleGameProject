@@ -305,7 +305,9 @@ namespace ConsoleGameProject
             }
             else
             {
-                Console.WriteLine("they are angry about interuption and we fight our way out");
+                Console.WriteLine("they are angry about interuption and we fight our way out.\n\n" +
+                    "You push the machine to its limits getting away. \n\n" +
+                    "Luckily most of the damaged camme from the attack");
                 Thread.Sleep(5_000);
             }
         }

@@ -473,6 +473,7 @@ namespace ConsoleGameProject
                         }
                         else if (!HaveTrait("Roboticist"))
                         {
+                            DrillDown(50);
                             DrillDamage(50);
                             VistedLizardPeeps = true;
                         }

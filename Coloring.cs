@@ -122,7 +122,7 @@ namespace ConsoleGameProject
             Console.ForegroundColor = Color.DarkMagenta;
             Console.CursorVisible = false;
         }
-        public static void YouFreakingSummonedCthulhuColor()// dark olive green and regular magenta since cthulu wakes
+        public static void YouFreakingSummonedCthulhuColor()// dark olive green and regular magenta since cthulu wakes maybe I could make this grade to red
         {
             Console.ReplaceAllColorsWithDefaults();
             Console.BackgroundColor = Color.DarkOliveGreen;
