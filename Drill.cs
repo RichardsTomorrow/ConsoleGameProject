@@ -11,6 +11,8 @@ namespace ConsoleGameProject
         public CrewPerson Player { get; }
         public int Health { get; private set; }
         public int Depth { get; private set; }
+        public int RepairKits { get; private set; }
+        public int HealKits { get; private set; }
         public int CrewSize { get; private set; }
         public bool AllDead { get; private set; }
         public bool VistedLostCity { get; private set; }
@@ -26,6 +28,8 @@ namespace ConsoleGameProject
             this.Player = player;
             this.CrewPeople = CrewSelector(crewSize);
             this.Health = Math.Clamp(100, 0, 120);
+            this.HealKits = crewSize - 1;
+            this.RepairKits = crewSize / 2;
             this.Depth = 0;
             this.CrewSize = crewSize;
             this.AllDead = false;
@@ -51,19 +55,48 @@ namespace ConsoleGameProject
             this.Depth += dig;
             Debug.WriteLine($"DrillDown was called, Depth is {Depth}");
         }
-        private bool ValidDown()
+        private ConsoleKey ValidKeyPress()
         {
-            if (Console.ReadKey().Key != ConsoleKey.D)
+            Debug.WriteLine($"prekeypress");
+            var comparison = Console.ReadKey(true).Key;
+            Debug.WriteLine($"post key press");
+            if (comparison != ConsoleKey.D && comparison != ConsoleKey.S && comparison != ConsoleKey.F)
             {
+                Debug.WriteLine($"error key press");
                 Console.WriteLine("\nPlease push a valid key or you'll damage the drill!");
-                return ValidDown();
+                return ValidKeyPress();
             }
-            else
-            { return true; }
+            else if (comparison == ConsoleKey.D)
+            {
+                Debug.WriteLine($"d key press");
+                return comparison;
+            }
+            else if (comparison == ConsoleKey.S)
+            {
+                Debug.WriteLine($"s key press");
+                return comparison;
+            }
+            else if (comparison == ConsoleKey.F)
+            {
+                Debug.WriteLine($"f key press");
+                return comparison;
+            }
+            else { return ValidKeyPress(); }
+
+        }
+        private bool ValidHeal()
+        {
+            if (HealKits > 0) { return true; }
+            else { return false; }
+        }
+        private bool ValidFix()
+        {
+            if (RepairKits > 0) { return true; }
+            else { return false; }
         }
         private int ValidCrewPerson()
         {
-            bool valid = Int32.TryParse(Console.ReadLine(), out int crewpersonNumber); //do a try parse and check if it is a number between 1-length of crew list 
+            bool valid = Int32.TryParse(Console.ReadKey(true).KeyChar.ToString(), out int crewpersonNumber); //do a try parse and check if it is a number between 1-length of crew list 
             if (!valid)
             {
                 Console.WriteLine("\nPlease push a choose a valid crewperson or you'll confuse someone.");
@@ -158,7 +191,7 @@ namespace ConsoleGameProject
                 Coloring.AtTheCenterColor();
                 Texts.AtTheCenterEnding();
             }
-
+            Console.Clear();
             Console.WriteLine($"{Player.FirstName} \"The {Player.Trait}\" {Player.LastName}\n");
             Texts.DrillApperanceText(this.Health);
             for (int i = 0; i < CrewSize - 1; i++)
@@ -179,7 +212,9 @@ namespace ConsoleGameProject
                 }
                 Console.WriteLine($"{i + 1}. :{healthSymbol} - {CrewPeople[i].FirstName} \"The {CrewPeople[i].Trait}\" {CrewPeople[i].LastName}\n");
             }
-            Console.WriteLine($"To drill down press the \"d\" key ");
+            Console.WriteLine($"To drill down press the \"d\" key\n" +
+                $"To heal push \"s\"\n" +
+                $"To fix the drill push \"f\"\n");
         }
         public void CrewStatus(bool showOnlyCrew)
         {
@@ -273,11 +308,45 @@ namespace ConsoleGameProject
                 DrillDown();
             }
         }
+        private void UseHealthKit()
+        {
+            Console.Clear();
+            Console.WriteLine("Choose the number of the crewperson you will heal:\n");
+            CrewStatus(true);
+            int crewMember = ValidCrewPerson();
+            if (CrewPeople[crewMember].Chances < 2)
+            {
+                CrewPeople[crewMember].HealthKit();
+                HealKits--;
+                Console.WriteLine($"{CrewPeople[crewMember].FirstName} uses up a health kit and feels much better.\n\n");
+            }
+            else
+            {
+                Console.WriteLine($"Captain {Player.LastName}, I can't in good conscience use a health kit when I don't need one.");
+            }
+
+            Thread.Sleep(3_000);
+        }
+        private void UseRepairKit()
+        {
+            Console.Clear();
+            Console.WriteLine("Choose the number of the crewperson that will patch up the drill:\n");
+            CrewStatus(true);
+            int crewMember = ValidCrewPerson();
+            Random random = new Random();
+            if (CrewPeople[crewMember].Trait.Equals("Mechanist"))
+            { DrillDamage(-random.Next(3, 7) * 10); }
+            else { DrillDamage(-random.Next(1, 5) * 10); }
+
+            RepairKits--;
+            Console.WriteLine($"{CrewPeople[crewMember].FirstName} uses up a repair kit and the drill mechine looks better.\n\n");
+            Thread.Sleep(3_000);
+        }
         private void Event()
         {
             Random random = new Random();
             int eventChance = random.Next(1, 101); //1-101
-            //eventChance = 90; //determinism
+            //eventChance = 70; //determinism
             if (eventChance <= 65) // triggers maintence issues, some dangerous
             {
                 Console.Clear();
@@ -285,25 +354,30 @@ namespace ConsoleGameProject
                 {
                     Console.WriteLine(" You found a very soft pocket of material and went double the speed you expected");
                     DrillDown(20);
+                    Thread.Sleep(2_000);
                 }
                 else if (eventChance <= 45)
                 {
                     Console.WriteLine("The engines have stopped.\n\nYou will have to send someone out to repair them.\n\nBe warned it is dangerous out there.\n\n");
                     RepairEngines();
+                    Thread.Sleep(2_000);
                 }
                 else if (eventChance <= 55) //<=55
                 {
                     Console.WriteLine("Odd. It felt like you went nowhere. Try digging again.");
+                    Thread.Sleep(2_000);
                 }
                 else if (eventChance <= 64)//<=64
                 {
                     Console.WriteLine($"You found a way to boost the drill sytem.");
                     DrillDamage(-10);
+                    Thread.Sleep(2_000);
                 }
                 else//61-65
                 {
                     Console.WriteLine("All operations normal");
                     DrillDown();
+                    Thread.Sleep(2_000);
                 }
 
             }
@@ -444,14 +518,14 @@ namespace ConsoleGameProject
                     if (eventChance > 65 && eventChance <= 85)//Cthulu
                     {
                         Coloring.HeyCthulhuColor();
-                        Texts.HeyCthulhuText(HaveTrait("Occultist"));
-                        if (HaveTrait("Occultist"))
+                        Texts.HeyCthulhuText(HaveTrait("Priest"));
+                        if (HaveTrait("Priest"))
                         {
                             Coloring.YouFreakingSummonedCthulhuColor();
                             Texts.YouFreakingSummonedCthulhuEnding();
                             VistedCthulu = true;
                         }
-                        else if (!HaveTrait("Occultist"))
+                        else if (!HaveTrait("Priest"))
                         {
                             DrillDown(30);
                             VistedCthulu = true;
@@ -465,13 +539,13 @@ namespace ConsoleGameProject
                     if (eventChance > 85) // Lizard Peeps
                     {
                         Coloring.HeyLizardPeepsColor();
-                        Texts.HeyLizardPeepsText(HaveTrait("Roboticist"));
-                        if (HaveTrait("Roboticist"))
+                        Texts.HeyLizardPeepsText(HaveTrait("Mechanist"));
+                        if (HaveTrait("Mechanist"))
                         {
                             Texts.BowToTheRobotsIMeanLizardsEnding();
                             VistedLizardPeeps = true;
                         }
-                        else if (!HaveTrait("Roboticist"))
+                        else if (!HaveTrait("Mechanist"))
                         {
                             DrillDown(50);
                             DrillDamage(50);
@@ -486,13 +560,28 @@ namespace ConsoleGameProject
         {
             DepthIndicator();
             CrewStatus();
-            if (ValidDown())
+            var comparison = ValidKeyPress();
+            if (comparison == ConsoleKey.D)
             {
                 DepthIndicator();
-                Debug.WriteLine($"Event happened, Depth is {Depth}");
+                Debug.WriteLine($"Dig down happened, Depth is {Depth}");
                 Event();
-                Thread.Sleep(2_000);
             }
+            else if (comparison == ConsoleKey.S)
+            {
+                if (ValidHeal())
+                { UseHealthKit(); }
+                else { Console.WriteLine("You don't have any health kits remaining."); Thread.Sleep(2_000); }
+                Debug.WriteLine($"Heal happened, heal kits is {HealKits}");
+            }
+            else if (comparison == ConsoleKey.F)
+            {
+                if (ValidFix())
+                { UseRepairKit(); }
+                else { Console.WriteLine("You don't have any repair kits remaining."); Thread.Sleep(2_000); }
+                Debug.WriteLine($"Fix happened, repair kits is {RepairKits}");
+            }
+            //Thread.Sleep(1_000);
             DriveDrill();
         }
     }
