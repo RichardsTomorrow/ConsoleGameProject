@@ -277,14 +277,14 @@ namespace ConsoleGameProject
         {
             Random random = new Random();
             int eventChance = random.Next(1, 101); //1-101
-            //eventChance = 90; //determinism
+            eventChance = 70; //determinism
             if (eventChance <= 65) // triggers maintence issues, some dangerous
             {
                 Console.Clear();
                 if (eventChance <= 20)
                 {
                     Console.WriteLine(" You found a very soft pocket of material and went double the speed you expected");
-                    DrillDown(20);
+                    DrillDown(400);
                 }
                 else if (eventChance <= 45)
                 {
@@ -444,14 +444,14 @@ namespace ConsoleGameProject
                     if (eventChance > 65 && eventChance <= 85)//Cthulu
                     {
                         Coloring.HeyCthulhuColor();
-                        Texts.HeyCthulhuText(HaveTrait("Occultist"));
-                        if (HaveTrait("Occultist"))
+                        Texts.HeyCthulhuText(HaveTrait("Priest"));
+                        if (HaveTrait("Priest"))
                         {
                             Coloring.YouFreakingSummonedCthulhuColor();
                             Texts.YouFreakingSummonedCthulhuEnding();
                             VistedCthulu = true;
                         }
-                        else if (!HaveTrait("Occultist"))
+                        else if (!HaveTrait("Priest"))
                         {
                             DrillDown(30);
                             VistedCthulu = true;

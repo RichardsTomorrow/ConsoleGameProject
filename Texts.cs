@@ -277,10 +277,10 @@ namespace ConsoleGameProject
                 Thread.Sleep(5_000);
             }
         }
-        public static void HeyCthulhuText(bool occultPresent) // 
+        public static void HeyCthulhuText(bool priestPresent) // 
         {
             Console.WriteLine("neutral scene description\n");
-            if (occultPresent)
+            if (priestPresent)
             {
                 Console.WriteLine("Occultist recognizes this place as Raleigh and breaks away\n\n" +
                     "but I thought that Raleigh was under the ocean? technically we are");
