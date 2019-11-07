@@ -16,18 +16,14 @@ namespace ConsoleGameProject
             Console.CursorVisible = true;
             Console.WriteLine("Hello Captain! It seems we mis-placed the paperwork. What is your first name?\n");
             string firstName = NameValidation();
-            //Sounds.PenClick();
             Console.WriteLine($"Ok, so your first name is {firstName}! Sorry I am new here what was your last name again?\n");
             string lastName = NameValidation();
-            //Sounds.PenClick();
             Console.WriteLine($"OHHHH!! You are {firstName} {lastName}! It is a pleasure to meet you.\n");
             int crewSize = CrewSizeValidation();
-            //Sounds.PenClick();
             Console.WriteLine($"Ahh yes! Now I found you! Captain {firstName} {lastName}, total crew of {crewSize}.\n\nGive me a second and I will grab your crew roster.\n");
             CrewPerson player = new CrewPerson(firstName, lastName);
             Drill drill = new Drill(player, crewSize);
             Sounds.Printer();
-            //Thread.Sleep(2_000); // 2 seconds
             return drill;
         }
         static string NameValidation()
@@ -98,7 +94,7 @@ namespace ConsoleGameProject
             }
             Console.WriteLine($"And finally we have you, {drill.Player.FirstName} \"The {drill.Player.Trait}\" {drill.Player.LastName}.\n");
             Console.WriteLine("I wish you all luck on your journey and I hope you are prepared for whatever you find.");
-            Thread.Sleep(4_000); // 4 seconds
+            Thread.Sleep(6_000);
         }
         public static void IntroScreenText()
         {
@@ -237,7 +233,7 @@ namespace ConsoleGameProject
                     "\"Make it so, number one!\"\n\n" +
                     "The whole ship lurches forward and makes a continuous creaking sound.\n\n" +
                     "After 20 minutes of tense worrying, you slow to a pace similar to before.\n\n" +
-                    "Your shields were a little damaged but you are much closer to your goal.");
+                    "Your shields are a little damaged but you are much closer to your goal.");
                 Thread.Sleep(16_000);
             }
             else
@@ -302,7 +298,7 @@ namespace ConsoleGameProject
         public static void HeyCthulhuText(bool priestPresent) // 
         {
             Console.WriteLine("Your drill breaks through into a massive underground cavern.\n\n" +
-                "Dank water drips from archways and staircases that cant at unnatural angles.\n\n" +
+                "Dank water drips from archways and staircases at unnatural angles.\n\n" +
                 "Everywhere vast spheres and stone surfaces push from the floor,\ntoo great to belong to anything right and proper for this earth,\n" +
                 "and impious with horrible images and disturbing hieroglyphs.\n\n" +
                 "Above the city, a hideous, monolith-crowned citadel glares down at you. \n");
