@@ -14,13 +14,13 @@ namespace ConsoleGameProject
         public int RepairKits { get; private set; }
         public int HealKits { get; private set; }
         public int CrewSize { get; private set; }
-        public bool VistedLostCity { get; private set; }
-        public bool VistedTardisCave { get; private set; }
-        public bool VistedCoreMantel { get; private set; }
-        public bool VistedSatan { get; private set; }
-        public bool VistedDinoDNA { get; private set; }
-        public bool VistedCthulu { get; private set; }
-        public bool VistedLizardPeeps { get; private set; }
+        private bool VistedLostCity { get; set; }
+        private bool VistedTardisCave { get; set; }
+        private bool VistedCoreMantel { get; set; }
+        private bool VistedSatan { get; set; }
+        private bool VistedDinoDNA { get; set; }
+        private bool VistedCthulu { get; set; }
+        private bool VistedLizardPeeps { get; set; }
         public Drill(CrewPerson player, int crewSize)
         {
             this.Player = player;
@@ -320,7 +320,7 @@ namespace ConsoleGameProject
         {
             Random random = new Random();
             int eventChance = random.Next(1, 101); //1-101
-            //eventChance = 70; //determinism
+            eventChance = 70; //determinism
             if (eventChance <= 65) // triggers maintence issues, some dangerous
             {
                 Console.Clear();
