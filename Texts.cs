@@ -21,9 +21,12 @@ namespace ConsoleGameProject
             Console.WriteLine($"OHHHH!! You are {firstName} {lastName}! It is a pleasure to meet you.\n");
             int crewSize = CrewSizeValidation();
             Console.WriteLine($"Ahh yes! Now I found you! Captain {firstName} {lastName}, total crew of {crewSize}.\n\nGive me a second and I will grab your crew roster.\n");
+            Sounds.Printer();
+            Console.WriteLine($"It looks like eveyone is ready to go and already waiting for you in the drill.\n\n" +
+                $"Some of your crew is a little quirky but just like you they went through a drill development apprenticeship,\nso you should be fine.\n\nI wish you luck on your journey!");
             CrewPerson player = new CrewPerson(firstName, lastName);
             Drill drill = new Drill(player, crewSize);
-            Sounds.Printer();
+            Thread.Sleep(8_000);
             return drill;
         }
         static string NameValidation()
@@ -65,37 +68,6 @@ namespace ConsoleGameProject
             }
             return crewSize;
         }
-        public static void RosterText(Drill drill)
-        {
-            Coloring.PaperworkColor();
-            Console.CursorVisible = false;
-            Console.WriteLine($"Found it! It looks like the administration has already selected your crew of {drill.CrewSize}.\n\nThey are an outstanding group of people even if they have a few quirks.\n");
-            for (int i = 0; i < drill.CrewSize - 1; i++)
-            {
-                if (i == 0)
-                {
-                    Console.WriteLine($"Your first officer is {drill.CrewPeople[i].FirstName} \"The {drill.CrewPeople[i].Trait}\" {drill.CrewPeople[i].LastName}\n");
-                }
-                else if (i == drill.CrewSize - 2)
-                {
-                    Console.WriteLine($"Last but not least is {drill.CrewPeople[i].FirstName} \"The {drill.CrewPeople[i].Trait}\" {drill.CrewPeople[i].LastName}\n");
-                }
-                else
-                {
-                    if (i % 2 == 0)
-                    {
-                        Console.WriteLine($"Next we have {drill.CrewPeople[i].FirstName} \"The {drill.CrewPeople[i].Trait}\" {drill.CrewPeople[i].LastName}\n");
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Then we have {drill.CrewPeople[i].FirstName} \"The {drill.CrewPeople[i].Trait}\" {drill.CrewPeople[i].LastName}\n");
-                    }
-                }
-            }
-            Console.WriteLine($"And finally we have you, {drill.Player.FirstName} \"The {drill.Player.Trait}\" {drill.Player.LastName}.\n");
-            Console.WriteLine("I wish you all luck on your journey and I hope you are prepared for whatever you find.");
-            Thread.Sleep(6_000);
-        }
         public static void IntroScreenText()
         {
             string[] introbox = new string[]
@@ -125,7 +97,7 @@ namespace ConsoleGameProject
                 @"%|                                 \$$$$$$$   \$$$$$$$ \$$  \$$$$$$   \$$$$$\$$$$  \$$                               |%",
                 @"+|                                                                                                                   |+",
                 @"%|         Good morning Captain! You have been selected to lead an expedition to the center of the earth!            |%",
-                @"+|     Your crew are the best of the best, but drilling is hard work, and there’s not a lot of room in there.        |+",
+                @"+|      Your crew is the best of the best, but drilling is hard work, and there’s not a lot of room in there.        |+",
                 @"%|       You must balance the needs of your crew with the maintenance of your craft else you’ll never reach          |%",
                 @"+|                                                the center of the Earth!                                           |+",
                 @"[]+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+[]"

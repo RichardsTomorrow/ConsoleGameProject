@@ -8,7 +8,6 @@ namespace ConsoleGameProject
         {
             Texts.IntroScreenText();
             Drill drill = Texts.PlayerSetup();
-            Texts.RosterText(drill);
             drill.DriveDrill();
         }
     }
