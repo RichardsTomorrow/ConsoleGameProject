@@ -53,7 +53,7 @@ namespace ConsoleGameProject
             }
             return name;
         }
-        static int CrewSizeValidation()
+        static int CrewSizeValidation()//validates the crew size
         {
             Console.WriteLine($"One more question! Are you rated for a three-person, four-person, or five-person crew?\n");
             if (!Int32.TryParse(Console.ReadLine(), out int crewSize))

@@ -8,15 +8,15 @@ namespace ConsoleGameProject
     {
         private static readonly HashSet<string> usedNames = new HashSet<string>();
         static readonly HashSet<string> usedTraits = new HashSet<string>();
-        static readonly string[] possibleFirstNames = new string[] { "Richard", "Ben", "Breana", "Chris", "Christopher", "David", "Nic", "Evan", "Iqra", "Jing", "Matt", "Melissa", "Mike", "Michael", "Radiah", "Rob", "Ruying", "Sakariya", "Vivien", "Wei", "Yelena", "Ivy", "Peter", "Ed", "Auriana", "Grant", "James" };
-        static readonly string[] possibleLastNames = new string[] { "Morrow", "Bartel", "Mozzone", "Gutierrez", "Masters", "Malloy", "Cook", "Slaton", "Osman", "Xie", "Juel", "Stock", "Barta", "Gorzelsky", "Jones", "Schroeder", "Chen", "Mohamed", "Renee", "Kuang", "Dovgal", "Muir", "Choe", "Thorsteinson", "Robin", "Dams", "Carriere" };
+        static readonly string[] possibleFirstNames = new string[] { "Richard", "Ben", "Breana", "Chris", "Christopher", "David", "Nic", "Evan", "Iqra", "Jing", "Matt", "Melissa", "Mike", "Michael", "Radiah", "Rob", "Ruying", "Sakariya", "Vivien", "Wei", "Yelena", "Ivy", "Peter", "Ed", "Grant", "James" };
+        static readonly string[] possibleLastNames = new string[] { "Morrow", "Bartel", "Mozzone", "Gutierrez", "Masters", "Malloy", "Cook", "Slaton", "Osman", "Xie", "Juel", "Stock", "Barta", "Gorzelsky", "Jones", "Schroeder", "Chen", "Mohamed", "Renee", "Kuang", "Dovgal", "Muir", "Choe", "Thorsteinson", "Dams", "Carriere" };
         static readonly string[] possibleTraits = new string[] { "Captain", "Paleontologist", "Archaeologist", "Geologist", "Stout", "Mechanist", "Priest", "Doctor", "Brave" }; //, "Conspiracist", "Bungersome" }; these two aren't ready yet // this trait has been laid off : , "Occultist"
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
         public string Trait { get; private set; }
         public int Chances { get; private set; }
         public bool Dead { get; private set; }
-        public CrewPerson()
+        public CrewPerson()// when a crewperson is created with no inputs they are a non-player character
         {
             this.FirstName = NameGenerator(possibleFirstNames);
             this.LastName = NameGenerator(possibleLastNames);
@@ -37,9 +37,9 @@ namespace ConsoleGameProject
         }
         public void HealthKit()
         {
-            Chances = Trait == "Stout" ? 3 : 2;
+            Chances = Trait == "Stout" ? 3 : 2;// fully heals everyone including The Stout
         }
-        public void Death()
+        public void Death()//explicitly marks 
         {
             Dead = true;
             Chances = 0;

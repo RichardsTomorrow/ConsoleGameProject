@@ -54,22 +54,22 @@ namespace ConsoleGameProject
                 return RandomCrewPerson();
             }
         }
-        private void DrillDown(int dig = 10)
+        private void DrillDown(int dig = 10)//moves your drill down
         {
             this.Depth += dig;
             Debug.WriteLine($"DrillDown was called, Depth is {Depth}");
-        }//
-        private void DrillDamage(int damageTaken = 10)
+        }
+        private void DrillDamage(int damageTaken = 10)//breaks your drill
         {
             this.Health -= damageTaken;
             this.Health = Math.Clamp(this.Health, 0, 120);
             Debug.WriteLine($"DrillDamage was called, Health is {Health}");
         }
-        private void UseRepairKit()
+        private void UseRepairKit()//fixes drill and checks if the chracter repairing is the mechanist
         {
             Console.Clear();
             Console.WriteLine("Choose the number of the crewperson that will patch up the drill:\n");
-            CrewStatus(true);
+            CrewSelection();
             int crewMember = ValidCrewPerson();
             Random random = new Random();
             if (CrewPeople[crewMember].Trait.Equals("Mechanist"))
@@ -79,12 +79,12 @@ namespace ConsoleGameProject
             RepairKits--;
             Console.WriteLine($"{CrewPeople[crewMember].FirstName} uses up a repair kit and the drill mechine looks better.\n\n");
             Thread.Sleep(5_000);
-        }//
-        private void UseHealthKit()
+        }
+        private void UseHealthKit()// heals a person unless that person doesn't need it
         {
             Console.Clear();
             Console.WriteLine("Choose the number of the crewperson you will heal:\n");
-            CrewStatus(true);
+            CrewSelection();
             int crewMember = ValidCrewPerson();
             if (CrewPeople[crewMember].Chances < 2)
             {
@@ -161,7 +161,7 @@ namespace ConsoleGameProject
             }
 
         }
-        private bool AreAllDeadValidation()
+        private bool AreAllDeadValidation()// checks if the entire crew minus the player are dead 
         {
             int count = 0;
             foreach (CrewPerson crew in CrewPeople)
@@ -178,7 +178,7 @@ namespace ConsoleGameProject
             else
                 return false;
         }
-        private bool HaveTrait(string desiredTrait)
+        private bool HaveTrait(string desiredTrait)// checks if you have a trait on your team
         {
             bool HaveTrait = false;
             for (int i = 0; i < CrewPeople.Count; i++)
@@ -191,7 +191,7 @@ namespace ConsoleGameProject
             Debug.WriteLine($"HaveTrait was used and came out {HaveTrait}");
             return HaveTrait;
         }
-        private void CrewStatus()
+        private void CrewStatus()// displayed on main screen
         {
             if (Health <= 0)
             {
@@ -254,10 +254,8 @@ namespace ConsoleGameProject
                 $"To heal push \"s\"\n" +
                 $"To fix the drill push \"f\"\n");
         }
-        private void CrewStatus(bool showOnlyCrew)
+        private void CrewSelection()//displayed during times that require crew selections
         {
-            if (showOnlyCrew)
-            {
                 for (int i = 0; i < CrewSize - 1; i++)
                 {
                     char healthSymbol = '*';
@@ -275,12 +273,11 @@ namespace ConsoleGameProject
                     }
                     Console.WriteLine($"{i + 1}. :{healthSymbol} - {CrewPeople[i].FirstName} \"The {CrewPeople[i].Trait}\" {CrewPeople[i].LastName}\n");
                 }
-            }
         }
-        private void RepairEngines()
+        private void RepairEngines()//chooses an engine repair scenario
         {
             Console.WriteLine("Choose the number of the crewperson going outside:\n");
-            CrewStatus(true);
+            CrewSelection();
             int crewMember = ValidCrewPerson();
             Console.WriteLine($"{CrewPeople[crewMember].FirstName} goes outside to try and repair the damage.\n\n");
             Sounds.HatchOpen();
@@ -315,7 +312,7 @@ namespace ConsoleGameProject
                 DrillDown();
             }
         }
-        private void Event()
+        private void Event()// determines where you go
         {
             Random random = new Random();
             int eventChance = random.Next(1, 101); //1-101
@@ -546,7 +543,7 @@ namespace ConsoleGameProject
                 else { DrillDown(); }
             }
         }
-        public void DriveDrill()
+        public void DriveDrill()//takes input, validates it, and calls the correct method
         {
             Coloring.DepthIndicator(Depth);
             CrewStatus();
