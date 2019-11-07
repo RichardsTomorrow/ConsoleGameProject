@@ -21,7 +21,7 @@ namespace ConsoleGameProject
         private bool VistedDinoDNA { get; set; }
         private bool VistedCthulu { get; set; }
         private bool VistedLizardPeeps { get; set; }
-        public Drill(CrewPerson player, int crewSize)
+        public Drill(CrewPerson player, int crewSize) // constructor
         {
             this.Player = player;
             this.CrewPeople = CrewSelector(crewSize);
@@ -222,7 +222,6 @@ namespace ConsoleGameProject
             {
                 Coloring.CrewAllDeadColor();
                 Texts.CrewAllDeadEnding();
-                Sounds.DeathScream();
             }
             else if (Depth > 490)
             {
@@ -320,7 +319,7 @@ namespace ConsoleGameProject
         {
             Random random = new Random();
             int eventChance = random.Next(1, 101); //1-101
-            eventChance = 70; //determinism
+            //eventChance = 52; //determinism used to test specific events
             if (eventChance <= 65) // triggers maintence issues, some dangerous
             {
                 Console.Clear();
@@ -351,7 +350,7 @@ namespace ConsoleGameProject
                         Console.WriteLine($"{CrewPeople[i].FirstName} was hit by the blast.\n\nLuckily it wasn't deadly.");
                     DrillDown();
                     Debug.WriteLine($"{CrewPeople[i].FirstName} is {CrewPeople[i].Dead}");
-                    Thread.Sleep(4_000);
+                    Thread.Sleep(3_000);
                 }
                 else if (eventChance <= 60) //5%
                 {

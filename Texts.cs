@@ -353,10 +353,11 @@ namespace ConsoleGameProject
         {
             Console.Clear();
             Console.WriteLine("You didn't take proper care of your crew and now you don’t have enough people to maintain your drill.\n\n" +
-                "Your heat shields are now failing and no one can go out and fix it.\n\n" +
-                "You burn to a crisp inside the drill.\n\n" +
-                "It will keep digging without you until it runs out of fuel or hits some impediment it cannot overcome.\n\n" +
-                "Maybe you will make it to the center of the Earth after all.");
+                "Your heat shields are now failing and no one can go out and fix it.\n");
+            Sounds.DeathScream();
+            Console.WriteLine("You burn to a crisp inside the drill, leaving a pile of cremains.\n\n" +
+                "The drill will keep digging without you until it runs out of fuel or hits some impediment it cannot overcome.\n\n" +
+                "Maybe you will make it to the center of the Earth after all.",Color.DarkGray);
             Thread.Sleep(10_000); // 5 seconds
             Environment.Exit(0);
         }

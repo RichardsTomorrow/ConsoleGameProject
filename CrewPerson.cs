@@ -24,7 +24,6 @@ namespace ConsoleGameProject
             this.Chances = Trait == "Stout" ? 3 : 2; // this will give the stout person an extra life
             this.Dead = false;
         }
-
         public CrewPerson(string firstName, string lastName) //makes player character
         {
             this.FirstName = firstName; usedNames.Add(firstName);
@@ -32,11 +31,7 @@ namespace ConsoleGameProject
             this.Trait = possibleTraits[0];
             this.Chances = 2;
         }
-        public void Injury()
-        {
-            Chances -= 1;
-        }
-        public void Injury(int hurt)
+        public void Injury(int hurt = 1)
         {
             Chances -= hurt;
         }
