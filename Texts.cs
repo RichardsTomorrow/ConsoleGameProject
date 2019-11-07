@@ -245,7 +245,7 @@ namespace ConsoleGameProject
                 Console.WriteLine("You feel a jolt\n\n" +
                     "The ship has been caught in a magma flow that swiftly drags it down.\n\n" +
                     "You are deeper but your drill has gotten tossed around");
-                Thread.Sleep(10_000);
+                Thread.Sleep(8_000);
             }
         }
         public static void HeySatanText(bool priestPresent) //some kind of red and black theme

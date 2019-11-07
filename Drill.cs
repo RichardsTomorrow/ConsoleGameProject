@@ -325,7 +325,7 @@ namespace ConsoleGameProject
         {
             Random random = new Random();
             int eventChance = random.Next(1, 101); //1-101
-            //eventChance = 52; //determinism
+            //eventChance = 70; //determinism
             if (eventChance <= 65) // triggers maintence issues, some dangerous
             {
                 Console.Clear();
@@ -435,7 +435,7 @@ namespace ConsoleGameProject
                 {
                     if (eventChance > 65 && eventChance < 77)//geologist
                     {
-                        //no custom color for this event
+                        Console.Clear();//no custom color for this event
                         Texts.MagmaFlowText(HaveTrait("Geologist"));
                         if (HaveTrait("Geologist"))
                         {
@@ -559,7 +559,7 @@ namespace ConsoleGameProject
             var comparison = ValidKeyPress();
             if (comparison == ConsoleKey.D)
             {
-                DepthIndicator();
+                //DepthIndicator();
                 Debug.WriteLine($"Dig down happened, Depth is {Depth}");
                 Event();
             }
