@@ -351,7 +351,7 @@ namespace ConsoleGameProject
                 Console.WriteLine("The secret lizard illuminati masons are angry that you have interrupted their planning meeting.\n\n" +
                     "They attack you and you must fight your way out.\n\n" +
                     "You push your drill to some of its limits and keep going until the only thing outside is the harsh glow of the core");
-                Thread.Sleep(10_000);
+                Thread.Sleep(15_000);
             }
         }
         public static void BowToTheRobotsIMeanLizardsEnding()
