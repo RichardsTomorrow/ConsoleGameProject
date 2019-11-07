@@ -14,7 +14,6 @@ namespace ConsoleGameProject
         public int RepairKits { get; private set; }
         public int HealKits { get; private set; }
         public int CrewSize { get; private set; }
-        public bool AllDead { get; private set; }
         public bool VistedLostCity { get; private set; }
         public bool VistedTardisCave { get; private set; }
         public bool VistedCoreMantel { get; private set; }
@@ -32,7 +31,6 @@ namespace ConsoleGameProject
             this.RepairKits = crewSize / 2;
             this.Depth = 0;
             this.CrewSize = crewSize;
-            this.AllDead = false;
             this.VistedLostCity = false;
             this.VistedTardisCave = false;
             this.VistedCoreMantel = false;
@@ -49,6 +47,19 @@ namespace ConsoleGameProject
             }
             Debug.WriteLine($"The non-player crew person list has {crew.Count} people on it");
             return crew;
+        }
+        private int RandomCrewPerson()
+        {
+            Random random = new Random();
+            int i = random.Next(0, CrewPeople.Count);
+            if (!CrewPeople[i].Dead)
+            {
+                return i;
+            }
+            else
+            {
+                return RandomCrewPerson();
+            }
         }
         private void DrillDown(int dig = 10)
         {
@@ -137,7 +148,7 @@ namespace ConsoleGameProject
             this.Health = Math.Clamp(this.Health, 0, 120);
             Debug.WriteLine($"DrillDamage was called, Health is {Health}");
         }
-        private void AreAllDead()
+        private bool AreAllDead()
         {
             int count = 0;
             foreach (CrewPerson crew in CrewPeople)
@@ -149,12 +160,13 @@ namespace ConsoleGameProject
             }
             if (count == CrewPeople.Count)
             {
-                AllDead = true;
+                return true;
             }
+            else
+                return false;
         }
         private void CrewStatus()
         {
-            AreAllDead();
             if (Health <= 0)
             {
                 if (HaveTrait("Brave"))
@@ -180,7 +192,7 @@ namespace ConsoleGameProject
                     Sounds.DeathScream();
                 }
             }
-            else if (AllDead)
+            else if (AreAllDead())
             {
                 Coloring.CrewAllDeadColor();
                 Texts.CrewAllDeadEnding();
@@ -313,7 +325,7 @@ namespace ConsoleGameProject
         {
             Random random = new Random();
             int eventChance = random.Next(1, 101); //1-101
-            //eventChance = 70; //determinism
+            //eventChance = 52; //determinism
             if (eventChance <= 65) // triggers maintence issues, some dangerous
             {
                 Console.Clear();
@@ -329,7 +341,24 @@ namespace ConsoleGameProject
                     RepairEngines();
                     Thread.Sleep(2_000);
                 }
-                else if (eventChance <= 60) //10%
+                else if (eventChance <= 55) //5% 
+                {
+                    Console.WriteLine("You hear the whistle of escaping steam but it is too late a pipe bursts.\n");
+                    int i = RandomCrewPerson();
+                    CrewPeople[i].Injury();
+                    if (CrewPeople[i].Chances == 0)
+                    {
+                        CrewPeople[i].Death();
+                        Console.WriteLine($"{CrewPeople[i].FirstName} died from their injuries");
+                        Sounds.DeathScream();
+                    }
+                    else
+                        Console.WriteLine($"{CrewPeople[i].FirstName} was hit by the blast.\n\nLuckily it wasn't deadly.");
+                    DrillDown();
+                    Debug.WriteLine($"{CrewPeople[i].FirstName} is {CrewPeople[i].Dead}");
+                    Thread.Sleep(2_000);
+                }
+                else if (eventChance <= 60) //5%
                 {
                     Console.WriteLine("Odd. It felt like you went nowhere. Try digging again.");
                     Thread.Sleep(2_000);
@@ -584,7 +613,6 @@ namespace ConsoleGameProject
             {
                 Console.WriteLine($"Captain {Player.LastName}, I can't in good conscience use a health kit when I don't need one.");
             }
-
             Thread.Sleep(3_000);
         }
     }
