@@ -181,7 +181,7 @@ namespace ConsoleGameProject
                             DrillDamage(-30);
                             Sounds.DeathScream();
                             CrewPeople[i].Death();
-                            Thread.Sleep(3_000);
+                            Thread.Sleep(5_000);
                             Console.Clear();
                         }
                     }
@@ -333,13 +333,13 @@ namespace ConsoleGameProject
                 {
                     Console.WriteLine("You found a very soft pocket of material and went double the speed you expected");
                     DrillDown(20);
-                    Thread.Sleep(2_000);
+                    Thread.Sleep(4_000);
                 }
                 else if (eventChance <= 50)//30%
                 {
                     Console.WriteLine("The engines have stopped.\n\nYou will have to send someone out to repair them.\n\nBe warned it is dangerous out there.\n\n");
                     RepairEngines();
-                    Thread.Sleep(2_000);
+                    Thread.Sleep(4_000);
                 }
                 else if (eventChance <= 55) //5% 
                 {
@@ -356,24 +356,24 @@ namespace ConsoleGameProject
                         Console.WriteLine($"{CrewPeople[i].FirstName} was hit by the blast.\n\nLuckily it wasn't deadly.");
                     DrillDown();
                     Debug.WriteLine($"{CrewPeople[i].FirstName} is {CrewPeople[i].Dead}");
-                    Thread.Sleep(2_000);
+                    Thread.Sleep(4_000);
                 }
                 else if (eventChance <= 60) //5%
                 {
                     Console.WriteLine("Odd. It felt like you went nowhere. Try digging again.");
-                    Thread.Sleep(2_000);
+                    Thread.Sleep(4_000);
                 }
                 else if (eventChance <= 65)//5%
                 {
                     Console.WriteLine($"You found a way to boost the drill sytem.");
                     DrillDamage(-10);
-                    Thread.Sleep(2_000);
+                    Thread.Sleep(4_000);
                 }
                 else//0%
                 {
                     Console.WriteLine("All operations normal");
                     DrillDown();
-                    Thread.Sleep(2_000);
+                    Thread.Sleep(4_000);
                 }
 
             }
@@ -579,7 +579,6 @@ namespace ConsoleGameProject
             }
             else
                 Console.WriteLine("whoops this line shouldn't be displayed");
-            //Thread.Sleep(1_000);
             DriveDrill();
         }
         private void UseRepairKit()
@@ -595,7 +594,7 @@ namespace ConsoleGameProject
                 DrillDamage(-random.Next(1, 5) * 10);
             RepairKits--;
             Console.WriteLine($"{CrewPeople[crewMember].FirstName} uses up a repair kit and the drill mechine looks better.\n\n");
-            Thread.Sleep(3_000);
+            Thread.Sleep(5_000);
         }
         private void UseHealthKit()
         {
@@ -613,7 +612,7 @@ namespace ConsoleGameProject
             {
                 Console.WriteLine($"Captain {Player.LastName}, I can't in good conscience use a health kit when I don't need one.");
             }
-            Thread.Sleep(3_000);
+            Thread.Sleep(5_000);
         }
     }
 }
