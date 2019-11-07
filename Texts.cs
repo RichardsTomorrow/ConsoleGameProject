@@ -193,13 +193,13 @@ namespace ConsoleGameProject
                     "They are able to fashion some repairs and upgrades for the drill with the native technology in the city.\n\n" +
                     "The  Archaeologist swears they can supercharge the drill and begs for more time but you must press on\n\n" +
                     "Oh, they also found a secret Atlantean tunnel system beneath the city which takes you deeper into the earth…");
-                Thread.Sleep(5_000);
+                Thread.Sleep(10_000);
             }
             else
             {
                 Console.WriteLine("Your crew feels like someone should explore this place but they are all too busy working to stabilize the drill.\n\n" +
                     "They prevent much of the damage but there are some parts that can't be fixed until you get back to the surface.");
-                Thread.Sleep(5_000);
+                Thread.Sleep(8_000);
             }
         }
         public static void TardisCaveText(bool doctorPresent)// change this a little more
@@ -223,7 +223,7 @@ namespace ConsoleGameProject
                     "They try to open it no avail and find nothing external powering it\n\n" +
                     "You make sure to log it so you can report it to the SPC foundation when you get surface side\n\n" +
                     "As you prepare to resume your journey you find some lava tubes leading deeper into the Earth\n\n");
-                Thread.Sleep(5_000); // Tardis sound takes a while
+                Thread.Sleep(8_000); // Tardis sound takes a while
             }
         }
         public static void MagmaFlowText(bool geologistPresent)// leave default coloration
@@ -238,14 +238,14 @@ namespace ConsoleGameProject
                     "The whole ship lurches forward and makes a continuous creaking sound.\n\n" +
                     "After 20 minutes of tense worrying, you slow to a pace similar to before.\n\n" +
                     "Your shields were a little damaged but you are much closer to your goal.");
-                Thread.Sleep(5_000);
+                Thread.Sleep(10_000);
             }
             else
             {
                 Console.WriteLine("You feel a jolt\n\n" +
                     "The ship has been caught in a magma flow that swiftly drags it down.\n\n" +
                     "You are deeper but your drill has gotten tossed around");
-                Thread.Sleep(5_000);
+                Thread.Sleep(8_000);
             }
         }
         public static void HeySatanText(bool priestPresent) //some kind of red and black theme
@@ -264,12 +264,12 @@ namespace ConsoleGameProject
                     "\" But you know, I have always wanted to cast someone into the depths of Hell.\"\n\n" +
                     "The beast flicks his finger and tosses your drill deep into the depths of hell… and that much closer to your goal.");
                 Sounds.SantaLaugh();
-                Thread.Sleep(7_000);
+                Thread.Sleep(10_000);
             }
             else
             {
                 Console.WriteLine("None of you know how to answer the beast’s challenge. You run from the demons of hell as they attack.");
-                Thread.Sleep(5_000);
+                Thread.Sleep(8_000);
             }
         }
         public static void DinosaursText(bool paleoPresent)
@@ -287,7 +287,7 @@ namespace ConsoleGameProject
                     "Your crew bolts the door and continues on before they attract any more attention.");
 
                 Sounds.DinoRoar();
-                Thread.Sleep(7_000); // seven seconds
+                Thread.Sleep(10_000); // seven seconds
             }
             else
             {
@@ -296,7 +296,7 @@ namespace ConsoleGameProject
                     "You have all seen the Jurassic Park movies, and you know how these things usually turn out,\n" +
                     "but you all enjoy the distraction before you get on your way.");
 
-                Thread.Sleep(5_000);
+                Thread.Sleep(8_000);
             }
         }
         public static void HeyCthulhuText(bool priestPresent) // 
@@ -327,7 +327,7 @@ namespace ConsoleGameProject
                     "Words with too many consonants for human tongues dance on the edges of your understanding.\n\n" +
                     "A deep, existential dread overtakes you. Your crew flees from this awful place without bothering to explore it.");
 
-                Thread.Sleep(5_000);
+                Thread.Sleep(8_000);
             }
         }
         public static void HeyLizardPeepsText(bool mechanistPresent)
@@ -344,14 +344,14 @@ namespace ConsoleGameProject
                     "The secret lizard illuminati masons are embarrassed to have been discovered so easily.\n\n" +
                     "They promise to provide you with the cure to the common cold if you will leave and not tell anyone about their secret.");
                 Sounds.ActuallyRobots();
-                Thread.Sleep(7_000);
+                Thread.Sleep(10_000);
             }
             else
             {
                 Console.WriteLine("The secret lizard illuminati masons are angry that you have interrupted their planning meeting.\n\n" +
                     "They attack you and you must fight your way out.\n\n" +
                     "You push your drill to some of its limits and keep going until the only thing outside is the harsh glow of the core");
-                Thread.Sleep(7_000);
+                Thread.Sleep(8_000);
             }
         }
         public static void BowToTheRobotsIMeanLizardsEnding()
@@ -360,7 +360,7 @@ namespace ConsoleGameProject
             Console.WriteLine("Your crew takes the offer from the robot... I mean secret lizard illuminati mason rulers of the world.\n\n" +
                 "Everywhere you are thanked for discovering the cure to cancer AND the common cold at the center of the earth\n\n" +
                 "You live out the rest of your days in opulent celebrity, your every whim attended to. But somehow, it all feels hollow…");
-            Thread.Sleep(7_000); // 5 seconds
+            Thread.Sleep(8_000); // 5 seconds
             Environment.Exit(0);
         }
         public static void YouFreakingSummonedCthulhuEnding()
@@ -369,7 +369,7 @@ namespace ConsoleGameProject
             Console.WriteLine("You have summoned Cthulhu and doomed the world!\n\n" +
                 "Luckily, you and your crew will be eaten first as the rest of the world descends into chaos.");
             Sounds.CthulhuRises();
-            Thread.Sleep(5_000); // 5 seconds
+            Thread.Sleep(8_000); // 5 seconds
             Environment.Exit(0);
         }
         public static void DrillHealthDepletedEnding()// no custom color
@@ -378,7 +378,7 @@ namespace ConsoleGameProject
             Console.WriteLine("You didn't take proper care of your drill and it exploded.\n\n" +
                 "Your whole crew died, stranded hundreds of miles beneath the earth.\n\n" +
                 "Good job!");
-            Thread.Sleep(7_000); // 5 seconds
+            Thread.Sleep(8_000); // 5 seconds
             Environment.Exit(0);
         }
         public static void CrewAllDeadEnding()
@@ -389,7 +389,7 @@ namespace ConsoleGameProject
                 "You burn to a crisp inside the drill.\n\n" +
                 "It will keep digging without you until it runs out of fuel or hits some impediment it cannot overcome.\n\n" +
                 "Maybe you will make it to the center of the Earth after all.");
-            Thread.Sleep(7_000); // 5 seconds
+            Thread.Sleep(8_000); // 5 seconds
             Environment.Exit(0);
         }
         public static void AtTheCenterEnding()
@@ -398,7 +398,7 @@ namespace ConsoleGameProject
             Console.WriteLine("The around you begins glowing a pleasing pink.\n\n" +
                 "You consult your instruments and confirm that you have infact made it to the center of the Earth!\n\n" +
                 "Who would've thought it was pink?");
-            Thread.Sleep(7_000); // 5 seconds
+            Thread.Sleep(8_000); // 5 seconds
             Environment.Exit(0);
         }
     }
