@@ -14,7 +14,6 @@ namespace ConsoleGameProject
         public int RepairKits { get; private set; }
         public int HealKits { get; private set; }
         public int CrewSize { get; private set; }
-        public bool AllDead { get; private set; }
         public bool VistedLostCity { get; private set; }
         public bool VistedTardisCave { get; private set; }
         public bool VistedCoreMantel { get; private set; }
@@ -32,7 +31,6 @@ namespace ConsoleGameProject
             this.RepairKits = crewSize / 2;
             this.Depth = 0;
             this.CrewSize = crewSize;
-            this.AllDead = false;
             this.VistedLostCity = false;
             this.VistedTardisCave = false;
             this.VistedCoreMantel = false;
