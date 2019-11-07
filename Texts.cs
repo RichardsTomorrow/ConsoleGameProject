@@ -16,18 +16,17 @@ namespace ConsoleGameProject
             Console.CursorVisible = true;
             Console.WriteLine("Hello Captain! It seems we mis-placed the paperwork. What is your first name?\n");
             string firstName = NameValidation();
-            //Sounds.PenClick();
             Console.WriteLine($"Ok, so your first name is {firstName}! Sorry I am new here what was your last name again?\n");
             string lastName = NameValidation();
-            //Sounds.PenClick();
             Console.WriteLine($"OHHHH!! You are {firstName} {lastName}! It is a pleasure to meet you.\n");
             int crewSize = CrewSizeValidation();
-            //Sounds.PenClick();
             Console.WriteLine($"Ahh yes! Now I found you! Captain {firstName} {lastName}, total crew of {crewSize}.\n\nGive me a second and I will grab your crew roster.\n");
+            Sounds.Printer();
+            Console.WriteLine($"It looks like eveyone is ready to go and already waiting for you in the drill.\n\n" +
+                $"Some of your crew is a little quirky but just like you they went through a drill development apprenticeship,\nso you should be fine.\n\nI wish you luck on your journey!");
             CrewPerson player = new CrewPerson(firstName, lastName);
             Drill drill = new Drill(player, crewSize);
-            Sounds.Printer();
-            //Thread.Sleep(2_000); // 2 seconds
+            Thread.Sleep(6_000);
             return drill;
         }
         static string NameValidation()
@@ -54,7 +53,7 @@ namespace ConsoleGameProject
             }
             return name;
         }
-        static int CrewSizeValidation()
+        static int CrewSizeValidation()//validates the crew size
         {
             Console.WriteLine($"One more question! Are you rated for a three-person, four-person, or five-person crew?\n");
             if (!Int32.TryParse(Console.ReadLine(), out int crewSize))
@@ -68,37 +67,6 @@ namespace ConsoleGameProject
                 crewSize = CrewSizeValidation();
             }
             return crewSize;
-        }
-        public static void RosterText(Drill drill)
-        {
-            Coloring.PaperworkColor();
-            Console.CursorVisible = false;
-            Console.WriteLine($"Found it! It looks like the administration has already selected your crew of {drill.CrewSize}.\n\nThey are an outstanding group of people even if they have a few quirks.\n");
-            for (int i = 0; i < drill.CrewSize - 1; i++)
-            {
-                if (i == 0)
-                {
-                    Console.WriteLine($"Your first officer is {drill.CrewPeople[i].FirstName} \"The {drill.CrewPeople[i].Trait}\" {drill.CrewPeople[i].LastName}\n");
-                }
-                else if (i == drill.CrewSize - 2)
-                {
-                    Console.WriteLine($"Last but not least is {drill.CrewPeople[i].FirstName} \"The {drill.CrewPeople[i].Trait}\" {drill.CrewPeople[i].LastName}\n");
-                }
-                else
-                {
-                    if (i % 2 == 0)
-                    {
-                        Console.WriteLine($"Next we have {drill.CrewPeople[i].FirstName} \"The {drill.CrewPeople[i].Trait}\" {drill.CrewPeople[i].LastName}\n");
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Then we have {drill.CrewPeople[i].FirstName} \"The {drill.CrewPeople[i].Trait}\" {drill.CrewPeople[i].LastName}\n");
-                    }
-                }
-            }
-            Console.WriteLine($"And finally we have you, {drill.Player.FirstName} \"The {drill.Player.Trait}\" {drill.Player.LastName}.\n");
-            Console.WriteLine("I wish you all luck on your journey and I hope you are prepared for whatever you find.");
-            Thread.Sleep(4_000); // 4 seconds
         }
         public static void IntroScreenText()
         {
@@ -129,7 +97,7 @@ namespace ConsoleGameProject
                 @"%|                                 \$$$$$$$   \$$$$$$$ \$$  \$$$$$$   \$$$$$\$$$$  \$$                               |%",
                 @"+|                                                                                                                   |+",
                 @"%|         Good morning Captain! You have been selected to lead an expedition to the center of the earth!            |%",
-                @"+|     Your crew are the best of the best, but drilling is hard work, and there’s not a lot of room in there.        |+",
+                @"+|      Your crew is the best of the best, but drilling is hard work, and there’s not a lot of room in there.        |+",
                 @"%|       You must balance the needs of your crew with the maintenance of your craft else you’ll never reach          |%",
                 @"+|                                                the center of the Earth!                                           |+",
                 @"[]+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+%+[]"
@@ -221,7 +189,7 @@ namespace ConsoleGameProject
             {
                 Console.WriteLine("Your crew is amazed by the box.\n\n" +
                     "They try to open it no avail and find nothing external powering it\n\n" +
-                    "You make sure to log it so you can report it to the SPC foundation when you get surface side\n\n" +
+                    "You make sure to log it so you can report it to the SCP foundation when you get surface side\n\n" +
                     "As you prepare to resume your journey you find some lava tubes leading deeper into the Earth\n\n");
                 Thread.Sleep(10_000); // Tardis sound takes a while
             }
@@ -237,7 +205,7 @@ namespace ConsoleGameProject
                     "\"Make it so, number one!\"\n\n" +
                     "The whole ship lurches forward and makes a continuous creaking sound.\n\n" +
                     "After 20 minutes of tense worrying, you slow to a pace similar to before.\n\n" +
-                    "Your shields were a little damaged but you are much closer to your goal.");
+                    "Your shields are a little damaged but you are much closer to your goal.");
                 Thread.Sleep(16_000);
             }
             else
@@ -245,7 +213,7 @@ namespace ConsoleGameProject
                 Console.WriteLine("You feel a jolt\n\n" +
                     "The ship has been caught in a magma flow that swiftly drags it down.\n\n" +
                     "You are deeper but your drill has gotten tossed around");
-                Thread.Sleep(10_000);
+                Thread.Sleep(8_000);
             }
         }
         public static void HeySatanText(bool priestPresent) //some kind of red and black theme
@@ -302,7 +270,7 @@ namespace ConsoleGameProject
         public static void HeyCthulhuText(bool priestPresent) // 
         {
             Console.WriteLine("Your drill breaks through into a massive underground cavern.\n\n" +
-                "Dank water drips from archways and staircases that cant at unnatural angles.\n\n" +
+                "Dank water drips from archways and staircases at unnatural angles.\n\n" +
                 "Everywhere vast spheres and stone surfaces push from the floor,\ntoo great to belong to anything right and proper for this earth,\n" +
                 "and impious with horrible images and disturbing hieroglyphs.\n\n" +
                 "Above the city, a hideous, monolith-crowned citadel glares down at you. \n");
@@ -385,10 +353,11 @@ namespace ConsoleGameProject
         {
             Console.Clear();
             Console.WriteLine("You didn't take proper care of your crew and now you don’t have enough people to maintain your drill.\n\n" +
-                "Your heat shields are now failing and no one can go out and fix it.\n\n" +
-                "You burn to a crisp inside the drill.\n\n" +
-                "It will keep digging without you until it runs out of fuel or hits some impediment it cannot overcome.\n\n" +
-                "Maybe you will make it to the center of the Earth after all.");
+                "Your heat shields are now failing and no one can go out and fix it.\n");
+            Sounds.DeathScream();
+            Console.WriteLine("You burn to a crisp inside the drill, leaving a pile of cremains.\n\n" +
+                "The drill will keep digging without you until it runs out of fuel or hits some impediment it cannot overcome.\n\n" +
+                "Maybe you will make it to the center of the Earth after all.",Color.DarkGray);
             Thread.Sleep(10_000); // 5 seconds
             Environment.Exit(0);
         }
