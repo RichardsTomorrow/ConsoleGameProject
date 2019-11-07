@@ -173,7 +173,7 @@ namespace ConsoleGameProject
             else if (heal == 1)
                 Console.Write($"You have only {heal} health kit and ");
             else  //(heal == 0)
-                Console.Write($"You are out of health kits and ");
+                Console.Write($"You have zero health kits and ");
 
             if (repair >= 2)
                 Console.Write($"{repair} repair kits.\n\n");
