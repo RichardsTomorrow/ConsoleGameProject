@@ -26,7 +26,7 @@ namespace ConsoleGameProject
                 $"Some of your crew is a little quirky but just like you they went through a drill development apprenticeship,\nso you should be fine.\n\nI wish you luck on your journey!");
             CrewPerson player = new CrewPerson(firstName, lastName);
             Drill drill = new Drill(player, crewSize);
-            Thread.Sleep(8_000);
+            Thread.Sleep(6_000);
             return drill;
         }
         static string NameValidation()

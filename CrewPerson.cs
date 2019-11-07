@@ -44,7 +44,7 @@ namespace ConsoleGameProject
             Dead = true;
             Chances = 0;
         }
-        private string NameGenerator(string[] possibleNames)
+        private string NameGenerator(string[] possibleNames) //picks a name at random and prevents repetition
         {
             Random random = new Random();
             string newName = possibleNames[random.Next(0, possibleNames.Length)];
@@ -54,7 +54,7 @@ namespace ConsoleGameProject
             return newName;
         }
 
-        private string Traitor(string[] possibleTs)
+        private string Traitor(string[] possibleTs) //picks a trait at random wile preventing repetition, it cannot pick captain
         {
             Random random = new Random();
             string traitSelection = possibleTs[random.Next(1, possibleTs.Length)];

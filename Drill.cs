@@ -58,7 +58,7 @@ namespace ConsoleGameProject
         {
             this.Depth += dig;
             Debug.WriteLine($"DrillDown was called, Depth is {Depth}");
-        }
+        }//
         private void DrillDamage(int damageTaken = 10)
         {
             this.Health -= damageTaken;
@@ -79,7 +79,7 @@ namespace ConsoleGameProject
             RepairKits--;
             Console.WriteLine($"{CrewPeople[crewMember].FirstName} uses up a repair kit and the drill mechine looks better.\n\n");
             Thread.Sleep(5_000);
-        }
+        }//
         private void UseHealthKit()
         {
             Console.Clear();
