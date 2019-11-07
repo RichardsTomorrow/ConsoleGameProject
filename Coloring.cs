@@ -82,6 +82,37 @@ namespace ConsoleGameProject
             Console.ForegroundColor = Color.LightGoldenrodYellow;
             Console.CursorVisible = false;
         }
+        public static void DepthIndicator(int depth)
+        {
+            if (depth <= 10)
+            {
+                Coloring.SurfaceColor();
+            }
+            else if (depth <= 50 && depth > 10)
+            {
+                Coloring.SoilColor();
+            }
+            else if (depth <= 100 && depth > 50)
+            {
+                Coloring.CrustColor();
+            }
+            else if (depth <= 200 && depth > 100)
+            {
+                Coloring.UpperMantleColor();
+            }
+            else if (depth <= 300 && depth > 200)
+            {
+                Coloring.LowerMantleColor();
+            }
+            else if (depth <= 400 && depth > 300)
+            {
+                Coloring.OuterCoreColor();
+            }
+            else if (depth <= 500 && depth > 400)
+            {
+                Coloring.InnerCoreColor();
+            }
+        }
         public static void LostCityColor()// coffee brownish, text a light sharp blue 
         {
             Console.ReplaceAllColorsWithDefaults();

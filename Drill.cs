@@ -252,37 +252,6 @@ namespace ConsoleGameProject
                 }
             }
         }
-        private void DepthIndicator()
-        {
-            if (Depth <= 10)
-            {
-                Coloring.SurfaceColor();
-            }
-            else if (Depth <= 50 && Depth > 10)
-            {
-                Coloring.SoilColor();
-            }
-            else if (Depth <= 100 && Depth > 50)
-            {
-                Coloring.CrustColor();
-            }
-            else if (Depth <= 200 && Depth > 100)
-            {
-                Coloring.UpperMantleColor();
-            }
-            else if (Depth <= 300 && Depth > 200)
-            {
-                Coloring.LowerMantleColor();
-            }
-            else if (Depth <= 400 && Depth > 300)
-            {
-                Coloring.OuterCoreColor();
-            }
-            else if (Depth <= 500 && Depth > 400)
-            {
-                Coloring.InnerCoreColor();
-            }
-        }
         private void RepairEngines()
         {
             Console.WriteLine("Choose the number of the crewperson going outside:\n");
@@ -554,12 +523,11 @@ namespace ConsoleGameProject
         }
         public void DriveDrill()
         {
-            DepthIndicator();
+            Coloring.DepthIndicator(Depth);
             CrewStatus();
             var comparison = ValidKeyPress();
             if (comparison == ConsoleKey.D)
             {
-                //DepthIndicator();
                 Debug.WriteLine($"Dig down happened, Depth is {Depth}");
                 Event();
             }

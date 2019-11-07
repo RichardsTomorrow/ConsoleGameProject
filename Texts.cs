@@ -221,7 +221,7 @@ namespace ConsoleGameProject
             {
                 Console.WriteLine("Your crew is amazed by the box.\n\n" +
                     "They try to open it no avail and find nothing external powering it\n\n" +
-                    "You make sure to log it so you can report it to the SPC foundation when you get surface side\n\n" +
+                    "You make sure to log it so you can report it to the SCP foundation when you get surface side\n\n" +
                     "As you prepare to resume your journey you find some lava tubes leading deeper into the Earth\n\n");
                 Thread.Sleep(10_000); // Tardis sound takes a while
             }
