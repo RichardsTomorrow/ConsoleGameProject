@@ -26,7 +26,7 @@ namespace ConsoleGameProject
                 $"Some of your crew is a little quirky but just like you they went through a drill development apprenticeship,\nso you should be fine.\n\nI wish you luck on your journey!");
             CrewPerson player = new CrewPerson(firstName, lastName);
             Drill drill = new Drill(player, crewSize);
-            Thread.Sleep(6_000);
+            Thread.Sleep(8_000);
             return drill;
         }
         static string NameValidation()
@@ -110,7 +110,7 @@ namespace ConsoleGameProject
             Debug.WriteLine($"Intro screen height:{Console.WindowHeight}");
 
             Coloring.IntroGradientColor(introbox);
-            Thread.Sleep(5_000); //5 seconds
+            Thread.Sleep(10_000); //5 seconds
 
             Debug.WriteLine($"text color before reset:{Console.ForegroundColor}");
 
@@ -176,7 +176,7 @@ namespace ConsoleGameProject
             if (doctorPresent)
             {
                 Console.WriteLine("The Doctor is ecstatic!\n\n" +
-                    "\"I was hoping I left my TARDIS here\"\n\n" +
+                    "\"I was hoping I left my TARDIS here!\"\n\n" +
                     "The Doctor mummbles something about \"fishfingers and custard\".\n\n" +
                     "They bid everyone adieu and enter the box.\n\n" +
                     "The blue phone box turns transparent and disappears with a distinctive noise.\n\n" +
@@ -229,7 +229,7 @@ namespace ConsoleGameProject
                     "The great beast laughs as nothing happens.\n\n" +
                     "\"You cannot command me from within my own domain!\"\n\n" +
                     "The beast laughed again, then grew thoughtful.\n\n" +
-                    "\" But you know, I have always wanted to cast someone into the depths of Hell.\"\n\n" +
+                    "\"But you know, I have always wanted to cast someone into the depths of Hell.\"\n\n" +
                     "The beast flicks his finger and tosses your drill deep into the depths of hell… and that much closer to your goal.");
                 Sounds.SantaLaugh();
                 Thread.Sleep(15_000);
@@ -287,7 +287,7 @@ namespace ConsoleGameProject
                     "Carved in the wall above it are these words:\n");
                 Console.WriteLine("\"Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn\"\n", Color.Magenta);
                 Console.WriteLine("The Priest’s mind breaks as he reads the words, and he is already gibbering in madness when the\nfirst tentacle slips above the edge of the vault.");
-                Thread.Sleep(16_000);
+                Thread.Sleep(18_000);
             }
             else
             {
@@ -318,7 +318,7 @@ namespace ConsoleGameProject
             {
                 Console.WriteLine("The secret lizard illuminati masons are angry that you have interrupted their planning meeting.\n\n" +
                     "They attack you and you must fight your way out.\n\n" +
-                    "You push your drill to some of its limits and keep going until the only thing outside is the harsh glow of the core");
+                    "You push your drill to its limits and keep going until the only thing outside is the harsh glow of the core");
                 Thread.Sleep(15_000);
             }
         }

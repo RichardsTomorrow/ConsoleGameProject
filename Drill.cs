@@ -77,7 +77,7 @@ namespace ConsoleGameProject
             else
                 DrillDamage(-random.Next(1, 5) * 10);
             RepairKits--;
-            Console.WriteLine($"{CrewPeople[crewMember].FirstName} uses up a repair kit and the drill mechine looks better.\n\n");
+            Console.WriteLine($"{CrewPeople[crewMember].FirstName} uses up a repair kit and the drill machine looks better.\n\n");
             Thread.Sleep(5_000);
         }
         private void UseHealthKit()// heals a person unless that person doesn't need it
