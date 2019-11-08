@@ -41,7 +41,7 @@ namespace ConsoleGameProject
             Debug.WriteLine($"The non-player crew person list has {crew.Count} people on it");
             return crew;
         }
-        private int RandomCrewPerson()
+        private int RandomCrewPerson()// selects a random but living crew person
         {
             Random random = new Random();
             int i = random.Next(0, CrewPeople.Count);
