@@ -25,7 +25,7 @@ namespace ConsoleGameProject
         {
             this.Player = player;
             this.CrewPeople = CrewSelector(crewSize);
-            this.Health = Math.Clamp(100, 0, 120);
+            this.Health = Math.Clamp(10, 0, 120);
             this.HealKits = crewSize - 1;
             this.RepairKits = crewSize / 2;
             this.Depth = 0;
